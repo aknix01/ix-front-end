@@ -4,19 +4,15 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navi from './Navi';
 import { TextField } from '@mui/material';
-import { Amplify, Logger } from 'aws-amplify';
-import awsconfig from './aws-exports';
 
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate()
-    const logger = new Logger('AmplifyLogger', 'DEBUG');
 
     const handleLogin = (e) => {
         e.preventDefault();
-        logger.debug('Amplify logging enabled');
         log(email, password, (err, session) => {
             if (err) {
                 alert("login failed")
