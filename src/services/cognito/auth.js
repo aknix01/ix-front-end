@@ -1,39 +1,55 @@
-import { CognitoUser,AuthenticationDetails } from "amazon-cognito-identity-js";
+import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import userPool from "./Userpool";
 import { Amplify, Logger } from 'aws-amplify';
 import awsconfig from './aws-exports';
 
-
+Amplify.configure(awsconfig);
 const logger = new Logger('AmplifyLogger', 'DEBUG');
+
 const log = (email, password, callback) => {
     const authDetails = new AuthenticationDetails({
-      Username: email,
-      Password: password,
+        Username: email,
+        Password: password,
     });
-  
+
     const user = new CognitoUser({
-      Username: email,
-      Pool: userPool,
+        Username: email,
+        Pool: userPool,
     });
-  
+
     user.authenticateUser(authDetails, {
-      onSuccess: (session) => {
-        console.log('Login successful!');
-        console.log('Access Token:', session.getAccessToken().getJwtToken());
-        console.log('ID Token:', session.getIdToken().getJwtToken());
-        
-        logger.info('Login successful!');
-        logger.info('Access Token:', session.getAccessToken().getJwtToken());
-        logger.info('ID Token:', session.getIdToken().getJwtToken());
-          
-        logger.info('session >>',session);
-        callback(null, session);
-      },
-      onFailure: (err) => {
-        console.error('Login failed:', err);
-        callback(err, null);
-      },
+        onSuccess: (session) => {
+            const accessToken = session.getAccessToken().getJwtToken();
+            const idToken = session.getIdToken().getJwtToken();
+
+            console.log('✅ Login successful!');
+            console.log('🔑 Access Token:', accessToken);
+            console.log('🆔 ID Token:', idToken);
+            
+            logger.info(`✅ Login successful for user: ${email}`);
+            logger.info(`🔑 Access Token: ${accessToken}`);
+            logger.info(`🆔 ID Token: ${idToken}`);
+            callback(null, session);
+        },
+
+        onFailure: (err) => {
+            console.error('❌ Login failed:', err.message);
+            logger.error(`❌ Login failed for ${email}: ${err.message}`);
+            callback(err, null);
+        },
+
+        newPasswordRequired: (userAttributes) => {
+            console.warn('⚠️ User must set a new password.');
+            logger.warn(`⚠️ User ${email} must set a new password.`);
+            callback({ message: 'New password required', user: user }, null);
+        },
+
+        mfaRequired: (challengeName, challengeParameters) => {
+            console.warn('⚠️ MFA required.');
+            logger.warn(`⚠️ MFA required for user ${email}.`);
+            callback({ message: 'MFA required', challengeName, challengeParameters }, null);
+        }
     });
-  };
-  
-  export default log;
+};
+
+export default log;
