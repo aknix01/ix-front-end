@@ -1,7 +1,7 @@
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import userPool from "./Userpool";
-import { Amplify, Logger } from 'aws-amplify';
-import awsconfig from './aws-exports';
+import { Amplify, Logger } from "aws-amplify";
+import awsconfig from "./aws-exports";
 
 Amplify.configure(awsconfig);
 const logger = new Logger('AmplifyLogger', 'DEBUG');
