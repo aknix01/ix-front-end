@@ -6,12 +6,21 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import "./Navi.css"
 import { useState } from 'react';
 import { AiFillProduct } from "react-icons/ai";
-import { getSignedUrl } from "@aws-sdk/cloudfront-signer"
+
+import { logout } from '../services/cognito/logout';
+import { FaCartShopping } from "react-icons/fa6";
+import { useNavigate } from 'react-router-dom';
  
 function Navi() {
 
     const [showDropdown, setShowDropdown] = useState(false);
     const [navdrop, setNavdrop] = useState(false)
+    const navigate=useNavigate()
+
+    const handleLogout = () => {
+        logout();
+        navigate('/login'); 
+    };
     
     return (
         <Navbar expand="lg" className="custom-navbar ">
@@ -86,11 +95,12 @@ function Navi() {
 
                             <NavDropdown.Item href="/signup">Create Account</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.2">
+                            <NavDropdown.Item href="login">
                                 Sign In
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                            <NavDropdown.Item onClick={handleLogout} >Logout</NavDropdown.Item>
                         </NavDropdown>
+                        <Nav.Link href="/addtocart"><FaCartShopping /></Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

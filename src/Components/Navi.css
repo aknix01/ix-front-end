@@ -146,4 +146,43 @@
     background-color: #0056b3;
   }
   
- 
+  .paginationBttns {
+    width: 80%;
+    height: 40px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .paginationBttns a {
+    padding: 10px;
+    margin: 8px;
+    border-radius: 5px;
+    border: 1px solid #039e56;
+    color: #1a7c27;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .paginationBttns a:hover {
+    color: white;
+    background-color: #4488e0;
+  }
+  
+  .paginationActive a {
+    color: white;
+    background-color: #e3e64c;
+  }
+  
+  .paginationDisabled a {
+    color: rgb(12, 11, 11);
+    background-color: rgb(209, 101, 101);
+  }
+
+  .App {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100vw;
+  }
