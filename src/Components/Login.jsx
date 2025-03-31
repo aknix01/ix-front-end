@@ -20,7 +20,7 @@ function Login() {
             else {
                 alert('logged in ')
                 console.log("user session", session)
-                navigate("/dash")
+                navigate("/products")
 
             }
         })
