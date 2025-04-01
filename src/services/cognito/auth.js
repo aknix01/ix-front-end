@@ -1,16 +1,13 @@
-<<<<<<< HEAD
+
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import userPool from "./Userpool";
-import { Amplify, Logger } from "aws-amplify";
-import awsconfig from "./aws-exports";
 
-Amplify.configure(awsconfig);
-const logger = new Logger('AmplifyLogger', 'DEBUG');
 
-=======
-import { CognitoUser,AuthenticationDetails } from "amazon-cognito-identity-js";
-import UserPool from "./Userpool";
->>>>>>> 053aa2c (third commit)
+
+
+
+
+
 const log = (email, password, callback) => {
     const authDetails = new AuthenticationDetails({
         Username: email,
