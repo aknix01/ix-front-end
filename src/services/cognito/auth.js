@@ -28,29 +28,29 @@ const log = (email, password, callback) => {
             console.log('🔑 Access Token:', accessToken);
             console.log('🆔 ID Token:', idToken);
             
-            logger.info(`✅ Login successful for user: ${email}`);
-            logger.info(`🔑 Access Token: ${accessToken}`);
-            logger.info(`🆔 ID Token: ${idToken}`);
+            // logger.info(`✅ Login successful for user: ${email}`);
+            // logger.info(`🔑 Access Token: ${accessToken}`);
+            // logger.info(`🆔 ID Token: ${idToken}`);
             callback(null, session);
         },
 
         onFailure: (err) => {
             console.error('❌ Login failed:', err.message);
-            logger.error(`❌ Login failed for ${email}: ${err.message}`);
+            // logger.error(`❌ Login failed for ${email}: ${err.message}`);
             callback(err, null);
-        },
-
-        newPasswordRequired: (userAttributes) => {
-            console.warn('⚠️ User must set a new password.');
-            logger.warn(`⚠️ User ${email} must set a new password.`);
-            callback({ message: 'New password required', user: user }, null);
-        },
-
-        mfaRequired: (challengeName, challengeParameters) => {
-            console.warn('⚠️ MFA required.');
-            logger.warn(`⚠️ MFA required for user ${email}.`);
-            callback({ message: 'MFA required', challengeName, challengeParameters }, null);
         }
+
+        // newPasswordRequired: (userAttributes) => {
+        //     console.warn('⚠️ User must set a new password.');
+        //     logger.warn(`⚠️ User ${email} must set a new password.`);
+        //     callback({ message: 'New password required', user: user }, null);
+        // },
+
+        // mfaRequired: (challengeName, challengeParameters) => {
+        //     console.warn('⚠️ MFA required.');
+        //     logger.warn(`⚠️ MFA required for user ${email}.`);
+        //     callback({ message: 'MFA required', challengeName, challengeParameters }, null);
+        // }
     });
 };
 
