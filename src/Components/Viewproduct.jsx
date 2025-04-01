@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import {  addtocart, fetchproducts } from '../services/apicalls'
 import { Await } from 'react-router-dom'
 import { getSignedUrl } from '@aws-sdk/cloudfront-signer'
-import Pagination from './Pagination'
+
 import ReactPaginate from 'react-paginate'
 import userPool from '../services/cognito/Userpool'
 import { FormLabel } from 'react-bootstrap'
