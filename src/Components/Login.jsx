@@ -21,6 +21,7 @@ function Login() {
                 alert('logged in ')
                 console.log("user session", session)
                 navigate("/products")
+                alert(session)
 
             }
         })

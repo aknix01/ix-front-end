@@ -5,8 +5,10 @@ import Navi from './Navi';
 import { fetchcart } from '../services/apicalls';
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
-
+import { removefromcart } from '../services/apicalls';
 import { IoTrashBin } from "react-icons/io5";
+import { FormLabel } from 'react-bootstrap';
+import userPool from '../services/cognito/Userpool';
 
 function AddtoCart() {
 
@@ -15,14 +17,16 @@ function AddtoCart() {
     const [quantity,setQuantity]=useState();
     const navigate=useNavigate();
 
+    const user = userPool.getCurrentUser()
+
     const check=async()=>{
         navigate("/checkout")
     }
     const cart = async () => {
         const body= {
-            username:"11338d8a-4051-70dc-f16d-1191a58efa98"
+            username:user.username
         }
-        
+        console.log(body)
         const result = await fetchcart(body)
         console.log(result)
 
@@ -40,15 +44,14 @@ function AddtoCart() {
         }
     }
 
-    const del = async (id) => {
-        console.log(id)
-        const result = await removefromcart(id)
+    const del = async (item) => {
+        console.log(item)
+        
+        const result = await removefromcart(item.id,user.username)
         console.log(result)
         if (result.status == 200) {
             cart()
-            totalquantity()
-            totalprice()
-            
+            alert("removed from cart")
         }
     }
 
@@ -300,7 +303,7 @@ function AddtoCart() {
                                         }}
                                     >
                                         <button
-                                            onClick={() => del(item._id)}
+                                            onClick={() => del(item)}
                                             className="btn btn-outline-danger btn-sm"
                                             style={{
                                                 borderRadius: "50%",
@@ -323,8 +326,8 @@ function AddtoCart() {
                     </table>
 
                 </div>
-                {/* <div className="col-3 mt-5  "> */}
-                    {/* <div
+                <div className="col-3 mt-5  "> 
+                     <div
                         className='card'
                         style={{
                             alignSelf:"center",
@@ -430,7 +433,7 @@ function AddtoCart() {
 
 
                     </div>
-                </div> */}
+                </div>
 
             </div>
        :<div
