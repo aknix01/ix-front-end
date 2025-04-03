@@ -15,6 +15,13 @@ function Viewproduct() {
 
     const [product, setProduct] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
+ //token are initialised
+    const [refreshToken,setRefreshToken]=useState("")
+    const [accessToken,setAccessToken]=useState("")
+    const [idtoken,setIdtoken]=useState("")
+
+
+
 
     const user = userPool.getCurrentUser()
     const [selectedCategory, setSelectedCategory] = useState("");
@@ -23,6 +30,21 @@ function Viewproduct() {
         return url.substring(url.lastIndexOf("/") + 1)
     }
 
+    const fetchTokens=()=>{
+        user.getSession((err, session) => {
+            if (err) {
+                console.error("Error fetching session:", err);
+            } else {
+                
+                setAccessToken(session.getAccessToken().getJwtToken())
+                console.log("accesstoken",accessToken);
+                setIdtoken(session.getIdToken().getJwtToken())
+                console.log("idtoken",idtoken);
+                setRefreshToken(session.getRefreshToken().getToken())
+                console.log("refresh toekn",refreshToken);
+            }
+        });
+    }
 
     const navcart = async (e) => {
         const data = {
@@ -31,7 +53,7 @@ function Viewproduct() {
             quantity: e.quantity
         }
         console.log(data)
-        const result = await addtocart(data)
+        const result = await addtocart(data,"add")
         console.log(result)
         if (result.status == 200) {
             alert("added to cart")
@@ -132,6 +154,10 @@ function Viewproduct() {
         fetch()
     }, [selectedCategory])
 
+    useEffect(()=>{
+        fetchTokens()
+    },[])
+
     return (
         <>
             <Navi />
@@ -140,7 +166,9 @@ function Viewproduct() {
                     user && (
                         <div className='d-flex justify-content-center'><span style={{
                             alignSelf: "center"
-                        }}>welcome User: {user.username}</span></div>
+                        }}>welcome User: {user.username}</span>
+                        <button onClick={fetchTokens}>click here for token</button>
+                        </div>
                     )
                 }
 
