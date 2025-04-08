@@ -52,8 +52,12 @@ function Viewproduct() {
             username: user.username,
             quantity: e.quantity
         }
+
+        const Header = {
+             "Authorization": idtoken
+        }
         console.log(data)
-        const result = await addtocart(data,"add")
+        const result = await addtocart(data,"add",Header)
         console.log(result)
         if (result.status == 200) {
             alert("added to cart")

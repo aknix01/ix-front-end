@@ -1,7 +1,7 @@
 
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import userPool from "./Userpool";
-
+import { jwtDecode } from "jwt-decode";
 
 
 
@@ -27,6 +27,11 @@ const log = (email, password, callback) => {
             console.log('✅ Login successful!');
             console.log('🔑 Access Token:', accessToken);
             console.log('🆔 ID Token:', idToken);
+
+            const decodedToken=jwtDecode(idToken);
+            const userGroups=decodedToken["cognito:groups"] || [];
+            console.log(userGroups)
+            localStorage.setItem("Role", userGroups[0])
             
             // logger.info(`✅ Login successful for user: ${email}`);
             // logger.info(`🔑 Access Token: ${accessToken}`);

@@ -14,9 +14,9 @@ export const sign=async(body)=>{
     return await commonRequest('POST',base_url,body,"")
 }
 
-export const addtocart=async(body,action)=>{
+export const addtocart=async(body,action,header)=>{
     const urlWithParams=`${carturl}?action=${action}`
-    return await commonRequest("POST",urlWithParams,body,"")
+    return await commonRequest("POST",urlWithParams,body,header)
 }
 
 export const fetchcart=async(body)=>{

@@ -1,4 +1,4 @@
-import { CognitoUserPool } from 'amazon-cognito-identity-js';
+1
 import userPool from './Userpool';
 
 export const logout = () => {
