@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -10,18 +10,25 @@ import { AiFillProduct } from "react-icons/ai";
 import { logout } from '../services/cognito/logout';
 import { FaCartShopping } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
- 
+
 function Navi() {
 
     const [showDropdown, setShowDropdown] = useState(false);
     const [navdrop, setNavdrop] = useState(false)
-    const navigate=useNavigate()
+    const navigate = useNavigate()
 
     const handleLogout = () => {
         logout();
-        navigate('/login'); 
+        navigate('/login');
     };
-    
+    const [role, setRole] = useState()
+
+    useEffect(() => {
+
+        setRole(localStorage.getItem("Role"))
+
+
+    }, [])
     return (
         <Navbar expand="lg" className="custom-navbar ">
             <Container>
@@ -64,8 +71,16 @@ function Navi() {
                         )} */}
 
 
-                        <Nav.Link href="/addproducts">Add Products</Nav.Link>
-                        <Nav.Link href="#home">link3</Nav.Link>
+                        {(role === "Admin" || role === "Seller") && (
+                            <Nav.Link href="/addproducts">Add Products</Nav.Link>
+                        )}
+
+                        {(role === "Admin") && (
+                            <Nav.Link href="/management">Management</Nav.Link>
+                        )
+
+                        }
+
 
 
 

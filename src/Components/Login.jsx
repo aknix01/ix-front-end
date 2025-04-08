@@ -20,8 +20,16 @@ function Login() {
             else {
                 alert('logged in ')
                 console.log("user session", session)
-                navigate("/products")
-                alert(session)
+                const role=localStorage.getItem("Role")
+                if(role==="User"){
+                    navigate("/products")
+                }
+                else if(role==="Seller"){
+                    navigate("/addproducts")
+                }
+                else{
+                    navigate("/management")
+                }
 
             }
         })
@@ -68,6 +76,8 @@ style={{
                     margin:"auto"
                 }} className='btn btn-primary' type='submit' >login</button>
                 <a className='my-3' href="/signup">didn't have an account .register</a>
+
+                <a className='my-3' href="/forgotpassword">Forgot Password !!</a>
             </form>
             </div>
         </div>
