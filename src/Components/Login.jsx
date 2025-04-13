@@ -27,10 +27,12 @@ function Login() {
                 else if(role==="Seller"){
                     navigate("/addproducts")
                 }
-                else{
+                else if(role==="Admin"){
                     navigate("/management")
                 }
-
+                else{
+                    navigate("/products")
+                }
             }
         })
     }
