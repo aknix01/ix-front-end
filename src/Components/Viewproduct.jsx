@@ -30,21 +30,21 @@ function Viewproduct() {
         return url.substring(url.lastIndexOf("/") + 1)
     }
 
-    const fetchTokens=()=>{
-        user.getSession((err, session) => {
-            if (err) {
-                console.error("Error fetching session:", err);
-            } else {
+    // const fetchTokens=()=>{
+    //     user.getSession((err, session) => {
+    //         if (err) {
+    //             console.error("Error fetching session:", err);
+    //         } else {
                 
-                setAccessToken(session.getAccessToken().getJwtToken())
-                console.log("accesstoken",accessToken);
-                setIdtoken(session.getIdToken().getJwtToken())
-                console.log("idtoken",idtoken);
-                setRefreshToken(session.getRefreshToken().getToken())
-                console.log("refresh toekn",refreshToken);
-            }
-        });
-    }
+    //             setAccessToken(session.getAccessToken().getJwtToken())
+    //             console.log("accesstoken",accessToken);
+    //             setIdtoken(session.getIdToken().getJwtToken())
+    //             console.log("idtoken",idtoken);
+    //             setRefreshToken(session.getRefreshToken().getToken())
+    //             console.log("refresh toekn",refreshToken);
+    //         }
+    //     });
+    // }
 
     const navcart = async (e) => {
         const data = {
@@ -158,15 +158,15 @@ function Viewproduct() {
         fetch()
     }, [selectedCategory])
 
-    useEffect(()=>{
-        fetchTokens()
-    },[])
+    // useEffect(()=>{
+    //     fetchTokens()
+    // },[])
 
     return (
         <>
             <Navi />
             <div>
-                {
+                {/* {
                     user && (
                         <div className='d-flex justify-content-center'><span style={{
                             alignSelf: "center"
@@ -174,7 +174,7 @@ function Viewproduct() {
                         <button onClick={fetchTokens}>click here for token</button>
                         </div>
                     )
-                }
+                } */}
 
 
             </div>
