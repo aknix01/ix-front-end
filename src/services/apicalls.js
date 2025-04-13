@@ -19,13 +19,18 @@ export const addtocart=async(body,action,header)=>{
     return await commonRequest("POST",urlWithParams,body,header)
 }
 
-export const fetchcart=async(body)=>{
-    
+export const fetchcart=async(body)=>{ 
     return await commonRequest("POST",getcarturl,body,"")
 }
 
 export const removefromcart=async(id,username)=>{
     const urlWithParams=`${carturl}?action=delete&id=${id}&username=${username}`;
-    return await commonRequest("DELETE",urlWithParams,{},"")
-    
+    console.log(urlWithParams)
+    return await commonRequest("DELETE",urlWithParams,{},"")  
+}
+
+export const incrementQuantity=async(body,action)=>{
+    const urlWithParams=`${carturl}?action=${action}`;
+    console.log(urlWithParams)
+    return await commonRequest("PUT",urlWithParams,body,"")
 }

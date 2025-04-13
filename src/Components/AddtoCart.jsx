@@ -2,7 +2,7 @@ import React from 'react'
 import  {  useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Navi from './Navi';
-import { fetchcart } from '../services/apicalls';
+import { fetchcart, incrementQuantity } from '../services/apicalls';
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import { removefromcart } from '../services/apicalls';
@@ -26,9 +26,9 @@ function AddtoCart() {
         const body= {
             username:user.username
         }
-        console.log(body)
+        
         const result = await fetchcart(body)
-        console.log(result)
+        
 
         if (result.status == 200) {
             const parsedBody = typeof result.data.body === "string" ? JSON.parse(result.data.body) : result.data.body;
@@ -56,24 +56,25 @@ function AddtoCart() {
     }
 
 
-    // const incre = async (item) => {
-    //     const data = {
-    //         quantity: item.quantity,
-    //         price: item.price
-    //     }
-    //     console.log(item._id, data)
-    //     const result = await incrementQuantity(item._id, data)
-    //     console.log(result)
-    //     if (result.status == 200) {
+    const incre = async (item) => {
+        const data = {
+            quantity: item.quantity +2,
+            productId:item.id,
+            userId:user.username
+        }
+        console.log( data)
+        const result = await incrementQuantity(data,"increment")
+        console.log(result)
+        if (result.status == 200) {
            
-    //         cart()
-    //         totalquantity()
-    //         totalprice()
-    //     }
-    //     else {
-    //         toast.error("failed to do ")
-    //     }
-    // }
+            cart()
+            // totalquantity()
+            // totalprice()
+        }
+        else {
+            alert("failed to do ")
+        }
+    }
     // const decre = async (item) => {
     //     const data = {
     //         quantity: item.quantity,
