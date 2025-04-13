@@ -10,6 +10,8 @@ import { AiFillProduct } from "react-icons/ai";
 import { logout } from '../services/cognito/logout';
 import { FaCartShopping } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
+import { CognitoUserPool } from 'amazon-cognito-identity-js';
+import userPool from '../services/cognito/Userpool';
 
 function Navi() {
 
@@ -17,18 +19,53 @@ function Navi() {
     const [navdrop, setNavdrop] = useState(false)
     const navigate = useNavigate()
 
+
     const handleLogout = () => {
         logout();
         navigate('/login');
     };
     const [role, setRole] = useState()
+    const [dataUser, setDataUser] = useState({});
 
     useEffect(() => {
+        const user = userPool.getCurrentUser()
+        if (user) {
+            user.getSession((err, session) => {
+                if (err) {
+                    console.error("Session error:", err);
+                    return;
+                }
+
+                if (session.isValid()) {
+                    user.getUserAttributes((err, attributes) => {
+                        if (err) {
+                            console.error("Error fetching attributes:", err);
+                            return;
+                        }
+
+                        const userData = {};
+                        attributes.forEach(attr => {
+                            userData[attr.getName()] = attr.getValue();
+                        });
+                        console.log(userData)
+                        setDataUser(userData)
+                        console.log(dataUser)
+
+                    });
+                }
+            });
+        }
+
+
 
         setRole(localStorage.getItem("Role"))
 
 
     }, [])
+
+    useEffect(() => {
+        console.log("Updated state:", dataUser);
+    }, [dataUser]);
     return (
         <Navbar expand="lg" className="custom-navbar ">
             <Container>
@@ -40,7 +77,7 @@ function Navi() {
                         letterSpacing: '3px',
                         marginRight: "20px"
 
-                    }} href="#home" >Brand</Navbar.Brand>
+                    }} href="#home" >Freshcart</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav mx-5 d-flex flex-column ">
                     <Nav className=" w-100 d-flex justify-content-evenly align-items-center custom-navl ">
@@ -91,18 +128,20 @@ function Navi() {
                             }}
 
                             className="custom-dropdown"
-                            title={<div className='d-flex flex-column justify-content-center'>
-                                <span><span style={{
+                            title={<div className='d-flex flex-column justify-content-center align-items-center'>
+                                <div style={{
+                                    fontSize: "10px"
+                                }}>
+                                    {dataUser["custom:FirstName"]}
+                                </div>
+                                <span style={{
                                     color: "white",
                                     fontSize: "40px",
                                     padding: "0px"
                                 }} className="material-symbols-outlined">
                                     account_circle
                                 </span>
-                                    <div style={{
-                                        fontSize: "20px"
-                                    }}>
-                                    </div></span>
+
                             </div>} id="basic-nav-dropdown" show={showDropdown}
                             onMouseEnter={() => setShowDropdown(true)}
                             onMouseLeave={() => setShowDropdown(false)}

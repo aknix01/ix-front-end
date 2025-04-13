@@ -14,7 +14,7 @@
     "@aws-sdk/cloudfront-signer": "^3.772.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@mui/material": "^6.4.8",
+    "@mui/material": "^6.4.11",
     "amazon-cognito-identity-js": "^6.3.12",
     "aws-amplify": "^6.14.1",
     "axios": "^1.8.4",
@@ -28,6 +28,7 @@
     "react-icons": "^5.5.0",
     "react-paginate": "^8.3.0",
     "react-router-dom": "^7.4.0",
+    "react-select": "^5.10.1",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
