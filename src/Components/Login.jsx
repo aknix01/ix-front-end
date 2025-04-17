@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navi from './Navi';
 import { TextField } from '@mui/material';
+import Footer from './Footer';
 
 
 function Login() {
@@ -44,7 +45,7 @@ function Login() {
 <div className='d-flex flex-column align-items-center  justify-content-center '
 style={{
     height:"90vh",
-    backgroundColor:"#d0f0c0"
+    backgroundColor:"#E4F5EC"
 }}>
             <h1 className='m'
                 style={{
@@ -83,6 +84,7 @@ style={{
             </form>
             </div>
         </div>
+        <Footer/>
    
    
    </>

@@ -198,7 +198,7 @@ function Addproduct() {
         <>
             <Navi/>
             <div style={{
-                backgroundColor:"#d0f0c0"
+                backgroundColor:"#E4F5EC"
             }} className='d-flex justify-content-center'>
                 <div style={{ width: "75vw" }}>
                     <h2

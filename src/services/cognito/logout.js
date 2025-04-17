@@ -6,6 +6,7 @@ export const logout = () => {
     
     if (currentUser) {
         currentUser.signOut(); // Logs out the user
+        localStorage.clear()
         console.log("User logged out successfully");
     }
 };

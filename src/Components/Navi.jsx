@@ -12,6 +12,10 @@ import { FaCartShopping } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
 import { CognitoUserPool } from 'amazon-cognito-identity-js';
 import userPool from '../services/cognito/Userpool';
+import { FaHeart } from "react-icons/fa";
+import { Box, TextField,InputAdornment, Button } from "@mui/material";
+import { NavItem } from 'react-bootstrap';
+import { FaSearch } from "react-icons/fa";
 
 function Navi() {
 
@@ -22,7 +26,8 @@ function Navi() {
 
     const handleLogout = () => {
         logout();
-        navigate('/login');
+        localStorage.clear()
+        navigate('/');
     };
     const [role, setRole] = useState()
     const [dataUser, setDataUser] = useState({});
@@ -67,29 +72,41 @@ function Navi() {
         console.log("Updated state:", dataUser);
     }, [dataUser]);
     return (
-        <Navbar expand="lg" className="custom-navbar ">
-            <Container>
-                <Navbar.Brand
-                    style={{
-                        color: "#FFFFFF",
-                        fontSize: "30px",
-                        fontFamily: "fantasy",
-                        letterSpacing: '3px',
-                        marginRight: "20px"
+        <div className='p-3' style={{
+            backgroundColor:"#E4F5EC"
+           }}>
+            <Navbar style={{
 
-                    }} href="#home" >Freshcart</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav mx-5 d-flex flex-column ">
-                    <Nav className=" w-100 d-flex justify-content-evenly align-items-center custom-navl ">
-                        <Nav.Link href="#home">Home</Nav.Link>
+                borderRadius: "20px"
+            }} expand="lg" className="custom-navbar  mx-5 ">
+                <Container>
+                    <Navbar.Brand
+                        style={{
+                            color: "#000000",
+                            fontSize: "20px",
+                            fontFamily: 'Roboto, sans-serif',
+                            
+                            marginRight: "20px"
 
-                        <Nav.Link
+                        }} href="/" >Freshcart</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav mx-5 d-flex flex-column ">
+                        <Nav className=" w-100 d-flex justify-content-evenly align-items-center custom-navl ">
+                            <Nav.Link
+                                style={{
+                                    fontSize: "15px"
+                                }} href="/">Home</Nav.Link>
 
-                            onMouseEnter={() => setNavdrop(true)}
-                            onMouseLeave={() => setNavdrop(false)}
+                            <Nav.Link
+                                style={{
+                                    fontSize: "15px"
+                                }}
 
-                            href="/products">Products <AiFillProduct /> </Nav.Link>
-                        {/* {navdrop && (
+                                onMouseEnter={() => setNavdrop(true)}
+                                onMouseLeave={() => setNavdrop(false)}
+
+                                href="/products">Products <AiFillProduct /> </Nav.Link>
+                            {/* {navdrop && (
                             <div
                                 style={{
                                     position: "absolute",
@@ -108,19 +125,107 @@ function Navi() {
                         )} */}
 
 
-                        {(role === "Admin" || role === "Seller") && (
-                            <Nav.Link href="/addproducts">Add Products</Nav.Link>
-                        )}
+                            {(role === "Admin" || role === "Seller") && (
+                                <Nav.Link style={{
+                                    fontSize: "15px"
+                                }} href="/addproducts">Add Products</Nav.Link>
+                            )}
 
-                        {(role === "Admin") && (
-                            <Nav.Link href="/management">Management</Nav.Link>
-                        )
+                            {(role === "Admin") && (
+                                <Nav.Link style={{
+                                    fontSize: "15px"
+                                }} href="/management">Management</Nav.Link>
+                            )
 
-                        }
+                            }
 
 
 
 
+
+                            <Nav.Link ></Nav.Link>
+                            <NavItem>
+                                <Box
+                                    display="flex"
+                                    alignItems="center"
+                                    gap={2}
+                                    p={2}
+                                    sx={{ maxWidth: 400 }}
+                                >
+                                    <input
+
+                                        style={{ backgroundColor: "white", borderRadius: "20px" }}
+                                        fullWidth
+                                        variant="outlined"
+                                        placeholder="Search..."
+                                        size="small"
+                                        className='form-control'
+                                    />
+                                    {/* <Button 
+                                      
+                                        size="small"
+                                        sx={{
+                                            
+                                           
+                                            right: 10,
+                                            transform: 'translateY(-50%)',
+                                            borderRadius: '20px',
+                                            textTransform: 'none',
+                                            padding: '4px 12px',
+                                        }}
+                                    >
+                                        Search
+                                    </Button> */}
+                                    <button  className='btn btn-success d-flex ' style={{
+                                        borderRadius:"20px",
+                                        
+                                    }}> <FaSearch /></button>
+                                </Box>
+                            </NavItem>
+
+                            <Nav.Link href="/addtocart"><FaCartShopping /></Nav.Link>
+                            <Nav.Link href="/addtocart"><FaHeart /></Nav.Link>
+
+                            
+                            <NavDropdown
+                                style={{
+                                    fontSize: "30px"
+                                }}
+
+                                className="custom-dropdown"
+                                title={<div className='d-flex flex-column justify-content-center align-items-center'>
+                                    <div style={{
+                                        fontSize: "10px"
+                                    }}>
+                                        {dataUser["custom:FirstName"]}
+                                    </div>
+                                    <span style={{
+                                        color: "black",
+                                        fontSize: "30px",
+                                        padding: "0px"
+                                    }} className="material-symbols-outlined">
+                                        account_circle
+                                    </span>
+
+                                </div>} id="basic-nav-dropdown" show={showDropdown}
+                                onMouseEnter={() => setShowDropdown(true)}
+                                onMouseLeave={() => setShowDropdown(false)}
+                            >
+
+
+                                <NavDropdown.Item href="/signup">Create Account</NavDropdown.Item>
+                               
+                                <NavDropdown.Item href="/login">
+                                    Sign In
+                                </NavDropdown.Item>
+                                <NavDropdown.Item onClick={handleLogout} >Logout</NavDropdown.Item>
+                            </NavDropdown>
+
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+        </div>
 
                         <NavDropdown
                             style={{
@@ -148,7 +253,7 @@ function Navi() {
                         >
 
                             <NavDropdown.Item href="/signup">Create Account</NavDropdown.Item>
-                            <NavDropdown.Divider />
+                          
                             <NavDropdown.Item href="/login">
                                 Sign In
                             </NavDropdown.Item>
@@ -159,6 +264,7 @@ function Navi() {
                 </Navbar.Collapse>
             </Container>
         </Navbar>
+
 
     )
 }

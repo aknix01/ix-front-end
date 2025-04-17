@@ -34,3 +34,8 @@ export const incrementQuantity=async(body,action)=>{
     console.log(urlWithParams)
     return await commonRequest("PUT",urlWithParams,body,"")
 }
+export const decrementQuantity=async(body,action)=>{
+    const urlWithParams=`${carturl}?action=${action}`;
+    console.log(urlWithParams)
+    return await commonRequest("PUT",urlWithParams,body,"")
+}

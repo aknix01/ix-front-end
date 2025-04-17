@@ -1,15 +1,16 @@
 
 .custom-navbar {
-    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), 
-                url('../assets/green.jpg'); /* Overlay + Image */
+    background: #CFEED1;
+              
     background-size: cover;
     backdrop-filter: blur(10px); /* Blurs the background */
     -webkit-backdrop-filter: blur(10px); /* Safari Support */
     /* border-radius: 10px; Optional - Smooth Edges */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional - Soft Shadow */
-    color:#004d00; 
+    color:#0a0a0a; 
     padding: 10px 20px;
-    height: auto;}
+    height: auto;
+    font-family: 'Roboto', sans-serif;}
 
     @media (min-width: 992px) { 
         .custom-navbar {
@@ -57,9 +58,9 @@
   }
 
   .custom-navl .nav-link {
-    color: white;
+    color: rgb(12, 11, 11);
     font-size: 20px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     padding: 10px 15px;
     transition: all 0.3s ease-in-out;
     border-radius: 5px;
@@ -70,30 +71,30 @@
     overflow: hidden;
 }
 
-.custom-navl .nav-link::before {
+/* .custom-navl .nav-link::before {
     content: "";
     position: absolute;
     bottom: 0;
     left: 50%;
     width: 0;
     height: 3px;
-    background: rgb(9, 107, 9);
+    background: rgb(164, 185, 164);
     transition: all 0.3s ease-in-out;
     transform: translateX(-50%);
-}
+} */
 
 .custom-navl .nav-link:hover::before {
     width: 100%;
 }
 
 .custom-navl .nav-link:hover {
-    color: rgb(227, 238, 241);
+    color: rgb(11, 21, 24);
     font-size: 20px;
-    font-style: italic;
+   
     background: rgba(255, 255, 255, 0.2); /* Transparent glass effect */
     backdrop-filter: blur(5px);
     border-radius: 8px;
-    box-shadow: 0px 0px 15px rgba(85, 223, 85, 0.7); /* Soft glow effect */
+    box-shadow: 0px 0px 15px rgba(173, 182, 173, 0.7); /* Soft glow effect */
     transform: scale(1.02);
 }
 .product-card {
