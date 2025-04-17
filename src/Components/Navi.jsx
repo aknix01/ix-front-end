@@ -227,45 +227,7 @@ function Navi() {
             </Navbar>
         </div>
 
-                        <NavDropdown
-                            style={{
-                                fontSize: "30px"
-                            }}
-
-                            className="custom-dropdown"
-                            title={<div className='d-flex flex-column justify-content-center align-items-center'>
-                                <div style={{
-                                    fontSize: "10px"
-                                }}>
-                                    {dataUser["custom:FirstName"]}
-                                </div>
-                                <span style={{
-                                    color: "white",
-                                    fontSize: "40px",
-                                    padding: "0px"
-                                }} className="material-symbols-outlined">
-                                    account_circle
-                                </span>
-
-                            </div>} id="basic-nav-dropdown" show={showDropdown}
-                            onMouseEnter={() => setShowDropdown(true)}
-                            onMouseLeave={() => setShowDropdown(false)}
-                        >
-
-                            <NavDropdown.Item href="/signup">Create Account</NavDropdown.Item>
-                          
-                            <NavDropdown.Item href="/login">
-                                Sign In
-                            </NavDropdown.Item>
-                            <NavDropdown.Item onClick={handleLogout} >Logout</NavDropdown.Item>
-                        </NavDropdown>
-                        <Nav.Link href="/addtocart"><FaCartShopping /></Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
-
-
+                        
     )
 }
 
