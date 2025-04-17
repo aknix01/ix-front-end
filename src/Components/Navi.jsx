@@ -185,6 +185,8 @@ function Navi() {
 
                             <Nav.Link href="/addtocart"><FaCartShopping /></Nav.Link>
                             <Nav.Link href="/addtocart"><FaHeart /></Nav.Link>
+
+                            
                             <NavDropdown
                                 style={{
                                     fontSize: "30px"
