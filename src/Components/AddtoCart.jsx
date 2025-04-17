@@ -2,7 +2,7 @@ import React from 'react'
 import  {  useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Navi from './Navi';
-import { fetchcart, incrementQuantity } from '../services/apicalls';
+import { fetchcart, incrementQuantity,decrementQuantity } from '../services/apicalls';
 import { FaPlus } from "react-icons/fa";
 import { FaMinus } from "react-icons/fa";
 import { removefromcart } from '../services/apicalls';
@@ -36,6 +36,7 @@ function AddtoCart() {
                 setCartlist(parsedBody.products);  // ✅ Store only the products array
                 console.log(parsedBody.products);  // ✅ Logs only the array
                 
+                
             } 
 
         }
@@ -58,7 +59,7 @@ function AddtoCart() {
 
     const incre = async (item) => {
         const data = {
-            quantity: item.quantity +2,
+            quantity: item.quantity+1 ,
             productId:item.id,
             userId:user.username
         }
@@ -75,43 +76,53 @@ function AddtoCart() {
             alert("failed to do ")
         }
     }
-    // const decre = async (item) => {
-    //     const data = {
-    //         quantity: item.quantity,
-    //         price: item.price
-    //     }
-    //     const result = await decrementQuantity(item._id, data)
-    //     console.log(result)
-    //     if (result.status == 200) {
+    const decre = async (item) => {
+        const data = {
+            quantity: item.quantity-1 ,
+            productId:item.id,
+            userId:user.username
+        }
+        const result = await decrementQuantity(data, "decrement")
+        console.log(result)
+        if (result.status == 200) {
            
-    //         cart()
-    //         totalquantity()
-    //         totalprice()
-    //     }
-    //     else {
-    //         toast.error("failed to do ")
-    //     }
-    // }
+            cart()
+            totalquantity()
+            totalprice()
+        }
+        else {
+            toast.error("failed to do ")
+        }
+    }
 
     // const totalquantity=async()=>{
     //     const result =await quantitycount()
     //     console.log(result)
     //     setQuantity(result.data)
     // }
-    // const totalprice=async()=>{
-    //     const result =await pricecount()
-    //     console.log(result)
-    //     setPrice(result.data)
-    // }
+   
     
+      
 
     console.log(cartlist)
 
     useEffect(() => {
          cart()
         // totalquantity()
-        // totalprice()
+        
+        
     }, [])
+    useEffect(() => {
+        const totalPrice = cartlist.reduce((acc, item) => {
+            const itemTotal = item.quantity * item.price;
+            return acc + itemTotal;
+          }, 0);
+          
+          console.log("Total Price:", totalPrice);
+          setPrice(totalPrice)
+       
+       
+   }, [cartlist])
 
   return (
   <>
@@ -120,9 +131,11 @@ function AddtoCart() {
 {cartlist?.length > 0 ?
             
         
-            <div className='row container'
+            <div className='row px-4 '
             style={{
-                minHeight:"700px"
+                minHeight:"700px",
+                 backgroundColor: "#E4F5EC"
+            
             }}
             >
                 <div className="col -8">
@@ -187,6 +200,14 @@ function AddtoCart() {
                                     }}
                                 >
                                     Quantity
+                                </th>
+                                <th
+                                    style={{
+                                        border: "1px solid #ddd",
+                                        padding: "12px",
+                                    }}
+                                >
+                                    Delete
                                 </th>
                             </tr>
                         </thead>
@@ -327,7 +348,10 @@ function AddtoCart() {
                     </table>
 
                 </div>
-                <div className="col-3 mt-5  "> 
+                <div className="col-3 mt-5 mx-5 "
+                style={{
+                    backgroundColor:"#E4F5EC"
+                   }}> 
                      <div
                         className='card'
                         style={{
@@ -370,7 +394,7 @@ function AddtoCart() {
                        className='mt-2 ms-3'
                        style={{
                         fontSize:"30px"
-                       }}>{quantity}</span>
+                       }}>{cartlist.length}</span>
 
                         <span
                             className='mt-4 ms-3'

@@ -11,6 +11,7 @@ import AddtoCart from './Components/AddtoCart'
 import ForgotPassword from './Components/ForgotPassword'
 import Admin from './Components/Admin'
 import RoleBasedRoutes from './services/RoleBasedroutes'
+import Checkout from './Components/Checkout'
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
       <Route path='/addtocart' element={<AddtoCart/>}></Route>
       <Route path='/forgotpassword' element={<ForgotPassword/>}></Route>
       <Route path='/management' element={<RoleBasedRoutes allowedRoles={["Admin"]}><Admin/></RoleBasedRoutes> }></Route>
+      <Route path="/checkout" element={<Checkout/>}></Route>
     </Routes>
     </BrowserRouter>
     

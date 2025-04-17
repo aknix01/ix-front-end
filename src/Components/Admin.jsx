@@ -10,7 +10,9 @@ function Admin() {
         display:"flex",
         justifyContent:"center",
         alignItems:"center",
-        fontSize:"40px"
+        fontSize:"40px",
+         backgroundColor: "#E4F5EC",
+         height:"100vh"
     }} >Management Page</div>
     </>
   )
