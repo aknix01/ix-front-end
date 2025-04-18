@@ -45,7 +45,7 @@ function Viewproduct() {
 
                 setAccessToken(session.getAccessToken().getJwtToken())
                 console.log("accesstoken", accessToken);
-               
+                setIdtoken(session.getIdToken().getJwtToken())
                 console.log("idtoken", idtoken);
                 setRefreshToken(session.getRefreshToken().getToken())
                 console.log("refresh toekn", refreshToken);
