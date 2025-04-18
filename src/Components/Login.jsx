@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Navi from './Navi';
 import { TextField } from '@mui/material';
 import Footer from './Footer';
+import { toast } from 'react-toastify';
 
 
 function Login() {
@@ -16,10 +17,10 @@ function Login() {
         e.preventDefault();
         log(email, password, (err, session) => {
             if (err) {
-                alert("login failed")
+                toast.error("login failed")
             }
             else {
-                alert('logged in ')
+                toast.success('logged in ')
                 console.log("user session", session)
                 const role=localStorage.getItem("Role")
                 if(role==="User"){
@@ -47,40 +48,57 @@ style={{
     height:"90vh",
     backgroundColor:"#E4F5EC"
 }}>
-            <h1 className='m'
-                style={{
-                    fontSize: "50px",
-                    fontFamily: "fantasy",
-                    margin:""
-                }}>Log In</h1>
+            
             <div style={{
-                border:"1px solid black",
+                border:"",
                 padding:"20px",
-                borderRadius:"5px",
-                width:"300px"
+                borderRadius:"20px",
+                width:"400px",
+                backgroundColor:"#E2DBDD"
+               
 
             }}>
-            <form className='d-flex flex-column justify-content-center  ' action="" onSubmit={handleLogin}>
+                <h1 className='my-3'
+                style={{
+                    fontSize: "40px",
+                    fontFamily:  "Lilita One",
+                    margin:"",textAlign:"center"
+                }}>Login</h1>
+                <h6 style={{
+                    textAlign:"center",
+                    fontFamily:"monospace"
+                }} >Hey, Enter Your details to get sign in to your account</h6>
+            <form className='d-flex flex-column justify-content-center  m-4 ' action="" onSubmit={handleLogin}>
                 {/* <label style={{
                     fontSize: "25px",
                     fontFamily: "-moz-initial"
                 }} htmlFor="">Email:</label> */}
-                <TextField className='my-2'  onChange={(e) => setEmail(e.target.value)} type='email' required id="outlined-basic" label=" Enter your Email" variant="outlined" />
+                <TextField  className='my-2 mx-3 '  onChange={(e) => setEmail(e.target.value)} type='email' required id="outlined-basic" label=" Enter your Email" variant="outlined" />
                 {/* <input required className='form-control my-3'  type="email" /> */}
                 {/* <label style={{
                     fontSize: "25px",
                     fontFamily: "-moz-initial"
                 }} htmlFor="">Password:</label> */}
                 {/* <input required className='form-control my-3'  type="passaword" /> */}
-                <TextField className='mt-2 mb-3'  required id="outlined-basic" onChange={(e) => setPassword(e.target.value)} label=" Enter your password" type='password' variant="outlined" />
-
+                <TextField className='mt-4  mb- mx-3'  required id="outlined-basic" onChange={(e) => setPassword(e.target.value)} label=" Enter your password" type='password' variant="outlined" />
+                <a style={{
+                    textDecoration:"none",
+                    color:"",
+                    fontSize:"10px"
+                }} className='my-3 mx-3' href="/forgotpassword">Forgot Password ?</a>
                 <button  style={{
-                    width:"120px",
-                    margin:"auto"
-                }} className='btn btn-primary' type='submit' >login</button>
-                <a className='my-3' href="/signup">didn't have an account .register</a>
+                    width:"240px",
+                    margin:"auto",
+                    backgroundColor:"#E154AF",
+                    fontFamily:"sans-serif",
+                    fontWeight:"bold"
+                }} className='btn mt-3 ' type='submit' >Login</button>
+                <a style={{
+                    textDecoration:"none",
+                    color:"black"
+                }} className='my-3' href="/signup">Don't have an account ? <strong>Register Now</strong></a>
 
-                <a className='my-3' href="/forgotpassword">Forgot Password !!</a>
+               
             </form>
             </div>
         </div>

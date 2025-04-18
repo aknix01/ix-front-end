@@ -12,6 +12,8 @@ import ForgotPassword from './Components/ForgotPassword'
 import Admin from './Components/Admin'
 import RoleBasedRoutes from './services/RoleBasedroutes'
 import Checkout from './Components/Checkout'
+import { ToastContainer } from 'react-toastify'
+import OrderPlaced from './Components/OrderPlaced'
 
 function App() {
 
@@ -19,6 +21,7 @@ function App() {
   return (
     <>
     {/* <Navi/> */}
+    <ToastContainer/>
     <BrowserRouter>
     <Routes >
       <Route path='/' element={<Home/>}></Route>
@@ -30,6 +33,7 @@ function App() {
       <Route path='/forgotpassword' element={<ForgotPassword/>}></Route>
       <Route path='/management' element={<RoleBasedRoutes allowedRoles={["Admin"]}><Admin/></RoleBasedRoutes> }></Route>
       <Route path="/checkout" element={<Checkout/>}></Route>
+      <Route path="/order" element={<OrderPlaced/>}></Route>
     </Routes>
     </BrowserRouter>
     

@@ -8,6 +8,7 @@ import { Adding } from '../services/apicalls'
 import { useRef } from 'react'
 import { v4 } from 'uuid'
 import Navi from './Navi'
+import { toast } from 'react-toastify'
 
 function Addproduct() {
 
@@ -120,7 +121,7 @@ function Addproduct() {
     const addproduct = async (e) => {
         e.preventDefault()
         if (!validateexpiry || !validatetitle || !validatecategory || !validatedescription || !validatequantity) {
-            alert("insert all values")
+            toast.warning("insert all values")
         }
         else {
             if (validateexpiry && validatetitle && validatecategory && validatedescription && validatequantity) {
@@ -140,7 +141,7 @@ function Addproduct() {
 
                 console.log(result)
                 if (result.status == 200) {
-                    alert("Added successfully")
+                    toast.success("Added successfully")
                     setProduct({
                         expiry: "",
                         title: "",
@@ -158,7 +159,7 @@ function Addproduct() {
                     handlereset()
                 }
                 else {
-                    alert("failed")
+                    toast.error("failed")
                 }
 
             }

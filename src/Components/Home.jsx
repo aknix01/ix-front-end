@@ -107,7 +107,7 @@ function Home() {
 
 const imageName = extractName(item.image_url)
         return (
-          <Card className='col-2 mx-2 my-3' sx={{ maxWidth: 345 }}>
+          <Card className='col-lg-2 col-sm-8 mx-2 my-3' sx={{ maxWidth: 305 }}>
           <CardMedia
             component="img"
             alt="green iguana"

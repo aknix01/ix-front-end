@@ -215,7 +215,7 @@ function Navi() {
 
                                 <NavDropdown.Item href="/signup">Create Account</NavDropdown.Item>
                                
-                                <NavDropdown.Item href="/login">
+                            <NavDropdown.Item href="/login">
                                     Sign In
                                 </NavDropdown.Item>
                                 <NavDropdown.Item onClick={handleLogout} >Logout</NavDropdown.Item>
