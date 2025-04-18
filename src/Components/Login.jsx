@@ -24,13 +24,13 @@ function Login() {
                 console.log("user session", session)
                 const role=localStorage.getItem("Role")
                 if(role==="User"){
-                    navigate("/products")
+                    navigate("/")
                 }
                 else if(role==="Seller"){
-                    navigate("/addproducts")
+                    navigate("/")
                 }
                 else if(role==="Admin"){
-                    navigate("/management")
+                    navigate("/")
                 }
                 else{
                     navigate("/products")
