@@ -9,6 +9,7 @@ import { removefromcart } from '../services/apicalls';
 import { IoTrashBin } from "react-icons/io5";
 import { FormLabel } from 'react-bootstrap';
 import userPool from '../services/cognito/Userpool';
+import { toast } from 'react-toastify';
 
 function AddtoCart() {
 
@@ -52,7 +53,7 @@ function AddtoCart() {
         console.log(result)
         if (result.status == 200) {
             cart()
-            alert("removed from cart")
+            toast.success("removed from cart")
         }
     }
 
@@ -73,7 +74,7 @@ function AddtoCart() {
             // totalprice()
         }
         else {
-            alert("failed to do ")
+            toast.error("failed to do ")
         }
     }
     const decre = async (item) => {

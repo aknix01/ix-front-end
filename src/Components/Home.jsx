@@ -107,13 +107,13 @@ function Home() {
 
 const imageName = extractName(item.image_url)
         return (
-          <Card className='col-2 mx-2 my-3' sx={{ maxWidth: 345 }}>
+          <Card className='col-lg-2 col-sm-8 mx-2 my-3' sx={{ maxWidth: 305 }}>
           <CardMedia
             component="img"
             alt="green iguana"
             height="140"
             image={`https://d3cceuazvytzw7.cloudfront.net/uploads/${imageName}`}
-            style={{ objectFit: "contain" }}
+            style={{ objectFit: "cover" }}
           />
           <CardContent className='d-flex justify-content-center flex-column'>
             <Typography gutterBottom variant="h5" style={{

@@ -15,6 +15,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Footer from './Footer'
+import { toast } from 'react-toastify'
 
 
 function Viewproduct() {
@@ -45,7 +46,7 @@ function Viewproduct() {
 
                 setAccessToken(session.getAccessToken().getJwtToken())
                 console.log("accesstoken", accessToken);
-               
+                setIdtoken(session.getIdToken().getJwtToken())
                 console.log("idtoken", idtoken);
                 setRefreshToken(session.getRefreshToken().getToken())
                 console.log("refresh toekn", refreshToken);
@@ -67,10 +68,10 @@ function Viewproduct() {
         const result = await addtocart(data, "add", Header)
         console.log(result)
         if (result.status == 200) {
-            alert("added to cart")
+            toast.success("added to cart")
         }
         else {
-            alert("already added Or something went wrong")
+            toast.error("already added Or something went wrong")
         }
 
     }
@@ -83,13 +84,13 @@ function Viewproduct() {
             return (
                 
                 <div className='col mt-2 my-3 my-lg-5 mx-5 col-lg-2'>
-                    <Card sx={{ maxWidth: 345 }}>
+                    <Card sx={{ maxWidth: 345 }}  >
                 <CardMedia
                   component="img"
                   alt="green iguana"
                   height="140"
                   image={`https://d3cceuazvytzw7.cloudfront.net/uploads/${imageName}`}
-                  style={{ objectFit: "contain" }}
+                  style={{ objectFit: "cover" }}
                 />
                 <CardContent className='d-flex justify-content-center flex-column'>
                   <Typography gutterBottom variant="h5" style={{

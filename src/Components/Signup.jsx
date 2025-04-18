@@ -10,6 +10,7 @@ import Navi from './Navi'
 import { CognitoUserAttribute, CognitoUser } from 'amazon-cognito-identity-js'
 import { TextField } from '@mui/material'
 import Footer from './Footer'
+import { toast } from 'react-toastify'
 
 
 
@@ -172,7 +173,7 @@ function Signup() {
                 userPool.signUp(user.email, user.password, attributeList, null, (err, data) => {
                     if (err) {
                         console.error(err);
-                        alert("email already in use or something went wrong")
+                        toast.error("email already in use or something went wrong")
 
                     }
                     if (data) {
@@ -183,11 +184,11 @@ function Signup() {
 
             }
             else {
-                alert("enter  valid values")
+                toast.warn("enter  valid values")
             }
         }
         else {
-            alert("Both passwords must be same ")
+            toast.warning("Both passwords must be same ")
         }
 
     }
@@ -201,7 +202,7 @@ function Signup() {
         User.confirmRegistration(otp, true, (err, result) => {
             if (err) {
                 console.error('OTP verification failed:', err);
-                alert('OTP verification failed,Try Again')
+                toast.error('OTP verification failed,Try Again')
             } else {
                 console.log('OTP verification successful:', result);
                 navigate('/login'); // Redirect to login after verification
@@ -651,9 +652,13 @@ function Signup() {
                            <div
                                className='d-flex justify-content-center align-items-center mb-5'>
                                <a
+                               style={{
+                                textDecoration:"none",
+                                color:"black"
+                            }} 
 
                                    className="custom-link mt-2 mb-5"
-                                   href="/login">Already an User! Click here Login.
+                                   href="/login">Already an User? <strong>Login</strong> 
                                </a>
 
                            </div>
