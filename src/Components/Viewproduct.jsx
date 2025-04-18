@@ -89,7 +89,7 @@ function Viewproduct() {
                   alt="green iguana"
                   height="140"
                   image={`https://d3cceuazvytzw7.cloudfront.net/uploads/${imageName}`}
-                  style={{ objectFit: "contain" }}
+                  style={{ objectFit: "cover" }}
                 />
                 <CardContent className='d-flex justify-content-center flex-column'>
                   <Typography gutterBottom variant="h5" style={{
