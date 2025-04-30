@@ -22,18 +22,27 @@ function Login() {
             else {
                 toast.success('logged in ')
                 console.log("user session", session)
+                // user.getUserAttributes((err, attributes) => {
+                //     const attrMap = {};
+                //     attributes.forEach(attr => {
+                //       attrMap[attr.getName()] = attr.getValue();
+                //     });
+                  
+                //     // Store custom attributes locally
+                //     localStorage.setItem("userAttributes", JSON.stringify(attrMap));
+                //   });
                 const role=localStorage.getItem("Role")
                 if(role==="User"){
-                    navigate("/products")
+                    navigate("/")
                 }
                 else if(role==="Seller"){
-                    navigate("/addproducts")
+                    navigate("/")
                 }
                 else if(role==="Admin"){
-                    navigate("/management")
+                    navigate("/")
                 }
                 else{
-                    navigate("/products")
+                    navigate("/")
                 }
             }
         })

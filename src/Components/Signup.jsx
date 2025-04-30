@@ -271,7 +271,7 @@ function Signup() {
                        </div>
                    </div>
                ) :
-                   (<div  className=' d-flex justify-content-center '>
+                   (<div  style={{ paddingTop:"80px" }} className=' d-flex justify-content-center '>
                        <div className=' d-flex flex-column justify-content-center align-items-center ' style={{ width: "100vw" }}>
                            <h2
                                className='mt-3 mb-3'

@@ -14,6 +14,7 @@ import RoleBasedRoutes from './services/RoleBasedroutes'
 import Checkout from './Components/Checkout'
 import { ToastContainer } from 'react-toastify'
 import OrderPlaced from './Components/OrderPlaced'
+import OrderHistory from './Components/OrderHistory'
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
       <Route path='/management' element={<RoleBasedRoutes allowedRoles={["Admin"]}><Admin/></RoleBasedRoutes> }></Route>
       <Route path="/checkout" element={<Checkout/>}></Route>
       <Route path="/order" element={<OrderPlaced/>}></Route>
+      <Route path="/orders" element={<OrderHistory/>}></Route>
     </Routes>
     </BrowserRouter>
     
