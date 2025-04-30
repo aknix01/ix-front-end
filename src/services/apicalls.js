@@ -1,6 +1,6 @@
 
 import { commonRequest } from "./axios";
-import { base_url, carturl, getcarturl } from "./url";
+import { base_url, carturl, getcarturl,orderUrl,getOrderUrl } from "./url";
 
 
 export const fetchproducts=async()=>{
@@ -38,4 +38,12 @@ export const decrementQuantity=async(body,action)=>{
     const urlWithParams=`${carturl}?action=${action}`;
     console.log(urlWithParams)
     return await commonRequest("PUT",urlWithParams,body,"")
+}
+export const Ordering=async(body)=>{
+    return await commonRequest('POST',orderUrl,body)
+}
+
+export const fetchOrders=async(username)=>{
+    const urlWithParams=`${getOrderUrl}?username=${username}`;
+    return await commonRequest('GET',urlWithParams)
 }

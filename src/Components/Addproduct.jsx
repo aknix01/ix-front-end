@@ -8,12 +8,13 @@ import { Adding } from '../services/apicalls'
 import { useRef } from 'react'
 import { v4 } from 'uuid'
 import Navi from './Navi'
+import Footer from './Footer'
 import { toast } from 'react-toastify'
 
 function Addproduct() {
 
     const [product, setProduct] = useState({
-      
+
     })
 
     const [preview, setPreview] = useState()
@@ -27,32 +28,37 @@ function Addproduct() {
     const [validatequantity, setValidatequantity] = useState(true)
     const [validatedescription, setValidatedescription] = useState(true)
     const [validateprice, setValidateprice] = useState(true)
+    const [validateunit, setValidateunit] = useState(true)
+    const [validatetaxOption, setValidatetaxOption] = useState(true)
 
 
-    const handlefilechange=async(e)=>{
-        const file=e.target.files[0]
+
+
+
+    const handlefilechange = async (e) => {
+        const file = e.target.files[0]
         console.log(file)
-        setProduct({...product,img:e.target.files[0]})
-    
-        if(file){
+        setProduct({ ...product, img: e.target.files[0] })
+
+        if (file) {
             console.log("hi")
-            const reader=new FileReader()
+            const reader = new FileReader()
             reader.readAsDataURL(file)
-            reader.onloadend=()=>{
-                const encode=reader.result.split(",")[1]
-                setProduct({...product,cover:encode})
+            reader.onloadend = () => {
+                const encode = reader.result.split(",")[1]
+                setProduct({ ...product, cover: encode })
             }
         }
 
     }
-    
+
 
 
 
     const add = (e) => {
         console.log(e.target.value)
         const { name, value } = e.target
-  
+
         if (name == "expiry") {
             if (!!value) {
                 setProduct({ ...product, [name]: value })
@@ -63,10 +69,10 @@ function Addproduct() {
             }
         }
         else if (name == "title") {
-            if (!!value.match(/^[a-z A-Z._-]{1,}$/)) {
+            if (!!value.match(/^[a-z 0-9A-Z._-]{1,}$/)) {
                 setProduct({ ...product, [name]: value })
                 setValidatetitle(true)
-            }  
+            }
             else {
                 setValidatetitle(false)
             }
@@ -93,7 +99,7 @@ function Addproduct() {
 
         }
         else if (name == "description") {
-            if (!!value.match(/^[0-9a-zA-Z .,]/)) {
+            if (!!value.match(/^[0-9a-zA-Z -=.,]/)) {
                 setProduct({ ...product, [name]: value })
                 setValidatedescription(true)
 
@@ -102,9 +108,7 @@ function Addproduct() {
                 setValidatedescription(false)
             }
         }
-
-
-        else {
+        else if (name == "price") {
             if (!!value.match(/^[0-9]/)) {
                 setProduct({ ...product, [name]: value })
                 setValidateprice(true)
@@ -115,19 +119,43 @@ function Addproduct() {
             }
 
         }
+        else if (name == "taxOption") {
+            if (!!value.match(/^[A_Z a-z]/)) {
+                setProduct({ ...product, [name]: value })
+                setValidatetaxOption(true)
 
-    }  
+            }
+            else {
+                setValidatetaxOption(false)
+            }
+
+        }
+
+
+        else {
+            if (!!value.match(/^[a-z A-Z]/)) {
+                setProduct({ ...product, [name]: value })
+                setValidateunit(true)
+
+            }
+            else {
+                setValidateunit(false)
+            }
+
+        }
+
+    }
     console.log(product)
     const addproduct = async (e) => {
         e.preventDefault()
-        if (!validateexpiry || !validatetitle || !validatecategory || !validatedescription || !validatequantity) {
+        if (!validateexpiry || !validatetitle || !validatecategory || !validatedescription || !validatequantity || !validatetaxOption) {
             toast.warning("insert all values")
         }
         else {
             if (validateexpiry && validatetitle && validatecategory && validatedescription && validatequantity) {
-                const uid=v4()
+                const uid = v4()
                 const productadd = new FormData()
-                productadd.append("id",uid)
+                productadd.append("id", uid)
                 productadd.append("expiry", product.expiry)
                 productadd.append("title", product.title)
                 productadd.append("cover", product.cover)
@@ -135,6 +163,8 @@ function Addproduct() {
                 productadd.append("description", product.description)
                 productadd.append("price", product.price)
                 productadd.append("quantity", product.quantity)
+                productadd.append("unit", product.unit)
+                productadd.append("tax", product.taxOption)
 
                 console.log(productadd)
                 const result = await Adding(productadd)
@@ -147,14 +177,16 @@ function Addproduct() {
                         title: "",
                         category: "",
                         cover: "",
-                        description:" ",
-                        quantity:"",
+                        description: " ",
+                        quantity: "",
                         price: "",
-                        img:""
+                        img: "",
+                        unit: "",
+                        taxOption: ""
 
                     })
                     formRef.current.reset()
-                    
+
                     setPreview(upload)
                     handlereset()
                 }
@@ -169,17 +201,19 @@ function Addproduct() {
 
     }
 
-  
+
 
     const handlereset = () => {
         setProduct({
             expiry: "",
             title: "",
             category: "",
-            img:"",
+            img: "",
             description: "",
             quantity: "",
-            price: ""
+            price: "",
+            unit: "",
+            taxOption: ""
 
 
         })
@@ -197,9 +231,10 @@ function Addproduct() {
 
     return (
         <>
-            <Navi/>
+            <Navi />
             <div style={{
-                backgroundColor:"#E4F5EC"
+                paddingTop: "80px",
+                backgroundColor: "#E4F5EC"
             }} className='d-flex justify-content-center'>
                 <div style={{ width: "75vw" }}>
                     <h2
@@ -218,10 +253,12 @@ function Addproduct() {
                     <form onSubmit={(e) => { addproduct(e) }} action="" ref={formRef} className="row" >
                         <div className='col-lg-6 col-sm-12 mt-3'>
                             <FormLabel
+                                className=''
                                 style={{
                                     fontWeight: "bold",
                                     fontSize: "15px",
-                                    fontFamily: "FreeMono, monospace",
+                                    fontFamily: "Roboto",
+
 
 
                                 }}
@@ -230,37 +267,40 @@ function Addproduct() {
                                     color: "red"
                                 }}> *</span>
                                 <input
-                                    
+                                    required
+
                                     onChange={handlefilechange}
                                     style={{
-                                        display: "none"
+                                        border: "2px solid black"
+
                                     }}
-                                    className='form-control'
+                                    className='form-control mt-3'
                                     type='file'
                                     name='cover'
                                     id='cover'
                                 />
                                 <br />
-                                <img
+                                {/* <img
                                     className='img-fluid mt-2'
                                     src={preview ? preview : upload}
                                     style={{
                                         width: "400px",
                                         height: "300px"
                                     }}
-                                />
+                                /> */}
                             </FormLabel>
-                            {
+                            {/* {
                                 !validatecover &&
                                 <div style={{ color: "red" }}>
                                     upload product image !
                                 </div>
-                            }
+                            } */}
                             <FormLabel
                                 style={{
                                     fontWeight: "bold",
                                     fontSize: "15px",
-                                    fontFamily: "FreeMono, monospace"
+                                    fontFamily: "Roboto",
+                                    display: "block"
 
                                 }}
                             >
@@ -270,24 +310,60 @@ function Addproduct() {
                             </FormLabel>
                             <br />
                             <textarea
+                                required
                                 placeholder='About the Product!!'
-                                className='form-control'
+                                className='form-control mb-2'
                                 style={{
                                     height: "100px",
                                     border: "2px solid "
                                 }}
                                 onChange={(e) => { add(e) }}
-                                
+
                                 name="description"
                                 id="description">
 
                             </textarea>
-                            {
+                            {/* {
                                 !validatedescription &&
                                 <div style={{ color: "red" }}>
                                     Enter Product title !
                                 </div>
-                            }
+                            } */}
+                            <FormLabel
+                                className='mt-1'
+                                style={{
+                                    fontWeight: "bold",
+                                    fontSize: "15px",
+                                    fontFamily: "Roboto"
+
+                                }}
+                            >
+                                PRODUCT EXPIRY DATE <span style={{
+                                    color: "red"
+                                }}> *</span>
+                            </FormLabel>
+                            <br />
+                            <input
+                                required
+                                value={product.expiry}
+                                onChange={(e) => add(e)}
+                                name='expiry'
+                                id='expiry'
+                                type='date'
+                                className='form-control mt-1'
+                                style={{
+                                    height: "50px",
+                                    border: "2px solid "
+
+                                }}
+
+                            />
+                            {/* {
+                                !validateexpiry &&
+                                <div style={{ color: "red" }}>
+                                    Enter Product expiry date !
+                                </div>
+                            } */}
 
 
 
@@ -302,7 +378,7 @@ function Addproduct() {
                                 style={{
                                     fontWeight: "bold",
                                     fontSize: "15px",
-                                    fontFamily: "FreeMono, monospace"
+                                    fontFamily: "Roboto"
 
                                 }}
                             >
@@ -312,7 +388,7 @@ function Addproduct() {
                             </FormLabel>
                             <br />
                             <input
-                                
+                                required
                                 placeholder='Enter Product Name!!'
                                 onChange={(e) => { add(e) }}
                                 name='title'
@@ -324,20 +400,20 @@ function Addproduct() {
                                 }}
 
                             />
-                            {
+                            {/* {
                                 !validatetitle &&
                                 <div style={{ color: "red" }}>
                                     Enter Product title !
                                 </div>
-                            }
+                            } */}
                             <FormLabel
                                 style={{
                                     fontWeight: "bold",
                                     fontSize: "15px",
-                                    fontFamily: "FreeMono, monospace"
+                                    fontFamily: "Roboto"
 
                                 }}
-                                className='mt-1'
+                                className='mt-2'
                             >
                                 PRODUCT CATEGORY   <span style={{
                                     color: "red"
@@ -346,6 +422,7 @@ function Addproduct() {
                             <br />
 
                             <select
+                                required
                                 value={product.category}
                                 style={{
                                     height: "50px",
@@ -370,71 +447,71 @@ function Addproduct() {
                                     Select Category
                                 </option>
                                 <option
-                                    value="one"
+                                    value="Vegetable"
                                     style={{
                                         backgroundColor: "white",
                                         color: "black"
                                     }}
                                     className='form-control'>
-                                    one
+                                    Vegetable
                                 </option>
                                 <option
-                                    value="two"
+                                    value="Fruit"
                                     style={{
                                         backgroundColor: "white",
                                         color: "black"
                                     }}
                                     className='form-control'>
-                                    two
+                                    Fruit
                                 </option>
                                 <option
-                                    value="three"
+                                    value="Grain"
 
                                     style={{
                                         backgroundColor: "white",
                                         color: "black"
                                     }}
                                     className='form-control'>
-                                    three
+                                    Grain
                                 </option>
                                 <option
-                                    value="four"
+                                    value="Oil"
                                     style={{
                                         backgroundColor: "white",
                                         color: "black"
                                     }}
                                     className='form-control'>
-                                    four
+                                    Oil
                                 </option>
                                 <option
-                                    value="five"
+                                    value="Spice"
                                     style={{
                                         backgroundColor: "white",
                                         color: "black"
                                     }}
                                     className='form-control'>
-                                    five
+                                    Spice
                                 </option>
 
 
 
 
                             </select>
-                            {
+                            {/* {
                                 !validatecategory &&
                                 <div style={{ color: "red" }}>
                                     Enter Product category !
                                 </div>
-                            }
+                            } */}
 
 
 
-                            <FormLabel
-                                className='mt-1'
+                            {/* <FormLabel
+                                className='mt-2'
                                 style={{
                                     fontWeight: "bold",
                                     fontSize: "15px",
-                                    fontFamily: "FreeMono, monospace"
+                                    fontFamily: "Roboto"
 
                                 }}
                             >
@@ -444,6 +521,7 @@ function Addproduct() {
                             </FormLabel>
                             <br />
                             <input
+                            required
                                 value={product.quantity}
                                 placeholder='Enter Quantity!!'
                                 type="number"
@@ -457,19 +535,70 @@ function Addproduct() {
 
                                 }}
 
-                            />
-                            {
+                            /> */}
+
+                            <FormLabel
+                                className='mt-2'
+                                style={{
+                                    fontWeight: "bold",
+                                    fontSize: "15px",
+                                    fontFamily: "Roboto"
+                                }}
+                            >
+                                QUANTITY <span style={{ color: "red" }}> *</span>
+                            </FormLabel>
+                            <div className="d-flex">
+                                <input
+                                    required
+                                    value={product.quantity}
+                                    placeholder='Enter Quantity'
+                                    type="number"
+                                    onChange={(e) => { add(e) }}
+                                    name='quantity'
+                                    id='quantity'
+                                    className='form-control mt-1'
+                                    style={{
+                                        height: "50px",
+                                        border: "2px solid",
+                                        borderRadius: "5px 0 0 5px"
+                                    }}
+                                />
+                                <select
+                                    required
+                                    value={product.unit}
+                                    defaultValue="unit"
+                                    onChange={(e) => { add(e) }}
+                                    name='unit'
+                                    id='unit'
+                                    className='form-control mt-1'
+                                    style={{
+                                        height: "50px",
+                                        border: "2px solid",
+                                        borderRadius: "0 5px 5px 0",
+                                        width: "auto"
+                                    }}
+                                > <option disabled value="unit">Unit</option>
+                                    <option value="piece">Piece</option>
+                                    <option value="kg">kg</option>
+                                    <option value="g">g</option>
+                                    <option value="liter">liter</option>
+                                    <option value="ml">ml</option>
+                                    <option value="dozen">dozen</option>
+                                    {/* Add other units as needed */}
+                                </select>
+                            </div>
+                            {/* {
                                 !validatequantity &&
                                 <div style={{ color: "red" }}>
                                     Enter quantity !
                                 </div>
-                            }
+                            } */}
                             <FormLabel
-                                className='mt-1'
+                                className='mt-2'
                                 style={{
                                     fontWeight: "bold",
                                     fontSize: "15px",
-                                    fontFamily: "FreeMono, monospace"
+                                    fontFamily: "Roboto"
 
                                 }}
                             >
@@ -478,8 +607,8 @@ function Addproduct() {
                                 }}> *</span>
                             </FormLabel>
                             <br />
-                            <input
-                                
+                            {/* <input
+                                required
                                 type="number"
                                 placeholder='Enter Price !!'
                                 onChange={(e) => { add(e) }}
@@ -492,86 +621,120 @@ function Addproduct() {
 
                                 }}
 
-                            />
-                            {
-                                !validateprice &&
-                                <div style={{ color: "red" }}>
-                                    Enter quantity !
-                                </div>
-                            }
-                            <FormLabel
-                                className='mt-1'
-                                style={{
-                                    fontWeight: "bold",
-                                    fontSize: "15px",
-                                    fontFamily: "FreeMono, monospace"
-
-                                }}
-                            >
-                                PRODUCT EXPIRY DATE <span style={{
-                                    color: "red"
-                                }}> *</span>
-                            </FormLabel>
-                            <br />
-                            <input
-                                value={product.expiry}
-                                onChange={(e) => add(e)}
-                                name='expiry'
-                                id='expiry'
-                                type='date'
-                                className='form-control mt-1'
-                                style={{
-                                    height: "50px",
-                                    border: "2px solid "
-
-                                }}
-
-                            />
-                            {
-                                !validateexpiry &&
-                                <div style={{ color: "red" }}>
-                                    Enter Product expiry date !
-                                </div>
-                            }
-                            <div className='d-flex '>
-                                <button
-                                    // onClick={(e) => { addproduct(e) }}
-                                    type='submit'
-                                    className='btn my-5 mx-2'
+                            /> */}
+                            <div className="d-flex flex-column">
+                                <input
+                                    required
+                                    type="number"
+                                    placeholder='Enter Price !!'
+                                    onChange={(e) => { add(e) }}
+                                    name='price'
+                                    id='price'
+                                    className='form-control mt-1'
                                     style={{
-                                        width: "100%",
-                                        backgroundColor: "grey",
-                                        color: "black",
-                                        border: "2px solid",
-                                        fontFamily: "FreeMono, monospace"
+                                        height: "50px",
+                                        border: "2px solid"
                                     }}
-                                >
-                                    ADD!
-                                </button>
-                                <button
-                                    onClick={handlereset}
-                                    type='reset'
-                                    className='btn my-5'
-                                    style={{
-                                        width: "100%",
-                                        backgroundColor: "grey",
-                                        color: "black",
-                                        border: "2px solid",
-                                        fontFamily: "FreeMono, monospace"
-                                    }}
-                                >
-                                    Reset!
-                                </button>
+                                />
+                                <div className="mt-2">
+                                    <div className="form-check form-check-inline">
+                                        <input
+                                            className="form-check-input"
+                                            type="radio"
+                                            name="taxOption"
+                                            id="taxIncluded"
+                                            value="included"
+                                            onChange={(e) => { add(e) }}
+                                        />
+                                        <label className="form-check-label" htmlFor="taxIncluded">
+                                            Tax Included
+                                        </label>
+                                    </div>
+                                    <div className="form-check form-check-inline">
+                                        <input
+                                           
+                                            className="form-check-input"
+                                            type="radio"
+                                            name="taxOption"
+                                            id="taxExcluded"
+                                            value="excluded"
+                                            onChange={(e) => { add(e) }}
+                                        />
+                                        <label className="form-check-label" htmlFor="taxExcluded">
+                                            Tax Excluded
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
+                            {
+                                !validatetaxOption &&
+                                <div style={{ color: "red" }}>
+                                    Enter tax
+                                </div>
+                            }
+                           
+
+                            
 
 
 
 
 
                         </div>
+                        <div className='d-flex justify-content-center '>
+                                <button
+                                    // onClick={(e) => { addproduct(e) }}
+                                    type='submit'
+                                    className='btn btn-success my-5 mx-3'
+                                    style={{
+                                        width: "20%",
+                                        
+                                        color: "white",
+                            
+                                        fontFamily: "Roboto"
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.target.style.backgroundColor = "#28a745"; // Darker green
+                                        e.target.style.color = "white";
+                                        e.target.style.transform = "scale(1.05)";
+                                      }}
+                                      onMouseLeave={(e) => {
+                                        e.target.style.backgroundColor = ""; // Reset to default
+                                        e.target.style.color = "white";
+                                        e.target.style.transform = "scale(1)";
+                                      }}
+                                >
+                                    ADD!
+                                </button>
+                                <button
+                                    onClick={handlereset}
+                                    type='reset'
+                                    className='btn  btn-success mx-3 my-5'
+                                    style={{
+                                        width: "20%",
+                                        
+                                        color: "white",
+                            
+                                        fontFamily: "Roboto"
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.target.style.backgroundColor = "#28a745"; // Darker green
+                                        e.target.style.color = "white";
+                                        e.target.style.transform = "scale(1.05)";
+                                      }}
+                                      onMouseLeave={(e) => {
+                                        e.target.style.backgroundColor = ""; // Reset to default
+                                        e.target.style.color = "white";
+                                        e.target.style.transform = "scale(1)";
+                                      }}
+                                >
+                                    Reset!
+                                </button>
+                            </div>
                     </form>
                 </div>
             </div>
+            <Footer/>
         </>
     )
 }

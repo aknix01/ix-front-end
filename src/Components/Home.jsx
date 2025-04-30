@@ -13,6 +13,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Footer from './Footer';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 
 
@@ -21,53 +23,65 @@ function Home() {
 
  const navigate=useNavigate()
  const [product,setProduct]=useState([])
+ 
+ 
 
  const fetch = async () => {
          const result = await fetchproducts()
-         if(result.status==200){
+         if(result.success){
           setProduct(result.data.body.data)
          }
      }
      const extractName = (url) => {
       return url.substring(url.lastIndexOf("/") + 1)
+
   }
 
      useEffect(()=>{
       fetch()
      },[])
+     
+     useEffect(()=>{
+      
+     },[product])
 
      console.log(product)
   return (
     <>
     
     <div>
-    <div className='pb-5' style={{
+    <Navi/> 
+    <div className='' style={{
         backgroundColor:"#E4F5EC",
-        width:"100vw",
+        paddingTop:"90px",
+       
         height:"auto"
         
     }}>
-       <Navi/> 
+       
        <Carousel variant='dark' fade style={{
         color:"black"
-      }} className='mt-5 container'>
+      }} className='mt-container'>
       <Carousel.Item  className='d-flex justify-content-center'>
         <img style={{
           borderRadius:"20px",
-        width:"70vw",
-          height:"40vh",alignSelf:"center"
+        width:"50vw",
+          height:"30vh",alignSelf:"center"
         }} src={slider1} alt="" />
         <Carousel.Caption style={{
         color:"black"
       }}>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          {/* <h3>First slide label</h3>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> */}
         </Carousel.Caption>
       </Carousel.Item>
       
     </Carousel>
-
-    <div className='container mt-5'>
+    {/* {loader && <div className='d-flex justify-content-center my-5'>
+    <CircularProgress color="success" />
+    </div>
+} */}
+    <div className='container '>
       <div className='d-flex my-3'> <div className='' style={{
         height:"35px",
         width:"20px",
@@ -101,13 +115,17 @@ function Home() {
         }} className='btn btn-danger mx-5'>View all</button>
       </div>
       </div>
-      <div className='d-flex justify-content-evenly'>
+      <div className='d-flex justify-content-evenly row'>
 
       {product.slice(0, 4).map((item) => { 
 
 const imageName = extractName(item.image_url)
         return (
-          <Card className='col-lg-2 col-sm-8 mx-2 my-3' sx={{ maxWidth: 305 }}>
+         <div className=' mb-4 col-lg-2 ' >
+           <Card  style={{
+            
+            margin:"auto"
+           }} sx={{ maxWidth: 300 }}>
           <CardMedia
             component="img"
             alt="green iguana"
@@ -140,6 +158,7 @@ const imageName = extractName(item.image_url)
           
         </Card>
   
+         </div>
 )})}
       </div>
     </div>

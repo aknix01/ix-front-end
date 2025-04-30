@@ -16,6 +16,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Footer from './Footer'
 import { toast } from 'react-toastify'
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+
 
 
 function Viewproduct() {
@@ -27,6 +30,7 @@ function Viewproduct() {
     const [refreshToken, setRefreshToken] = useState("")
     const [accessToken, setAccessToken] = useState("")
     const [idtoken, setIdtoken] = useState("")
+    const [loading, setLoading] = useState(true)
 
 
 
@@ -45,11 +49,11 @@ function Viewproduct() {
             } else {
 
                 setAccessToken(session.getAccessToken().getJwtToken())
-                console.log("accesstoken", accessToken);
+                // console.log("accesstoken", accessToken);
                 setIdtoken(session.getIdToken().getJwtToken())
-                console.log("idtoken", idtoken);
+                // console.log("idtoken", idtoken);
                 setRefreshToken(session.getRefreshToken().getToken())
-                console.log("refresh toekn", refreshToken);
+                // console.log("refresh token", refreshToken);
             }
         });
     }
@@ -67,7 +71,7 @@ function Viewproduct() {
         console.log(data)
         const result = await addtocart(data, "add", Header)
         console.log(result)
-        if (result.status == 200) {
+        if (result.success) {
             toast.success("added to cart")
         }
         else {
@@ -80,68 +84,68 @@ function Viewproduct() {
     const pagesVisited = pageNumber * usersPerPage;
     const displayUsers = product.slice(pagesVisited, pagesVisited + usersPerPage).map((item) => {
 
-            const imageName = extractName(item.image_url);
-            return (
-                
-                <div className='col mt-2 my-3 my-lg-5 mx-5 col-lg-2'>
-                    <Card sx={{ maxWidth: 345 }}  >
-                <CardMedia
-                  component="img"
-                  alt="green iguana"
-                  height="140"
-                  image={`https://d3cceuazvytzw7.cloudfront.net/uploads/${imageName}`}
-                  style={{ objectFit: "cover" }}
-                />
-                <CardContent className='d-flex justify-content-center flex-column'>
-                  <Typography gutterBottom variant="h5" style={{
-                    fontWeight:"bold",
-                    alignSelf:"center"
-                  }} component="div">
-                  {item.name}
-                  </Typography>
-                  <Typography variant="body2" style={{
-                    
-                    alignSelf:"center"
-                  }} sx={{ color: 'text.secondary' }}>
-                  {/* {item.description}*/}
-                  description
-                  </Typography>
-                  <Typography variant="body2" style={{
-                    fontWeight:"bold",
-                    color:"red",
-                    alignSelf:"center"
-                  }} sx={{ color: 'text.secondary' }}>
-                  ${item.price}
-                  </Typography>
-                </CardContent>
-                <CardActions className='d-flex justify-content-center' >
-                  {/* <Button size="small">Share</Button> */}
-                  <button 
-                       onClick={() => navcart(item)}
-                       style={{
-                        fontSize:"10px"
-                       }}
-                        className="add-to-cart-btn  ">Add to Cart</button>
-                 <button 
-                       onClick={() => navcart(item)}
-                       style={{
-                        fontSize:"10px"
-                       }}
-                        className="add-to-cart-btn  ">Add to wishlist</button>
-                </CardActions>
-              </Card>
-                </div>
+        const imageName = extractName(item.image_url);
+        return (
 
-                
-            )
-        });
+            <div className='col mt-2 my-3 my-lg-5 mx-5 col-lg-2'>
+                <Card sx={{ maxWidth: 345 }}  >
+                    <CardMedia
+                        component="img"
+                        alt="green iguana"
+                        height="140"
+                        image={`https://d3cceuazvytzw7.cloudfront.net/uploads/${imageName}`}
+                        style={{ objectFit: "cover" }}
+                    />
+                    <CardContent className='d-flex justify-content-center flex-column'>
+                        <Typography gutterBottom variant="h5" style={{
+                            fontWeight: "bold",
+                            alignSelf: "center"
+                        }} component="div">
+                            {item.name}
+                        </Typography>
+                        <Typography variant="body2" style={{
+
+                            alignSelf: "center"
+                        }} sx={{ color: 'text.secondary' }}>
+                            {/* {item.description}*/}
+                            description
+                        </Typography>
+                        <Typography variant="body2" style={{
+                            fontWeight: "bold",
+                            color: "red",
+                            alignSelf: "center"
+                        }} sx={{ color: 'text.secondary' }}>
+                            ${item.price}
+                        </Typography>
+                    </CardContent>
+                    <CardActions className='d-flex justify-content-center' >
+                        {/* <Button size="small">Share</Button> */}
+                        <button
+                            onClick={() => navcart(item)}
+                            style={{
+                                fontSize: "10px"
+                            }}
+                            className="add-to-cart-btn  ">Add to Cart</button>
+                        <button
+                            onClick={() => navcart(item)}
+                            style={{
+                                fontSize: "10px"
+                            }}
+                            className="add-to-cart-btn  ">Add to wishlist</button>
+                    </CardActions>
+                </Card>
+            </div>
+
+
+        )
+    });
 
     const pageCount = Math.ceil(product.length / usersPerPage);
 
     const changePage = ({ selected }) => {
         setPageNumber(selected);
     };
-   
+
 
 
 
@@ -161,6 +165,7 @@ function Viewproduct() {
             setProduct(result.data.body.data)
 
         }
+        setLoading(false)
 
 
     }
@@ -187,15 +192,30 @@ function Viewproduct() {
         //     setIdtoken(session.getIdToken().getJwtToken())
         // }
         fetchTokens()
-        
-    },[])
-  
 
+    }, [])
+
+    if (loading) return <div>
+        <Navi />
+        <div style={{
+            paddingTop: "80px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100dvh",
+            backgroundColor: "#E4F5EC"
+        }}>
+            <Box sx={{ display: 'flex' }}>
+                <CircularProgress />
+            </Box>
+        </div>
+        <Footer/>
+    </div>;
     return (
         <>
             <div style={{
-                backgroundColor:"#E4F5EC",
-                height:"auto"
+                backgroundColor: "#E4F5EC",
+                height: "auto"
 
             }}>
                 <Navi />
@@ -212,58 +232,64 @@ function Viewproduct() {
 
 
                 </div>
-                <div className='d-flex  justify-content-center '>
-                    
-                <div className='d-flex justify-content-evenly' style={{
-                    height:"50px",
-                    width:"600px",
-                    background:"#C8D4C3",
-                    borderRadius:"20px"
-                }} >
-                    <div style={{alignSelf:"center",fontFamily:'Roboto, sans-serif'}}>Select Category:</div>
-                    <button 
-                      onClick={() => setSelectedCategory("one")}
-                       
-                       style={{borderRadius:"20px",
-                        fontSize:"10px",backgroundColor:"black",color:"white"
-                       }}
-                         className='btn my-2 '>One</button>
-                         <button 
-                         onClick={() => setSelectedCategory("two")}
-                       style={{borderRadius:"20px",
-                        fontSize:"10px",backgroundColor:"black",color:"white"
-                       }}
-                         className='btn my-2 '>Two</button>
-                         <button 
-                        onClick={() => setSelectedCategory("three")}
-                       style={{borderRadius:"20px",
-                        fontSize:"10px",backgroundColor:"black",color:"white"
-                       }}
-                         className='btn my-2 '>Three</button>
-                         <button 
-                        onClick={() => setSelectedCategory("four")}
-                       style={{borderRadius:"20px",
-                        fontSize:"10px",backgroundColor:"black",color:"white"
-                       }}
-                         className='btn my-2 '>Four</button>
-                         <button 
-                        onClick={() => setSelectedCategory("five")}
-                       style={{borderRadius:"20px",
-                        fontSize:"10px",backgroundColor:"black",color:"white"
-                       }}
-                         className='btn my-2 '>Five</button>
-                         <button 
-                        onClick={() => setSelectedCategory("viewall")}
-                       style={{borderRadius:"20px",
-                        fontSize:"10px",backgroundColor:"black",color:"white"
-                       }}
-                         className='btn my-2 '>View All</button>
-                    
+                <div style={{ paddingTop: "80px" }} className='d-flex  justify-content-center '>
+
+                    <div className='d-flex justify-content-evenly' style={{
+                        height: "50px",
+                        width: "600px",
+                        background: "#C8D4C3",
+                        borderRadius: "20px"
+                    }} >
+                        <div style={{ alignSelf: "center", fontFamily: 'Roboto, sans-serif' }}>Select Category:</div>
+                        <button
+                            onClick={() => setSelectedCategory("one")}
+
+                            style={{
+                                borderRadius: "20px",
+                                fontSize: "10px", backgroundColor: "black", color: "white"
+                            }}
+                            className='btn my-2 '>One</button>
+                        <button
+                            onClick={() => setSelectedCategory("two")}
+                            style={{
+                                borderRadius: "20px",
+                                fontSize: "10px", backgroundColor: "black", color: "white"
+                            }}
+                            className='btn my-2 '>Two</button>
+                        <button
+                            onClick={() => setSelectedCategory("three")}
+                            style={{
+                                borderRadius: "20px",
+                                fontSize: "10px", backgroundColor: "black", color: "white"
+                            }}
+                            className='btn my-2 '>Three</button>
+                        <button
+                            onClick={() => setSelectedCategory("four")}
+                            style={{
+                                borderRadius: "20px",
+                                fontSize: "10px", backgroundColor: "black", color: "white"
+                            }}
+                            className='btn my-2 '>Four</button>
+                        <button
+                            onClick={() => setSelectedCategory("five")}
+                            style={{
+                                borderRadius: "20px",
+                                fontSize: "10px", backgroundColor: "black", color: "white"
+                            }}
+                            className='btn my-2 '>Five</button>
+                        <button
+                            onClick={() => setSelectedCategory("viewall")}
+                            style={{
+                                borderRadius: "20px",
+                                fontSize: "10px", backgroundColor: "black", color: "white"
+                            }}
+                            className='btn my-2 '>View All</button>
 
 
+
+                    </div>
                 </div>
-                </div>
-                
+
 
 
 
@@ -298,7 +324,7 @@ function Viewproduct() {
 
 
             </div>
-            <Footer/>
+            <Footer />
         </>
 
 
