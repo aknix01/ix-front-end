@@ -15,6 +15,7 @@ import Checkout from './Components/Checkout'
 import { ToastContainer } from 'react-toastify'
 import OrderPlaced from './Components/OrderPlaced'
 import OrderHistory from './Components/OrderHistory'
+import RecievedOrders from './Components/RecievedOrders'
 
 function App() {
 
@@ -22,7 +23,9 @@ function App() {
   return (
     <>
     {/* <Navi/> */}
-    <ToastContainer/>
+    <ToastContainer
+     position="top-center"
+     autoClose={3000}/>
     <BrowserRouter>
     <Routes >
       <Route path='/' element={<Home/>}></Route>
@@ -36,6 +39,8 @@ function App() {
       <Route path="/checkout" element={<Checkout/>}></Route>
       <Route path="/order" element={<OrderPlaced/>}></Route>
       <Route path="/orders" element={<OrderHistory/>}></Route>
+      <Route path="/recievedorders" element={<RoleBasedRoutes allowedRoles={["Admin","Seller"]}><RecievedOrders/></RoleBasedRoutes> }></Route>
+
     </Routes>
     </BrowserRouter>
     

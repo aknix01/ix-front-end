@@ -148,6 +148,7 @@
   }
   
   .paginationBttns {
+  
     width: 80%;
     height: 40px;
     list-style: none;
@@ -158,26 +159,30 @@
   .paginationBttns a {
     padding: 10px;
     margin: 8px;
-    border-radius: 5px;
-    border: 1px solid #039e56;
-    color: #1a7c27;
+    border-radius: 10px;
+    border: 2px solid #039e56;
+    color: #0b0b0c;
     cursor: pointer;
     text-decoration: none;
   }
   
   .paginationBttns a:hover {
     color: white;
-    background-color: #4488e0;
+    background-color: #5dee88;
   }
   
   .paginationActive a {
     color: white;
-    background-color: #e3e64c;
+    background-color: #5dee88;
   }
   
   .paginationDisabled a {
-    color: rgb(12, 11, 11);
-    background-color: rgb(209, 101, 101);
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+  }
+  .paginationDisabled a:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
   }
 
   .App {

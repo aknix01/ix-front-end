@@ -10,8 +10,11 @@ import { v4 } from 'uuid'
 import Navi from './Navi'
 import Footer from './Footer'
 import { toast } from 'react-toastify'
+import userPool from '../services/cognito/Userpool'
 
 function Addproduct() {
+
+    const user=userPool.getCurrentUser()
 
     const [product, setProduct] = useState({
 
@@ -156,6 +159,7 @@ function Addproduct() {
                 const uid = v4()
                 const productadd = new FormData()
                 productadd.append("id", uid)
+                productadd.append("userId",user.username)
                 productadd.append("expiry", product.expiry)
                 productadd.append("title", product.title)
                 productadd.append("cover", product.cover)
@@ -170,7 +174,7 @@ function Addproduct() {
                 const result = await Adding(productadd)
 
                 console.log(result)
-                if (result.status == 200) {
+                if (result.success) {
                     toast.success("Added successfully")
                     setProduct({
                         expiry: "",
@@ -497,46 +501,7 @@ function Addproduct() {
 
 
                             </select>
-                            {/* {
-                                !validatecategory &&
-                                <div style={{ color: "red" }}>
-                                    Enter Product category !
-                                </div>
-                            } */}
-
-
-
-                            {/* <FormLabel
-                                className='mt-2'
-                                style={{
-                                    fontWeight: "bold",
-                                    fontSize: "15px",
-                                    fontFamily: "Roboto"
-
-                                }}
-                            >
-                                QUANTITY <span style={{
-                                    color: "red"
-                                }}> *</span>
-                            </FormLabel>
-                            <br />
-                            <input
-                            required
-                                value={product.quantity}
-                                placeholder='Enter Quantity!!'
-                                type="number"
-                                onChange={(e) => { add(e) }}
-                                name='quantity'
-                                id='quantity'
-                                className='form-control mt-1'
-                                style={{
-                                    height: "50px",
-                                    border: "2px solid "
-
-                                }}
-
-                            /> */}
-
+                            
                             <FormLabel
                                 className='mt-2'
                                 style={{
@@ -607,21 +572,7 @@ function Addproduct() {
                                 }}> *</span>
                             </FormLabel>
                             <br />
-                            {/* <input
-                                required
-                                type="number"
-                                placeholder='Enter Price !!'
-                                onChange={(e) => { add(e) }}
-                                name='price'
-                                id='price'
-                                className='form-control mt-1'
-                                style={{
-                                    height: "50px",
-                                    border: "2px solid "
-
-                                }}
-
-                            /> */}
+                           
                             <div className="d-flex flex-column">
                                 <input
                                     required

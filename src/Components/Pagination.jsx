@@ -17,10 +17,10 @@ function Pagination({ totalPosts, postsPerPage, setCurrentPage, currrentPage }) 
                             <button
                                 style={{
                                     padding: "10px",
-                                    borderRadius: "5px",
+                                    borderRadius: "2px",
                                     fontSize: "20px",
                                     backgroundColor: "#FF5733",
-                                    border: "1px solid white",
+                                    border: "10px solid white",
                                     cursor: currrentPage === 1 ? "not-allowed" : "pointer",
                                     opacity: currrentPage === 1 ? 0.5 : 1,
                                 }}
@@ -34,7 +34,7 @@ function Pagination({ totalPosts, postsPerPage, setCurrentPage, currrentPage }) 
                                 <button
                                     key={index}
                                     style={{
-                                        padding: "10px",
+                                        padding: "100px",
                                         borderRadius: "5px",
                                         fontSize: "20px",
                                         backgroundColor: currrentPage === page ? "#FFD700" : "#BFD641",
