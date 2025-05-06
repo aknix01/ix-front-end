@@ -16,7 +16,7 @@ import { FaCaretUp } from "react-icons/fa";
 import { FaCaretDown } from "react-icons/fa";
 import { Box, CircularProgress } from '@mui/material';
 import Footer from './Footer';
-import "./cart.css"
+import "./Cart.css"
 
 function AddtoCart() {
 
