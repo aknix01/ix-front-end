@@ -263,41 +263,7 @@ function Navi() {
 
 
 
-                            {/* <NavDropdown
-                                style={{
-                                    fontSize: "30px"
-                                }}
-
-                                className="custom-dropdown"
-                                title={<div className='d-flex flex-column justify-content-center align-items-center'>
-                                    <div style={{
-                                        fontSize: "10px"
-                                    }}>
-                                        {dataUser["custom:FirstName"]}
-                                    </div>
-                                    <span style={{
-                                        color: "black",
-                                        fontSize: "30px",
-                                        padding: "0px"
-                                    }} className="material-symbols-outlined">
-                                        account_circle
-                                    </span>
-
-                                </div>} id="basic-nav-dropdown" show={showDropdown}
-                                onMouseEnter={() => setShowDropdown(true)}
-                                onMouseLeave={() => setShowDropdown(false)}
-                            >
-
-
-                                <NavDropdown.Item href="/signup">Create Account</NavDropdown.Item>
-                               
-                            <NavDropdown.Item href="/login">
-                                    Sign In
-                                </NavDropdown.Item>
-                                <NavDropdown.Item onClick={handleLogout} >Logout</NavDropdown.Item>
-                                <NavDropdown.Item >Orders</NavDropdown.Item>
-                            </NavDropdown> */}
-
+                            
 
 
                         </Nav>
