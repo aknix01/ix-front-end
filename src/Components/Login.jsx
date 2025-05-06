@@ -58,7 +58,9 @@ style={{
     backgroundColor:"#E4F5EC"
 }}>
             
-            <div style={{
+            <div 
+            className='mt-5'
+            style={{
                 border:"",
                 padding:"20px",
                 borderRadius:"20px",

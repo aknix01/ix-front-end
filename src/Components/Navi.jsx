@@ -131,7 +131,7 @@ function Navi() {
                                 onMouseEnter={() => setNavdrop(true)}
                                 onMouseLeave={() => setNavdrop(false)}
 
-                                href="/products">Products <AiFillProduct /> </Nav.Link>
+                                href="/products">Products  </Nav.Link>
                             {/* {navdrop && (
                             <div
                                 style={{
@@ -164,6 +164,12 @@ function Navi() {
                             )
 
                             }
+                             {(role === "Admin" || role === "Seller") && (
+                                <Nav.Link style={{
+                                    fontSize: "15px",textAlign:"center"
+                                }} href="/recievedorders">Orders <br />
+                                received</Nav.Link>
+                            )}
 
 
 
@@ -261,9 +267,6 @@ function Navi() {
                                 </Menu>
                             </div>
 
-
-
-                            
 
 
                         </Nav>

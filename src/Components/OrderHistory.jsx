@@ -5,6 +5,7 @@ import Navi from './Navi'
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import "./order.css"
+import Footer from './Footer';
 
 function OrderHistory() {
 
@@ -12,8 +13,12 @@ function OrderHistory() {
   const [orders, setOrders] = useState([])
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState([])
+  const [idtoken, setIdtoken] = useState("")
 
   const fetch = async () => {
+    const Header = {
+      "Authorization": idtoken
+  }
     const result = await fetchOrders(user.username)
     if (result.success) {
       setOrders(result.data.orders);
@@ -24,15 +29,34 @@ function OrderHistory() {
       console.error("Error fetching orders:", result.error);
     }
     setLoading(false);
-    console.log(result.data.orders)
+    // console.log(result.data.orders)
     console.log(product)
     console.log(user.username)
 
 
   }
 
+  const extractName = (url) => {
+    return url.substring(url.lastIndexOf("/") + 1)
+
+  }
+  const fetchTokens = async () => {
+    user.getSession((err, session) => {
+      if (err) {
+        console.error("Error fetching session:", err);
+      } else {
+
+        setIdtoken(session.getIdToken().getJwtToken())
+        
+        
+      }
+    });
+  }
+console.log(idtoken)
+
   useEffect(() => {
     fetch()
+    fetchTokens()
 
   }, [])
 
@@ -50,6 +74,7 @@ function OrderHistory() {
         <CircularProgress />
       </Box>
     </div>
+    <Footer />
   </div>;
 
   return (
@@ -58,23 +83,24 @@ function OrderHistory() {
       <div style={{
         paddingTop: "80px",
         backgroundColor: "#E4F5EC",
-        height: "100dvh"
+        height: "auto"
 
       }}>
 
-        <div className='d-flex justify-content-center mt-5'>
-          {
-            orders?.map((item) => (
-              <div  className="containerdiv ">
-
-
-                <div className="content">
-                  <div className="header">
+        <div className='d-flex justify-content-center align-items-center flex-column mt-5'>
+        <div className="header">
                     <div>
                       <h1>My Orders</h1>
                       {/* <p className="header-subtitle">View and edit all your pending, delivered, and returned orders here.</p> */}
                     </div>
                   </div>
+          {
+            orders?.map((item) => (
+              <div className="containerdiv my-2">
+
+
+                <div className="content">
+                  
 
                   <div className="order-item">
                     <div className="order-header">
@@ -86,35 +112,39 @@ function OrderHistory() {
                     </div>
 
                     {
-                      item.items?.map((product) => (
+                      item.items?.map((product) => {
+
+                        const imageName = extractName(product.image_url)
+                        return (
 
 
-                        <div className="product-item ">
-                          <div className="product-image">
-                            <img src="" alt="product image" />
-                          </div>
-                          <div className="product-details">
-                            <div className="product-title">{product.name}</div>
-                            {/* <div className="product-designer">By: Milly Thomas</div> */}
-                            <div className="product-meta">
-                              <div>
-                                <span className="product-size">Category:{product.category}</span>
-                                <span className="product-qty">Qty:{product.quantity}</span>
+                          <div className="product-item ">
+                            <div className="product-image">
+                              <img src={`https://d3cceuazvytzw7.cloudfront.net/uploads/${imageName}`} alt="product image" />
+                            </div>
+                            <div className="product-details">
+                              <div className="product-title">{product.name}</div>
+                              {/* <div className="product-designer">By: Milly Thomas</div> */}
+                              <div className="product-meta">
+                                <div>
+                                  <span className="product-size">Category:{product.category}</span>
+                                  <span className="product-qty">Qty:{product.quantity}</span>
+                                </div>
+                                <div className="product-price mx-5">Rs.{product.price}</div>
                               </div>
-                              <div className="product-price mx-5">Rs.{product.price}</div>
+                            </div>
+                            <div className="status-section">
+                              <div className="status-label">Status</div>
+                              <div className="status transit">{item.order_status}</div>
+                            </div>
+                            <div className="delivery-section">
+                              <div className="delivery-label">Delivery Expected by</div>
+                              <div className="delivery-date">{item.estimatedDelivery ? item.estimatedDelivery : 'delivery date will be updated'}</div>
                             </div>
                           </div>
-                          <div className="status-section">
-                            <div className="status-label">Status</div>
-                            <div className="status transit">{item.order_status}</div>
-                          </div>
-                          <div className="delivery-section">
-                            <div className="delivery-label">Delivery Expected by</div>
-                            <div className="delivery-date">24 December 2025</div>
-                          </div>
-                        </div>
 
-                      ))
+                        )
+                      })
                     }
 
 
@@ -139,7 +169,8 @@ function OrderHistory() {
 
 
 
-      </div>
+      </div >
+      <Footer />
 
 
     </>

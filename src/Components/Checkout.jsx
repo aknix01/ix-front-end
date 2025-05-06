@@ -22,34 +22,41 @@ function Checkout() {
 
     e.preventDefault();
 
-    
 
-    
+
+
     console.log(address)
-    
-      const body = {
-        userId: user.getUsername(),
-        items: JSON.parse(localStorage.getItem("cartItems")),
-        totalAmount: JSON.parse(localStorage.getItem("TotalAmouunt")),
-        Address: localStorage.getItem("Address"),
-        orderStatus: "processing",
-        placedAt: new Date().toISOString()
-      };
-      const result = await Ordering(body)
-      console.log(result.data)
-      console.log(body,address)
-    
+
+    const body = {
+      userId: user.getUsername(),
+      items: JSON.parse(localStorage.getItem("cartItems")),
+      totalAmount: JSON.parse(localStorage.getItem("TotalAmouunt")),
+      Address: localStorage.getItem("Address"),
+      orderStatus: "processing",
+      placedAt: new Date().toISOString()
+    };
+    const result = await Ordering(body)
+    console.log(result.data)
+    console.log(body, address)
+    if (result.success) {
+      toast.success("payment successful")
+      navigate("/orders")
+
+
+    }
+    else{
+      toast.error("payment failed")
+    }
 
 
 
 
 
-    toast.success("payment successful")
-    navigate("/order")
+
 
 
   }
-  
+
   useEffect(() => {
     setCartlist()
     setPrice()
@@ -71,7 +78,7 @@ function Checkout() {
         });
 
         console.log()
-        localStorage.setItem("Address",attrMap["custom:Address"] || "" );
+        localStorage.setItem("Address", attrMap["custom:Address"] || "");
 
 
 
@@ -80,7 +87,7 @@ function Checkout() {
         // Proceed with sending `body` to your backend
       });
     });
-    
+
 
   }, [])
 

@@ -1,6 +1,6 @@
 
 import { commonRequest } from "./axios";
-import { base_url, carturl, getcarturl,orderUrl,getOrderUrl } from "./url";
+import { base_url, carturl, getcarturl,orderUrl,getOrderUrl ,getSellerOrder,updateOrder} from "./url";
 
 
 export const fetchproducts=async()=>{
@@ -20,24 +20,24 @@ export const addtocart=async(body,action,header)=>{
 }
 
 export const fetchcart=async(body)=>{ 
-    return await commonRequest("POST",getcarturl,body,"")
+    return await commonRequest("POST",getcarturl,body)
 }
 
-export const removefromcart=async(id,username)=>{
+export const removefromcart=async(id,username,header)=>{
     const urlWithParams=`${carturl}?action=delete&id=${id}&username=${username}`;
     console.log(urlWithParams)
-    return await commonRequest("DELETE",urlWithParams,{},"")  
+    return await commonRequest("DELETE",urlWithParams,{},header)  
 }
 
-export const incrementQuantity=async(body,action)=>{
+export const incrementQuantity=async(body,action,header)=>{
     const urlWithParams=`${carturl}?action=${action}`;
     console.log(urlWithParams)
-    return await commonRequest("PUT",urlWithParams,body,"")
+    return await commonRequest("PUT",urlWithParams,body,header)
 }
-export const decrementQuantity=async(body,action)=>{
+export const decrementQuantity=async(body,action,header)=>{
     const urlWithParams=`${carturl}?action=${action}`;
     console.log(urlWithParams)
-    return await commonRequest("PUT",urlWithParams,body,"")
+    return await commonRequest("PUT",urlWithParams,body,header)
 }
 export const Ordering=async(body)=>{
     return await commonRequest('POST',orderUrl,body)
@@ -46,4 +46,13 @@ export const Ordering=async(body)=>{
 export const fetchOrders=async(username)=>{
     const urlWithParams=`${getOrderUrl}?username=${username}`;
     return await commonRequest('GET',urlWithParams)
+}
+
+export const fetchSellerOrders=async(username)=>{
+    const urlWithParams=`${getSellerOrder}?username=${username}`
+    return await commonRequest('GET',urlWithParams)
+
+}
+export const updateOrders=async(body,header)=>{
+    return await commonRequest('PUT',updateOrder,body,header)
 }

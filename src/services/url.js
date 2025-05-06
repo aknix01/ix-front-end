@@ -3,3 +3,5 @@ export const carturl="https://ol4fa59ayf.execute-api.ap-south-1.amazonaws.com/re
 export const getcarturl="https://ol4fa59ayf.execute-api.ap-south-1.amazonaws.com/re2/get_basket_list"
 export const orderUrl="https://ol4fa59ayf.execute-api.ap-south-1.amazonaws.com/re2/save_orders"
 export const getOrderUrl="https://ol4fa59ayf.execute-api.ap-south-1.amazonaws.com/re2/get_orders"
+export const getSellerOrder="https://ol4fa59ayf.execute-api.ap-south-1.amazonaws.com/re2/fetch_orders_for_seller"
+export const updateOrder="https://ol4fa59ayf.execute-api.ap-south-1.amazonaws.com/re2/Update_order"

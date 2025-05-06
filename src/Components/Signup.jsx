@@ -222,7 +222,10 @@ function Signup() {
            {
                showotp ? (
 
-                   <div className='d-flex flex-column  justify-content-center align-items-center '>
+                   <div style={{
+                    
+                           paddingTop:"180px"
+                   }} className='d-flex flex-column  justify-content-center align-items-center '>
                        <div style={{
                            width: "40%",
                            height: "40%",
@@ -637,12 +640,22 @@ function Signup() {
                                        type='submit'
                                        className='btn mt-3'
                                        style={{
-                                           width: "50%",
-                                           backgroundColor: "grey",
-                                           color: "black",
-                                           border: "2px solid",
-                                           fontFamily: "monospace"
-                                       }}
+                                        width: "50%",
+                                        
+                                        color: "black",
+                            
+                                        fontFamily: "Roboto"
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.target.style.backgroundColor = "#28a745"; // Darker green
+                                        e.target.style.color = "white";
+                                        e.target.style.transform = "scale(1.05)";
+                                      }}
+                                      onMouseLeave={(e) => {
+                                        e.target.style.backgroundColor = "#CFEED1"; // Reset to default
+                                        e.target.style.color = "black";
+                                        e.target.style.transform = "scale(1)";
+                                      }}
                                    >
                                        Sign Up!
                                    </button>

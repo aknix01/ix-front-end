@@ -18,6 +18,7 @@ import Footer from './Footer'
 import { toast } from 'react-toastify'
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
 
 
 
@@ -51,7 +52,7 @@ function Viewproduct() {
                 setAccessToken(session.getAccessToken().getJwtToken())
                 // console.log("accesstoken", accessToken);
                 setIdtoken(session.getIdToken().getJwtToken())
-                // console.log("idtoken", idtoken);
+                 
                 setRefreshToken(session.getRefreshToken().getToken())
                 // console.log("refresh token", refreshToken);
             }
@@ -79,15 +80,16 @@ function Viewproduct() {
         }
 
     }
+    console.log("idtoken", idtoken);
     const [pageNumber, setPageNumber] = useState(0);
     const usersPerPage = 8;
     const pagesVisited = pageNumber * usersPerPage;
-    const displayUsers = product.slice(pagesVisited, pagesVisited + usersPerPage).map((item) => {
+    const displayUsers = product.slice(pagesVisited, pagesVisited + usersPerPage).map((item,index) => {
 
         const imageName = extractName(item.image_url);
         return (
 
-            <div className='col mt-2 my-3 my-lg-5 mx-5 col-lg-2'>
+            <div key="index" className='col mt-2 my-3 my-lg-5 mx-5 col-lg-2'>
                 <Card sx={{ maxWidth: 345 }}  >
                     <CardMedia
                         component="img"
@@ -107,8 +109,8 @@ function Viewproduct() {
 
                             alignSelf: "center"
                         }} sx={{ color: 'text.secondary' }}>
-                            {/* {item.description}*/}
-                            description
+                            {item.description}
+
                         </Typography>
                         <Typography variant="body2" style={{
                             fontWeight: "bold",
@@ -209,120 +211,115 @@ function Viewproduct() {
                 <CircularProgress />
             </Box>
         </div>
-        <Footer/>
+        <Footer />
     </div>;
     return (
         <>
+
             <div style={{
                 backgroundColor: "#E4F5EC",
-                height: "auto"
-
+                minHeight: "100vh"
             }}>
                 <Navi />
-                <div>
-                    {/* {
-                    user && (
-                        <div className='d-flex justify-content-center'><span style={{
-                            alignSelf: "center"
-                        }}>welcome User: {user.username}</span>
-                        <button onClick={fetchTokens}>click here for token</button>
+
+                <div className="" style={{ paddingTop: "80px" }}>
+                    <div className="row">
+                        {/* Left Sidebar Filter Column */}
+                        <div style={{
+                            height: "70vh",
+                            backgroundColor: "#E4F5EC"
+                        }}
+                            className="col-md-3 col-lg-2 mt-5 mb-4 ">
+                            <div style={{
+                                
+                                backgroundColor: "#E4F5EC"
+                            }} className="card ms-1 shadow-sm">
+                                <div className="card-header ">
+                                    <h5 className="mb-0" 
+                                    style={{ fontFamily: 'Roboto, sans-serif', textAlign: "center" }}>Filter Products</h5>
+                                </div>
+                                <div className="card-body">
+                                    <div className="d-flex flex-column">
+                                        <button
+                                            onClick={() => setSelectedCategory("one")}
+                                            className={`btn mb-2 text-start ${selectedCategory === "one" ? "btn-dark" : "btn-outline-dark"}`}
+                                            style={{ borderRadius: "20px", fontSize: "14px" }}>
+                                            Vegetables
+                                        </button>
+                                        <button
+                                            onClick={() => setSelectedCategory("two")}
+                                            className={`btn mb-2 text-start ${selectedCategory === "two" ? "btn-dark" : "btn-outline-dark"}`}
+                                            style={{ borderRadius: "20px", fontSize: "14px" }}>
+                                            Grains
+                                        </button>
+                                        <button
+                                            onClick={() => setSelectedCategory("three")}
+                                            className={`btn mb-2 text-start ${selectedCategory === "three" ? "btn-dark" : "btn-outline-dark"}`}
+                                            style={{ borderRadius: "20px", fontSize: "14px" }}>
+                                            Oil
+                                        </button>
+                                        <button
+                                            onClick={() => setSelectedCategory("four")}
+                                            className={`btn mb-2 text-start ${selectedCategory === "four" ? "btn-dark" : "btn-outline-dark"}`}
+                                            style={{ borderRadius: "20px", fontSize: "14px" }}>
+                                            Fruits
+                                        </button>
+                                        <button
+                                            onClick={() => setSelectedCategory("five")}
+                                            className={`btn mb-2 text-start ${selectedCategory === "five" ? "btn-dark" : "btn-outline-dark"}`}
+                                            style={{ borderRadius: "20px", fontSize: "14px" }}>
+                                            Spices
+                                        </button>
+                                        <button
+                                            onClick={() => setSelectedCategory("viewall")}
+                                            className={`btn mb-2 text-start ${selectedCategory === "viewall" ? "btn-dark" : "btn-outline-dark"}`}
+                                            style={{ borderRadius: "20px", fontSize: "14px" }}>
+                                            View All
+                                        </button>
+                                    </div>
+                                </div>
+                                {/* <Box sx={{ width: 300 }}>
+                                    <Slider
+                                        style={{
+                                            width: "200px"
+                                        }}
+                                        aria-label="Temperature"
+                                        defaultValue={30}
+                                        // getAriaValueText={valuetext}
+                                        valueLabelDisplay="auto"
+                                        shiftStep={30}
+                                        step={10}
+                                        marks
+                                        min={10}
+                                        max={110}
+                                    />
+
+                                </Box> */}
+                            </div>
+
                         </div>
-                    )
-                } */}
 
+                        {/* Main Content Area */}
+                        <div className="col-md-9 col-lg-10">
+                            <div className="row">
+                                {displayUsers}
+                            </div>
 
-                </div>
-                <div style={{ paddingTop: "80px" }} className='d-flex  justify-content-center '>
-
-                    <div className='d-flex justify-content-evenly' style={{
-                        height: "50px",
-                        width: "600px",
-                        background: "#C8D4C3",
-                        borderRadius: "20px"
-                    }} >
-                        <div style={{ alignSelf: "center", fontFamily: 'Roboto, sans-serif' }}>Select Category:</div>
-                        <button
-                            onClick={() => setSelectedCategory("one")}
-
-                            style={{
-                                borderRadius: "20px",
-                                fontSize: "10px", backgroundColor: "black", color: "white"
-                            }}
-                            className='btn my-2 '>One</button>
-                        <button
-                            onClick={() => setSelectedCategory("two")}
-                            style={{
-                                borderRadius: "20px",
-                                fontSize: "10px", backgroundColor: "black", color: "white"
-                            }}
-                            className='btn my-2 '>Two</button>
-                        <button
-                            onClick={() => setSelectedCategory("three")}
-                            style={{
-                                borderRadius: "20px",
-                                fontSize: "10px", backgroundColor: "black", color: "white"
-                            }}
-                            className='btn my-2 '>Three</button>
-                        <button
-                            onClick={() => setSelectedCategory("four")}
-                            style={{
-                                borderRadius: "20px",
-                                fontSize: "10px", backgroundColor: "black", color: "white"
-                            }}
-                            className='btn my-2 '>Four</button>
-                        <button
-                            onClick={() => setSelectedCategory("five")}
-                            style={{
-                                borderRadius: "20px",
-                                fontSize: "10px", backgroundColor: "black", color: "white"
-                            }}
-                            className='btn my-2 '>Five</button>
-                        <button
-                            onClick={() => setSelectedCategory("viewall")}
-                            style={{
-                                borderRadius: "20px",
-                                fontSize: "10px", backgroundColor: "black", color: "white"
-                            }}
-                            className='btn my-2 '>View All</button>
-
-
-
+                            <div className='d-flex mt-4 mb-3 justify-content-center'>
+                                <ReactPaginate
+                                    previousLabel={"<"}
+                                    nextLabel={">"}
+                                    pageCount={pageCount}
+                                    onPageChange={changePage}
+                                    containerClassName={"paginationBttns"}
+                                    previousLinkClassName={"previousBttn"}
+                                    nextLinkClassName={"nextBttn"}
+                                    disabledClassName={"paginationDisabled"}
+                                    activeClassName={"paginationActive"} />
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-
-
-
-                <div style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                    width: "100vw",
-                    backgroundColor: ""
-                }}>
-                    <div className='App row'>
-                        {displayUsers}
-
-                    </div>
-                    <div className='d-flex mt-4 mb-3  justify-content-center'>
-                        <ReactPaginate
-
-                            previousLabel={"Prev"}
-                            nextLabel={"Next"}
-                            pageCount={pageCount}
-                            onPageChange={changePage}
-                            containerClassName={"paginationBttns"}
-                            previousLinkClassName={"previousBttn"}
-                            nextLinkClassName={"nextBttn"}
-                            disabledClassName={"paginationDisabled"}
-                            activeClassName={"paginationActive"} />
-                    </div>
-
-
-                </div>
-
-
-
             </div>
             <Footer />
         </>
