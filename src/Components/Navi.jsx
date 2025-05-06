@@ -275,6 +275,7 @@ function Navi() {
             </Navbar>
         </div>
 
+                        
     )
 }
 
