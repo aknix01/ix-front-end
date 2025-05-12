@@ -31,7 +31,7 @@ function Login() {
                 //     // Store custom attributes locally
                 //     localStorage.setItem("userAttributes", JSON.stringify(attrMap));
                 //   });
-                const role=localStorage.getItem("Role")
+                const role=sessionStorage.getItem("Role")
                 if(role==="User"){
                     navigate("/")
                 }

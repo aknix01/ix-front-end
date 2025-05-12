@@ -2,7 +2,7 @@ import React from 'react'
 import Navi from './Navi'
 import { useState, useEffect } from 'react'
 import { addtocart, fetchproducts } from '../services/apicalls'
-import { Await } from 'react-router-dom'
+import { Await, useNavigate } from 'react-router-dom'
 import { getSignedUrl } from '@aws-sdk/cloudfront-signer'
 
 import ReactPaginate from 'react-paginate'
@@ -32,6 +32,7 @@ function Viewproduct() {
     const [accessToken, setAccessToken] = useState("")
     const [idtoken, setIdtoken] = useState("")
     const [loading, setLoading] = useState(true)
+    const navigate=useNavigate()
 
 
 
@@ -60,7 +61,8 @@ function Viewproduct() {
     }
 
     const navcart = async (e) => {
-        const data = {
+        
+       if(sessionStorage.getItem("Role")){ const data = {
             id: e.id,
             username: user.username,
             quantity: e.quantity
@@ -77,6 +79,11 @@ function Viewproduct() {
         }
         else {
             toast.error("already added Or something went wrong")
+        }}
+        else{
+            toast.warn("Please login ")
+            navigate("/login")
+            
         }
 
     }

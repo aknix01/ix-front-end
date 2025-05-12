@@ -35,7 +35,7 @@ function Navi() {
 
     const handleLogout = () => {
         logout();
-        localStorage.clear()
+        sessionStorage.clear()
         setAnchorEl(null);
         navigate('/');
     };
@@ -88,7 +88,7 @@ function Navi() {
 
 
 
-        setRole(localStorage.getItem("Role"))
+        setRole(sessionStorage.getItem("Role"))
 
 
     }, [])
@@ -109,9 +109,8 @@ function Navi() {
                     <Navbar.Brand
                         style={{
                             color: "#000000",
-                            fontSize: "20px",
-                            fontFamily: 'Roboto, sans-serif',
-
+                            fontSize: "25px",
+                           fontFamily: "PT Sans Narrow",
                             marginRight: "20px"
 
                         }} href="/" >Freshcart</Navbar.Brand>
@@ -120,12 +119,12 @@ function Navi() {
                         <Nav className=" w-100 d-flex justify-content-evenly align-items-center custom-navl ">
                             <Nav.Link
                                 style={{
-                                    fontSize: "15px"
+                                    fontSize: "20px"
                                 }} href="/">Home</Nav.Link>
 
                             <Nav.Link
                                 style={{
-                                    fontSize: "15px"
+                                    fontSize: "20px"
                                 }}
 
                                 onMouseEnter={() => setNavdrop(true)}
