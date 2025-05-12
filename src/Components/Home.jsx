@@ -113,11 +113,11 @@ function Home() {
             }}> </div><span className='mx-2 ' style={{
               alignSelf: "center",
               color: "red",
-              fontWeight: "bold", fontFamily: 'Roboto, sans-serif'
+              fontWeight: "bold", fontFamily: 'PT Sans Narrow'
             }}  >THIS MONTH</span></div>
             <div className='d-flex justify-content-space-between mb-5 '>
               <h3 style={{
-                fontFamily: 'Roboto, sans-serif',
+                fontFamily: 'PT Sans Narrow',
                 fontWeight: "bold",
                 display: "inline",
                 textAlign: "center"
@@ -130,7 +130,7 @@ function Home() {
                   style={{
 
                     color: "black",
-                    fontFamily: 'Roboto, sans-serif',
+                    fontFamily: 'PT Sans Narrow',
                     fontWeight: "bold"
 
 
@@ -157,7 +157,7 @@ function Home() {
                       />
                       <CardContent className='d-flex justify-content-center flex-column'>
                         <Typography gutterBottom variant="h5" style={{
-                          fontWeight: "bold",
+                          fontWeight: "bold",fontFamily:"PT Sans Narrow",
                           alignSelf: "center"
                         }} component="div">
                           {item.name}

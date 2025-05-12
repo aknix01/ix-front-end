@@ -30,7 +30,7 @@ function AddtoCart() {
     const user = userPool.getCurrentUser()
 
     const check = async () => {
-        localStorage.setItem("TotalAmouunt", JSON.stringify(price));
+        sessionStorage.setItem("TotalAmouunt", JSON.stringify(price));
         
 
         navigate("/checkout")
@@ -158,7 +158,7 @@ function AddtoCart() {
 
 
     useEffect(() => {
-        localStorage.setItem("cartItems", JSON.stringify(cartlist));
+        sessionStorage.setItem("cartItems", JSON.stringify(cartlist));
 
 
     }, [cartlist])
@@ -181,28 +181,15 @@ function AddtoCart() {
 
     console.log("idtoken", idtoken);
                 
-    if (loading) return <div>
-        <Navi />
-        <div style={{
-            paddingTop: "80px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100dvh",
-            backgroundColor: "#E4F5EC"
-        }}>
-            <Box sx={{ display: 'flex' }}>
-                <CircularProgress />
-            </Box>
-        </div>
-        <Footer />
-    </div>;
+   
 
     return (
         <>
             <Navi />
+            
 
             {cartlist?.length > 0 ?
+            
 
 
 
@@ -214,7 +201,10 @@ function AddtoCart() {
                         paddingTop: "80px"
 
                     }}
+                    
+                   
                 >
+                     <h1>   </h1>
                     <div className=' col-lg-6 col-sm-12 mt-5 '>
                         {cartlist?.map((item, index) => {
 
@@ -435,7 +425,7 @@ function AddtoCart() {
                 : <div
                     className='d-flex flex-column justify-content-center align-items-center'
                     style={{
-                        minHeight: "500px",
+                        minHeight: "100vh",
                         fontFamily: "fantasy",
                         fontSize: "40px"
                     }}>Oops.....THe CART IS Empty

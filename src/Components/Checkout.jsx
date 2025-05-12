@@ -29,9 +29,9 @@ function Checkout() {
 
     const body = {
       userId: user.getUsername(),
-      items: JSON.parse(localStorage.getItem("cartItems")),
-      totalAmount: JSON.parse(localStorage.getItem("TotalAmouunt")),
-      Address: localStorage.getItem("Address"),
+      items: JSON.parse(sessionStorage.getItem("cartItems")),
+      totalAmount: JSON.parse(sessionStorage.getItem("TotalAmouunt")),
+      Address: sessionStorage.getItem("Address"),
       orderStatus: "processing",
       placedAt: new Date().toISOString()
     };
@@ -78,7 +78,7 @@ function Checkout() {
         });
 
         console.log()
-        localStorage.setItem("Address", attrMap["custom:Address"] || "");
+        sessionStorage.setItem("Address", attrMap["custom:Address"] || "");
 
 
 

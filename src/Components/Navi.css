@@ -60,7 +60,8 @@
   .custom-navl .nav-link {
     color: rgb(12, 11, 11);
     font-size: 20px;
-    font-family: 'Roboto', sans-serif;
+
+    font-family: "PT Sans Narrow";
     padding: 10px 15px;
     transition: all 0.3s ease-in-out;
     border-radius: 5px;
