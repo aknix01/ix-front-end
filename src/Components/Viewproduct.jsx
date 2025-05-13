@@ -32,7 +32,8 @@ function Viewproduct() {
     const [accessToken, setAccessToken] = useState("")
     const [idtoken, setIdtoken] = useState("")
     const [loading, setLoading] = useState(true)
-    const navigate=useNavigate()
+    const navigate = useNavigate()
+    const [priceRange, setPriceRange] = useState([0, 100]);
 
 
 
@@ -53,7 +54,7 @@ function Viewproduct() {
                 setAccessToken(session.getAccessToken().getJwtToken())
                 // console.log("accesstoken", accessToken);
                 setIdtoken(session.getIdToken().getJwtToken())
-                 
+
                 setRefreshToken(session.getRefreshToken().getToken())
                 // console.log("refresh token", refreshToken);
             }
@@ -61,29 +62,31 @@ function Viewproduct() {
     }
 
     const navcart = async (e) => {
-        
-       if(sessionStorage.getItem("Role")){ const data = {
-            id: e.id,
-            username: user.username,
-            quantity: e.quantity
-        }
 
-        const Header = {
-            "Authorization": idtoken
-        }
-        console.log(data)
-        const result = await addtocart(data, "add", Header)
-        console.log(result)
-        if (result.success) {
-            toast.success("added to cart")
+        if (sessionStorage.getItem("Role")) {
+            const data = {
+                id: e.id,
+                username: user.username,
+                quantity: e.quantity
+            }
+
+            const Header = {
+                "Authorization": idtoken
+            }
+            console.log(data)
+            const result = await addtocart(data, "add", Header)
+            console.log(result)
+            if (result.success) {
+                toast.success("added to cart")
+            }
+            else {
+                toast.error("already added Or something went wrong")
+            }
         }
         else {
-            toast.error("already added Or something went wrong")
-        }}
-        else{
             toast.warn("Please login ")
             navigate("/login")
-            
+
         }
 
     }
@@ -91,12 +94,12 @@ function Viewproduct() {
     const [pageNumber, setPageNumber] = useState(0);
     const usersPerPage = 8;
     const pagesVisited = pageNumber * usersPerPage;
-    const displayUsers = product.slice(pagesVisited, pagesVisited + usersPerPage).map((item,index) => {
+    const displayUsers = product.slice(pagesVisited, pagesVisited + usersPerPage).map((item, index) => {
 
         const imageName = extractName(item.image_url);
         return (
 
-            <div key="index" className='col mt-2 my-3 my-lg-5 mx-5 col-lg-2'>
+            <div key="index" className='col mt-2 my-3 my-lg-5 mx-4 col-lg-2'>
                 <Card sx={{ maxWidth: 345 }}  >
                     <CardMedia
                         component="img"
@@ -107,6 +110,7 @@ function Viewproduct() {
                     />
                     <CardContent className='d-flex justify-content-center flex-column'>
                         <Typography gutterBottom variant="h5" style={{
+                            fontFamily: "PT Sans Narrow",
                             fontWeight: "bold",
                             alignSelf: "center"
                         }} component="div">
@@ -179,7 +183,9 @@ function Viewproduct() {
 
     }
 
-
+    const handlePriceChange = (event) => {
+        setPriceRange([0, parseInt(event.target.value)]);
+    };
 
 
 
@@ -236,14 +242,14 @@ function Viewproduct() {
                             height: "70vh",
                             backgroundColor: "#E4F5EC"
                         }}
-                            className="col-md-3 col-lg-2 mt-5 mb-4 ">
+                            className="col-md-3 col-lg-2 mt-5 mb-4 position-fixd">
                             <div style={{
-                                
+
                                 backgroundColor: "#E4F5EC"
-                            }} className="card ms-1 shadow-sm">
+                            }} className="card ms-3 shadow-sm">
                                 <div className="card-header ">
-                                    <h5 className="mb-0" 
-                                    style={{ fontFamily: 'Roboto, sans-serif', textAlign: "center" }}>Filter Products</h5>
+                                    <h5 className="mb-0"
+                                        style={{ fontFamily: 'PT Sans Narrow', textAlign: "center" }}>Filter </h5>
                                 </div>
                                 <div className="card-body">
                                     <div className="d-flex flex-column">
@@ -285,24 +291,33 @@ function Viewproduct() {
                                         </button>
                                     </div>
                                 </div>
-                                {/* <Box sx={{ width: 300 }}>
-                                    <Slider
-                                        style={{
-                                            width: "200px"
-                                        }}
-                                        aria-label="Temperature"
-                                        defaultValue={30}
-                                        // getAriaValueText={valuetext}
-                                        valueLabelDisplay="auto"
-                                        shiftStep={30}
-                                        step={10}
-                                        marks
-                                        min={10}
-                                        max={110}
-                                    />
+                                <h6 className="fw-bold text-center" style={{ fontFamily: 'PT Sans Narrow' }}>Price Range</h6>
+                                <div className="d-flex justify-content-between mx-1">
+                                    <span>{priceRange[0]}</span>
+                                    <span>{priceRange[1]}</span>
+                                </div>
+                                <input
+                                    style={
+                                        {
+                                            backgroundColor: "green",
+                                            maxWidth: "170px"
 
-                                </Box> */}
+                                        }
+                                    }
+                                    type="range"
+                                    className="form-range mx-2"
+                                    min="0"
+                                    max="500"
+                                    value={priceRange[1]}
+                                    onChange={handlePriceChange}
+                                />
+                                <div className="text-center my-2">
+                                    <span className="badge bg-success">
+                                        Selected: ${priceRange[0]} - ${priceRange[1]}
+                                    </span>
+                                </div>
                             </div>
+
 
                         </div>
 
