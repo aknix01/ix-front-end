@@ -3,6 +3,8 @@
     padding: 0px;
     box-sizing: border-box;
     /* cursor: url("/leafcursor.jpg"),auto; */
-    background-color: "#E4F5EC",
+    
+        background-color: "#E4F5EC";
+        cursor:url("leafcursor.jpg")
 
 }
