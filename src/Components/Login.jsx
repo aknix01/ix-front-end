@@ -54,14 +54,15 @@ function Login() {
 
 <div className='d-flex flex-column align-items-center  justify-content-center '
 style={{
-    height:"90vh",
+    height:"100vh",
     backgroundColor:"#E4F5EC"
 }}>
             
             <div 
-            className='mt-5'
+            className='m'
             style={{
                 border:"",
+                marginTop:"90px",
                 padding:"20px",
                 borderRadius:"20px",
                 width:"400px",

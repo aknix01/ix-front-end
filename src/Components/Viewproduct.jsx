@@ -1,3 +1,4 @@
+
 import React from 'react'
 import Navi from './Navi'
 import { useState, useEffect } from 'react'
@@ -21,12 +22,72 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { MdNavigateNext } from "react-icons/md";
 import { MdNavigateBefore } from "react-icons/md";
+import Tooltip from '@mui/material/Tooltip';
+import Popover from '@mui/material/Popover';
+import { FaCartPlus } from "react-icons/fa";
+import { TbHeartPlus } from "react-icons/tb";
 
 
+const TruncatedDescription = ({ description, maxLength = 50 }) => {
+    const [anchorEl, setAnchorEl] = useState(null);
+
+    // Check if truncation is needed
+    const needsTruncation = description.length > maxLength;
+    const truncatedText = needsTruncation
+        ? `${description.substring(0, maxLength)}...`
+        : description;
+
+    const handleMouseEnter = (event) => {
+        if (needsTruncation) {
+            setAnchorEl(event.currentTarget);
+        }
+    };
+
+    const handleMouseLeave = () => {
+        setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
+
+    return (
+        <div
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >
+            <Typography
+                variant="body2"
+                style={{ alignSelf: "center" }}
+                sx={{ color: 'text.secondary' }}
+            >
+                {truncatedText}
+            </Typography>
+
+            <Popover
+                open={open}
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                }}
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                }}
+                onClose={handleMouseLeave}
+                disableRestoreFocus
+                sx={{
+                    pointerEvents: 'none',
+                }}
+            >
+                <Box sx={{ p: 2, maxWidth: 300 }}>
+                    <Typography variant="body2">{description}</Typography>
+                </Box>
+            </Popover>
+        </div>
+    );
+};
 
 function Viewproduct() {
-
-
     const [product, setProduct] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     //token are initialised
@@ -36,9 +97,6 @@ function Viewproduct() {
     const [loading, setLoading] = useState(true)
     const navigate = useNavigate()
     const [priceRange, setPriceRange] = useState([0, 100]);
-
-
-
 
     const user = userPool.getCurrentUser()
     const [selectedCategory, setSelectedCategory] = useState("");
@@ -101,12 +159,12 @@ function Viewproduct() {
         const imageName = extractName(item.image_url);
         return (
 
-            <div key="index" className='col mt-2 my-3 my-lg-5 mx-4 col-lg-2'>
+            <div key={index} className='col mt-2 my-3 my-lg-5 mx-4 col-lg-2'>
                 <Card sx={{ maxWidth: 345 }}  >
                     <CardMedia
                         component="img"
-                        alt="green iguana"
-                        height="140"
+                        alt="product image"
+                        height="140px"
                         image={`https://d3cceuazvytzw7.cloudfront.net/uploads/${imageName}`}
                         style={{ objectFit: "cover" }}
                     />
@@ -118,35 +176,42 @@ function Viewproduct() {
                         }} component="div">
                             {item.name}
                         </Typography>
-                        <Typography variant="body2" style={{
 
+                        {/* Replace the existing Typography with our custom component */}
+                        <Typography variant="body2" style={{
                             alignSelf: "center"
                         }} sx={{ color: 'text.secondary' }}>
-                            {item.description}
+                            <TruncatedDescription description={item.description} maxLength={15} />
 
                         </Typography>
-                        <Typography variant="body2" style={{
+
+                        <Typography variant="body2" 
+                        className='mt-2' style={{
                             fontWeight: "bold",
+
                             color: "red",
                             alignSelf: "center"
                         }} sx={{ color: 'text.secondary' }}>
                             ${item.price}
                         </Typography>
                     </CardContent>
-                    <CardActions className='d-flex justify-content-center' >
+                    <CardActions className='d-flex justify-content-center ' >
                         {/* <Button size="small">Share</Button> */}
                         <button
                             onClick={() => navcart(item)}
                             style={{
-                                fontSize: "10px"
+                                fontSize: "20px"
                             }}
-                            className="add-to-cart-btn  ">Add to Cart</button>
+                            className="add-to-cart-btn  "><FaCartPlus />
+                           
+                           </button>
+                           
                         <button
-                            onClick={() => navcart(item)}
+                            // onClick={() => navcart(item)}
                             style={{
-                                fontSize: "10px"
+                                fontSize: "20px"
                             }}
-                            className="add-to-cart-btn  ">Add to wishlist</button>
+                            className="add-to-cart-btn  "><TbHeartPlus /></button>
                     </CardActions>
                 </Card>
             </div>
