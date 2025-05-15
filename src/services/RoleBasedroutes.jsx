@@ -2,7 +2,7 @@
 import React from "react";
 
 const RoleBasedRoutes = ({ allowedRoles, children }) => {
-  const userRole = localStorage.getItem("Role");
+  const userRole = sessionStorage.getItem("Role");
 
   if (allowedRoles.includes(userRole)) {
     return children;

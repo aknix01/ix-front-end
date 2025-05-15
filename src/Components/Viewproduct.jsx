@@ -19,6 +19,8 @@ import { toast } from 'react-toastify'
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import { MdNavigateNext } from "react-icons/md";
+import { MdNavigateBefore } from "react-icons/md";
 
 
 
@@ -329,8 +331,8 @@ function Viewproduct() {
 
                             <div className='d-flex mt-4 mb-3 justify-content-center'>
                                 <ReactPaginate
-                                    previousLabel={"<"}
-                                    nextLabel={">"}
+                                    previousLabel={<MdNavigateBefore />}
+                                    nextLabel={<MdNavigateNext />}
                                     pageCount={pageCount}
                                     onPageChange={changePage}
                                     containerClassName={"paginationBttns"}
