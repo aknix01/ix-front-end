@@ -65,35 +65,41 @@ const ForgotPassword = () => {
   return (
    <>
    <Navi/>
-    <div style={{ maxWidth: '400px', margin: 'auto', padding: '1rem' }}>
-      <h2>Forgot Password</h2>
-      <div>
+    <div className='p-5 justify-content-center' style={{  marginTop:"0px",
+      width:"100vw",height:"100vh", padding: '1rem',backgroundColor:"#E4F5EC" }}>
+      <h2 className='text-success' style={{
+        marginTop:"90px"
+      }}>Forgot Password</h2>
+      <div >
         <input
+        className='form-control mt-4'
           type="text"
-          placeholder="Username / Email"
+          placeholder="Enter your Email"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          style={{ width: '100%', marginBottom: '10px' }}
+          style={{ width: '40%', marginBottom: '10px' }}
         />
         {!codeSent ? (
-          <button onClick={handleForgotPassword}>Send Verification Code</button>
+          <button className='btn btn-success' onClick={handleForgotPassword}>Send Verification Code</button>
         ) : (
           <>
             <input
+            className='form-control'
               type="text"
               placeholder="Verification Code"
               value={verificationCode}
               onChange={(e) => setVerificationCode(e.target.value)}
-              style={{ width: '100%', marginBottom: '10px' }}
+              style={{ width: '40%', marginBottom: '10px' }}
             />
             <input
+            className='form-control'
               type="password"
               placeholder="New Password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              style={{ width: '100%', marginBottom: '10px' }}
+              style={{ width: '40%', marginBottom: '10px' }}
             />
-            <button onClick={handleConfirmPassword}>Reset Password</button>
+            <button className='btn btn-success' onClick={handleConfirmPassword}>Reset Password</button>
           </>
         )}
         {message && <p style={{ marginTop: '10px', color: 'green' }}>{message}</p>}

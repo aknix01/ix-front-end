@@ -21,6 +21,7 @@ import "./Cart.css"
 function AddtoCart() {
 
     const [cartlist, setCartlist] = useState([]);
+     const [cartItemCount, setCartItemcount] = useState()
     const [price, setPrice] = useState();
     const [quantity, setQuantity] = useState();
     const [idtoken,setIdtoken]=useState("")
@@ -159,6 +160,9 @@ function AddtoCart() {
 
     useEffect(() => {
         sessionStorage.setItem("cartItems", JSON.stringify(cartlist));
+        
+        setCartItemcount(cartlist.length)
+        sessionStorage.setItem("cartItemCount",cartItemCount)
 
 
     }, [cartlist])
@@ -349,7 +353,7 @@ function AddtoCart() {
                                         fontSize: "20px"
 
 
-                                    }}>Devilery Charge:</span>
+                                    }}>Delivery Charge:</span>
 
                                 <span
                                     className='mt-4 mx-5'
