@@ -56,8 +56,11 @@ function Navi() {
 
     const [role, setRole] = useState()
     const [dataUser, setDataUser] = useState({});
+    const [usercheck,setUsercheck]=useState()
+
 
     useEffect(() => {
+        setUsercheck(userPool.getCurrentUser())
         const user = userPool.getCurrentUser()
         if (user) {
             user.getSession((err, session) => {
@@ -152,22 +155,22 @@ function Navi() {
 
                             {(role === "Admin" || role === "Seller") && (
                                 <Nav.Link style={{
-                                    fontSize: "15px"
+                                    fontSize: "20px"
                                 }} href="/addproducts">Add Products</Nav.Link>
                             )}
 
                             {(role === "Admin") && (
                                 <Nav.Link style={{
-                                    fontSize: "15px"
+                                    fontSize: "20px"
                                 }} href="/management">Management</Nav.Link>
                             )
 
                             }
                              {(role === "Admin" || role === "Seller") && (
                                 <Nav.Link style={{
-                                    fontSize: "15px",textAlign:"center"
+                                    fontSize: "20px",textAlign:"center"
                                 }} href="/recievedorders">Orders <br />
-                                received</Nav.Link>
+                               </Nav.Link>
                             )}
 
 
@@ -254,13 +257,19 @@ function Navi() {
                                         'aria-labelledby': 'basic-button',
                                     }}
                                 >
-                                    <MenuItem style={{
+                                    {!usercheck  && (
+                                        <MenuItem style={{
                                         margin:"0px"
                                         // backgroundColor:"#60B340"
                                     }} onClick={handleLogin}>Log in</MenuItem>
-                                    <MenuItem style={{
+                                    )
+
+                                    }
+                                    {!usercheck  && (<MenuItem style={{
                                         width:"100px",padding:"auto"
-                                    }} onClick={handleSignup}>Sign up</MenuItem>
+                                    }} onClick={handleSignup}>Sign up</MenuItem>)
+
+                                    }
                                     <MenuItem onClick={handleLogout}>Log out</MenuItem>
                                     <MenuItem onClick={handleOrders}>Orders</MenuItem>
                                 </Menu>
