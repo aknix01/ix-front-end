@@ -24,7 +24,7 @@ import { MdNavigateNext } from "react-icons/md";
 import { MdNavigateBefore } from "react-icons/md";
 import Tooltip from '@mui/material/Tooltip';
 import Popover from '@mui/material/Popover';
-import { FaCartPlus } from "react-icons/fa";
+import { TbShoppingCartPlus } from "react-icons/tb";
 import { TbHeartPlus } from "react-icons/tb";
 
 
@@ -98,6 +98,7 @@ function Viewproduct() {
     const navigate = useNavigate()
     const [priceRange, setPriceRange] = useState([0, 100]);
 
+
     const user = userPool.getCurrentUser()
     const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -121,6 +122,9 @@ function Viewproduct() {
         });
     }
 
+    const details = async(item)=>{
+        navigate("/details",{state:{item}})
+    }
     const navcart = async (e) => {
 
         if (sessionStorage.getItem("Role")) {
@@ -160,10 +164,12 @@ function Viewproduct() {
         return (
 
             <div key={index} className='col mt-2 my-3 my-lg-5 mx-4 col-lg-2'>
-                <Card sx={{ maxWidth: 345 }}  >
+                <Card sx={{ maxWidth: 345 }} style={{
+                    cursor:"pointer"
+                }}  onClick={() => details(item)} >
                     <CardMedia
-                        component="img"
-                        alt="product image"
+                        component="img" 
+                        alt="product image"  
                         height="140px"
                         image={`https://d3cceuazvytzw7.cloudfront.net/uploads/${imageName}`}
                         style={{ objectFit: "cover" }}
@@ -198,16 +204,21 @@ function Viewproduct() {
                     <CardActions className='d-flex justify-content-center ' >
                         {/* <Button size="small">Share</Button> */}
                         <button
-                            onClick={() => navcart(item)}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                navcart(item);
+                            }}
                             style={{
                                 fontSize: "20px"
                             }}
-                            className="add-to-cart-btn  "><FaCartPlus />
+                            className="add-to-cart-btn  "><TbShoppingCartPlus />
+
                            
                            </button>
                            
                         <button
-                            // onClick={() => navcart(item)}
+                        
+                             onClick={(e) => e.stopPropagation()}
                             style={{
                                 fontSize: "20px"
                             }}
