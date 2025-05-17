@@ -16,6 +16,7 @@ import { ToastContainer } from 'react-toastify'
 import OrderPlaced from './Components/OrderPlaced'
 import OrderHistory from './Components/OrderHistory'
 import RecievedOrders from './Components/RecievedOrders'
+import ProductDetails from './Components/ProductDetails'
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
       <Route path="/order" element={<OrderPlaced/>}></Route>
       <Route path="/orders" element={<OrderHistory/>}></Route>
       <Route path="/recievedorders" element={<RoleBasedRoutes allowedRoles={["Admin","Seller"]}><RecievedOrders/></RoleBasedRoutes> }></Route>
+      <Route path="/details" element={<ProductDetails/>}></Route>
 
     </Routes>
     </BrowserRouter>
