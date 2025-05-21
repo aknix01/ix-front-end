@@ -90,8 +90,7 @@ console.log(idtoken)
         <div className='d-flex justify-content-center align-items-center flex-column mt-5'>
         <div className="header">
                     <div>
-                      <h1>My Orders</h1>
-                      {/* <p className="header-subtitle">View and edit all your pending, delivered, and returned orders here.</p> */}
+                      <h1 className='text-success text-align-' >My Orders</h1>
                     </div>
                   </div>
           {
@@ -105,10 +104,8 @@ console.log(idtoken)
                   <div className="order-item">
                     <div className="order-header">
                       <div className="order-number">Order Id: <span>{item.orderId}</span></div>
-                      <div className="order-date">Order Placed: {item.placed_at}</div>
-                      <button className="track-button">
-                        <i className="track-icon">📦</i> TRACK ORDER
-                      </button>
+                      <div className="order-date">Order Placed : {new Date(item.placed_at).toLocaleDateString()}</div>
+                     
                     </div>
 
                     {
@@ -127,8 +124,8 @@ console.log(idtoken)
                               {/* <div className="product-designer">By: Milly Thomas</div> */}
                               <div className="product-meta">
                                 <div>
-                                  <span className="product-size">Category:{product.category}</span>
-                                  <span className="product-qty">Qty:{product.quantity}</span>
+                                  <span className="product-size">Category : {product.category}</span>
+                                  <span className="product-qty">Qty : {product.quantity}</span>
                                 </div>
                                 <div className="product-price mx-5">Rs.{product.price}</div>
                               </div>
@@ -149,9 +146,13 @@ console.log(idtoken)
 
 
                     <div className="order-footer">
+                       <button className="track-button">
+                        <i className="track-icon">📦</i> TRACK ORDER
+                      </button>
                       <button className="cancel-button">
                         <i className="cancel-icon">✕</i> CANCEL ORDER
                       </button>
+                      
                       <div>
                         <div className="order-payment">Paid using credit card ending with 7345</div>
                         <div className="order-total">Rs.{item.totalAmount}</div>

@@ -73,7 +73,13 @@ function Addproduct() {
         }
         else if (name == "title") {
             if (!!value.match(/^[a-z 0-9A-Z._-]{1,}$/)) {
-                setProduct({ ...product, [name]: value })
+                 const input = value
+                const formatted = input
+                    .toLowerCase()
+                    .split(" ")
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(" ");
+                setProduct({ ...product, [name]: formatted})
                 setValidatetitle(true)
             }
             else {
@@ -242,12 +248,13 @@ function Addproduct() {
             }} className='d-flex justify-content-center'>
                 <div style={{ width: "75vw" }}>
                     <h2
-                        className='mt-3 mb-3'
+                        className='mt-3 mb-3 text-success'
                         style={{
                             textAlign: "center",
                             fontFamily: "Impact, fantasy"
                         }}>ADD NEW PRODUCTS</h2>
                     <div
+                        className='bg-success'
                         style={{
                             height: "5px",
                             backgroundColor: "black",
@@ -261,7 +268,7 @@ function Addproduct() {
                                 style={{
                                     fontWeight: "bold",
                                     fontSize: "15px",
-                                    fontFamily: "Roboto",
+                                    fontFamily: "PT Sans Narrow",
 
 
 
@@ -303,7 +310,7 @@ function Addproduct() {
                                 style={{
                                     fontWeight: "bold",
                                     fontSize: "15px",
-                                    fontFamily: "Roboto",
+                                    fontFamily: "PT Sans Narrow",
                                     display: "block"
 
                                 }}
@@ -338,7 +345,7 @@ function Addproduct() {
                                 style={{
                                     fontWeight: "bold",
                                     fontSize: "15px",
-                                    fontFamily: "Roboto"
+                                    fontFamily: "PT Sans Narrow"
 
                                 }}
                             >
@@ -382,7 +389,7 @@ function Addproduct() {
                                 style={{
                                     fontWeight: "bold",
                                     fontSize: "15px",
-                                    fontFamily: "Roboto"
+                                    fontFamily: "PT Sans Narrow"
 
                                 }}
                             >
@@ -414,7 +421,7 @@ function Addproduct() {
                                 style={{
                                     fontWeight: "bold",
                                     fontSize: "15px",
-                                    fontFamily: "Roboto"
+                                    fontFamily: "PT Sans Narrow"
 
                                 }}
                                 className='mt-2'
@@ -507,7 +514,7 @@ function Addproduct() {
                                 style={{
                                     fontWeight: "bold",
                                     fontSize: "15px",
-                                    fontFamily: "Roboto"
+                                    fontFamily: "PT Sans Narrow"
                                 }}
                             >
                                 QUANTITY <span style={{ color: "red" }}> *</span>
@@ -563,7 +570,7 @@ function Addproduct() {
                                 style={{
                                     fontWeight: "bold",
                                     fontSize: "15px",
-                                    fontFamily: "Roboto"
+                                    fontFamily: "PT Sans Narrow"
 
                                 }}
                             >
@@ -642,7 +649,7 @@ function Addproduct() {
                                         
                                         color: "white",
                             
-                                        fontFamily: "Roboto"
+                                        fontFamily: "PT Sans Narrow"
                                     }}
                                     onMouseEnter={(e) => {
                                         e.target.style.backgroundColor = "#28a745"; // Darker green
@@ -666,7 +673,7 @@ function Addproduct() {
                                         
                                         color: "white",
                             
-                                        fontFamily: "Roboto"
+                                        fontFamily: "PT Sans Narrow"
                                     }}
                                     onMouseEnter={(e) => {
                                         e.target.style.backgroundColor = "#28a745"; // Darker green
