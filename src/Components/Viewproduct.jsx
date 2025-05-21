@@ -195,10 +195,10 @@ function Viewproduct() {
                         className='mt-2' style={{
                             fontWeight: "bold",
 
-                            color: "red",
+                            color: "green",
                             alignSelf: "center"
                         }} sx={{ color: 'text.secondary' }}>
-                            ${item.price}
+                            ₹{item.price}
                         </Typography>
                     </CardContent>
                     <CardActions className='d-flex justify-content-center ' >
@@ -216,13 +216,13 @@ function Viewproduct() {
                            
                            </button>
                            
-                        <button
+                        {/* <button
                         
                              onClick={(e) => e.stopPropagation()}
                             style={{
                                 fontSize: "20px"
                             }}
-                            className="add-to-cart-btn  "><TbHeartPlus /></button>
+                            className="add-to-cart-btn  "><TbHeartPlus /></button> */}
                     </CardActions>
                 </Card>
             </div>
@@ -318,12 +318,16 @@ function Viewproduct() {
                         {/* Left Sidebar Filter Column */}
                         <div style={{
                             height: "70vh",
-                            backgroundColor: "#E4F5EC"
+                            backgroundColor: "#E4F5EC",
+                            placeContent:"center",
+                            justifyContent:"center"
                         }}
                             className="col-md-3 col-lg-2 mt-5 mb-4 position-fixd">
                             <div style={{
+                                
 
-                                backgroundColor: "#E4F5EC"
+                                backgroundColor: "#E4F5EC",
+                                maxWidth:"200px"
                             }} className="card ms-3 shadow-sm">
                                 <div className="card-header ">
                                     <h5 className="mb-0"
@@ -369,7 +373,7 @@ function Viewproduct() {
                                         </button>
                                     </div>
                                 </div>
-                                <h6 className="fw-bold text-center" style={{ fontFamily: 'PT Sans Narrow' }}>Price Range</h6>
+                                {/* <h6 className="fw-bold text-center" style={{ fontFamily: 'PT Sans Narrow' }}>Price Range</h6>
                                 <div className="d-flex justify-content-between mx-1">
                                     <span>{priceRange[0]}</span>
                                     <span>{priceRange[1]}</span>
@@ -380,7 +384,7 @@ function Viewproduct() {
                                             backgroundColor: "green",
                                             maxWidth: "170px"
 
-                                        }
+                                        }                                                                       
                                     }
                                     type="range"
                                     className="form-range mx-2"
@@ -393,7 +397,7 @@ function Viewproduct() {
                                     <span className="badge bg-success">
                                         Selected: ${priceRange[0]} - ${priceRange[1]}
                                     </span>
-                                </div>
+                                </div> */}
                             </div>
 
 

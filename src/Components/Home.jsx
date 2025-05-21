@@ -52,21 +52,21 @@ function Home() {
 
 
   if (loading) return <div>
-  <Navi />
-  <div style={{
-    paddingTop: "80px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100dvh",
-    backgroundColor: "#E4F5EC"
-  }}>
-    <Box sx={{ display: 'flex' }}>
-      <CircularProgress />
-    </Box>
-  </div>
-  <Footer/>
-</div>;
+    <Navi />
+    <div style={{
+      paddingTop: "80px",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100dvh",
+      backgroundColor: "#E4F5EC"
+    }}>
+      <Box sx={{ display: 'flex' }}>
+        <CircularProgress />
+      </Box>
+    </div>
+    <Footer />
+  </div>;
 
   return (
     <>
@@ -81,38 +81,69 @@ function Home() {
 
         }}>
 
-          <Carousel variant='dark' fade style={{
-            color: "black"
-          }} className='mt-container'>
-            <Carousel.Item className='d-flex justify-content-center'>
-              <img style={{
-                borderRadius: "20px",
-                width: "50vw",
-                height: "30vh", alignSelf: "center"
-              }} src={slider1} alt="" />
-              <Carousel.Caption style={{
-                color: "black"
-              }}>
-                {/* <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> */}
-              </Carousel.Caption>
-            </Carousel.Item>
+          <div className='d-block d-md-none'> {/* Display only on small screens, hide on medium and up */}
+            <Carousel variant='dark' fade className='mt-3'>
+              <Carousel.Item>
+                <img
+                  style={{
+                    borderRadius: "15px",
+                    width: "100%", // Full width of container
+                    height: "40vh", // Shorter height for mobile
+                    objectFit: "cover"
+                  }}
+                  src={slider1}
+                  alt="Mobile carousel slide"
+                />
+                {/* <Carousel.Caption style={{
+                  color: "black",
+                  backgroundColor: "rgba(255, 255, 255, 0.7)",
+                  borderRadius: "8px",
+                  padding: "5px",
+                  fontSize: "smaller" // Smaller text for mobile screens
+                }}>
+                  <h5>Mobile View Slide</h5>
+                  <p className="small">Mobile-optimized caption text</p>
+                </Carousel.Caption> */}
+              </Carousel.Item>
 
-          </Carousel>
+              {/* Add more Carousel.Items for mobile as needed */}
+
+            </Carousel>
+          </div>
+          <div className='d-none d-md-block'> {/* Hide on small screens, display from medium screens up */}
+            <Carousel variant='dark' fade style={{
+              color: "black"
+            }} className='mt-container '>
+              <Carousel.Item className='d-flex justify-content-center'>
+                <img style={{
+                  borderRadius: "20px",
+                  width: "50vw",
+                  height: "30vh", alignSelf: "center"
+                }} src="s3://ix-inventory-01/carousel/slider1.png" alt="" />
+                <Carousel.Caption style={{
+                  color: "black"
+                }}>
+                  {/* <h3>First slide label</h3>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> */}
+                </Carousel.Caption>
+              </Carousel.Item>
+
+            </Carousel>
+          </div>
           {/* {loader && <div className='d-flex justify-content-center my-5'>
     <CircularProgress color="success" />
     </div>
 } */}
           <div className='container '>
-            <div className='d-flex my-3'> <div className='' style={{
+            <div className='d-flex my-3'> <div className='bg-success' style={{
               height: "35px",
               width: "20px",
-              backgroundColor: "red",
+
               borderRadius: "5px",
 
             }}> </div><span className='mx-2 ' style={{
               alignSelf: "center",
-              color: "red",
+
               fontWeight: "bold", fontFamily: 'PT Sans Narrow'
             }}  >THIS MONTH</span></div>
             <div className='d-flex justify-content-space-between mb-5 '>
@@ -129,12 +160,12 @@ function Home() {
                 <button onClick={() => navigate("/products")}
                   style={{
 
-                    color: "black",
+                    color: "",
                     fontFamily: 'PT Sans Narrow',
                     fontWeight: "bold"
 
 
-                  }} className='btn btn-danger mx-5'>View all</button>
+                  }} className='btn btn-success mx-5'>View all</button>
               </div>
             </div>
             <div className='d-flex justify-content-evenly row'>
@@ -146,18 +177,23 @@ function Home() {
                   <div className=' mb-4 col-lg-2 ' >
                     <Card style={{
 
-                      margin: "auto"
+
+                      margin: "auto",
+                      maxWidth:"200px"
                     }} sx={{ maxWidth: 300 }}>
                       <CardMedia
+                      
                         component="img"
                         alt="green iguana"
                         height="140"
                         image={`https://d3cceuazvytzw7.cloudfront.net/uploads/${imageName}`}
-                        style={{ objectFit: "cover" }}
+                        style={{ objectFit: "cover"
+                          
+                         }}
                       />
                       <CardContent className='d-flex justify-content-center flex-column'>
                         <Typography gutterBottom variant="h5" style={{
-                          fontWeight: "bold",fontFamily:"PT Sans Narrow",
+                          fontWeight: "bold", fontFamily: "PT Sans Narrow",
                           alignSelf: "center"
                         }} component="div">
                           {item.name}
@@ -167,11 +203,11 @@ function Home() {
                           alignSelf: "center"
                         }} sx={{ color: 'text.secondary' }}>
                           {item.description}
-                          
+
                         </Typography>
                         <Typography variant="body2" style={{
                           fontWeight: "bold",
-                          color: "red",
+                          color: "green",
                           alignSelf: "center"
                         }} sx={{ color: 'text.secondary' }}>
                           ${item.price}

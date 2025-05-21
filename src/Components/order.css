@@ -14,7 +14,7 @@
     .header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items:start;
       margin-bottom: 30px;
     }
     
@@ -32,7 +32,7 @@
     .order-item {
       margin-bottom: 20px;
       padding-bottom: 20px;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid #bedbc7;
     }
     
     .order-header {
@@ -44,22 +44,24 @@
     }
     
     .order-number {
-      font-size: 12px;
-      color: #333;
+      font-size: 15px;
+      color:#178125;
+      font-family: "PT Sans Narrow";
     }
     
     .order-number span {
-      color: #4a90e2;
+      color: #178125;
       font-weight: 500;
     }
     
     .order-date {
-      font-size: 13px;
-      color: #888;
+      font-size: 15px;
+      color: #178125;
+      font-family: "PT Sans Narrow"
     }
     
     .track-button {
-      background-color: #ff9800;
+      background-color: #0ab142;
       color: white;
       border: none;
       padding: 8px 15px;
@@ -96,19 +98,18 @@
       max-height: 95%;
     }
     
-    /* .product-details {
-      
-    } */
+
     
     .product-title {
       font-size: 20px;
       font-weight: 500;
       color: #0e0d0d;
-      margin-bottom: 3px;
+      margin-bottom: 10px;
+      
     }
     
     .product-designer {
-      font-size: 12px;
+      font-size: 15px;
       color: #888;
       margin-bottom: 10px;
     }
@@ -121,16 +122,18 @@
     }
     
     .product-size, .product-qty {
-      font-size: 12px;
+      font-size: 15px;
       color: #140f0f;
       margin-right: 15px;
+      
     }
     
     .product-price {
       font-size: 20px;
       font-weight: 500;
       color: #0d110f;
-      text-align: center
+      text-align: center;
+      font-family: "PT Sans Narrow"
       
     }
     
@@ -140,19 +143,26 @@
     }
     
     .status-label {
-      font-size: 12px;
+      font-size: 15px;
       color: #0c0b0b;
       margin-bottom: 5px;
+      font-family: "PT Sans Narrow";
+      margin-bottom: 23px;
     }
     
     .status {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 500;
+      font-family: "PT Sans Narrow";
+     
     }
     
     .status.transit {
-      color: #ff9800;
-      font-size: larger;
+      text-align: center;
+      color: #5bbe71;
+      font-size: 25px;
+      font-weight: bolder;
+      
     }
     
     .delivery-section {
@@ -161,15 +171,17 @@
     }
     
     .delivery-label {
-      font-size: 12px;
+      font-size: 15px;
       color: #131212;
-      margin-bottom: 5px;
+      margin-bottom: 28px;
+      font-family: "PT Sans Narrow"
     }
     
     .delivery-date {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 500;
       color: #333;
+      font-family: "PT Sans Narrow"
     }
     
     .order-footer {
@@ -180,12 +192,15 @@
     }
     
     .cancel-button {
-      background: none;
+      background-color:rgb(253, 69, 69) ;
+      color: white;
       border: none;
-      color: #888;
+      padding: 8px 15px;
+      border-radius: 20px;
       font-size: 13px;
       cursor: pointer;
       display: flex;
+      margin: 2px;
       align-items: center;
     }
     

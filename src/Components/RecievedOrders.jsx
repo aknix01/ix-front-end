@@ -243,10 +243,10 @@ function ReceivedOrders() {
                                         value={modalStatus}
                                         onChange={(e) => setModalStatus(e.target.value)}
                                     >
-                                        <option value="processing">Processing</option>
-                                        <option value="shipped">Shipped</option>
-                                        <option value="delivered">Delivered</option>
-                                        <option value="cancelled">Cancelled</option>
+                                        <option value="Processing">Processing</option>
+                                        <option value="Shipped">Shipped</option>
+                                        <option value="Delivered">Delivered</option>
+                                        <option value="Cancelled">Cancelled</option>
                                     </select>
                                 </div>
                                 <div className="mb-3">

@@ -114,204 +114,190 @@ function Navi() {
 
         }}>
             <Navbar style={{
+    borderRadius: "20px"
+}} expand="lg" className="custom-navbar fixed-top mt-3 mx-2">
+    <Container>
+        <Navbar.Brand
+            style={{
+                color: "#000000",
+                fontSize: "25px",
+                fontFamily: "PT Sans Narrow",
+                marginRight: "20px"
+            }} 
+            href="/">Freshcart</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+            {/* Left side navigation links */}
+            <Nav className="me-auto">
+                <Nav.Link
+                className='mx-3'
+                    style={{
+                        fontSize: "20px",
+                         textAlign: "center",
+                        fontFamily:"PT Sans Narrow"
+                    }} 
+                    href="/">Home</Nav.Link>
 
-                borderRadius: "20px"
-            }} expand="lg" className="custom-navbar fixed-top mt-3  mx-2">
-                <Container>
-                    <Navbar.Brand
+                <Nav.Link
+                className='mx-3'
+                    style={{
+                        fontSize: "20px",
+                         textAlign: "center",
+                        fontFamily:"PT Sans Narrow"
+                    }}
+                    onMouseEnter={() => setNavdrop(true)}
+                    onMouseLeave={() => setNavdrop(false)}
+                    href="/products">Products</Nav.Link>
+
+                {(role === "Admin" || role === "Seller") && (
+                    <Nav.Link 
+                    className='mx-3'
                         style={{
-                            color: "#000000",
-                            fontSize: "25px",
-                            fontFamily: "PT Sans Narrow",
-                            marginRight: "20px"
+                            fontSize: "20px",
+                             textAlign: "center",
+                            fontFamily:"PT Sans Narrow"
+                        }} 
+                        href="/addproducts">Add Products</Nav.Link>
+                )}
 
-                        }} href="/" >Freshcart</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav mx-5 d-flex flex-column ">
-                        <Nav className=" w-100 d-flex justify-content-evenly align-items-center custom-navl ">
-                            <Nav.Link
+                {(role === "Admin") && (
+                    <Nav.Link 
+                    className='mx-3'
+                        style={{
+                            fontSize: "20px",
+                             textAlign: "center",
+                        }} 
+                        href="/management">Management</Nav.Link>
+                )}
+                
+                {(role === "Admin" || role === "Seller") && (
+                    <Nav.Link 
+                    className='mx-3'
+                    
+                        style={{
+                            fontSize: "20px", 
+                            textAlign: "center",
+                            fontFamily:"PT Sans Narrow"
+                        }} 
+                        href="/recievedorders">Orders</Nav.Link>
+                )}
+            </Nav>
+            
+            {/* Right side search and icons - moved to the end */}
+            <div className='d-flex align-items-center ms-auto'>
+                <NavItem>
+                    <Box
+                        display="flex"
+                        alignItems="center"
+                        gap={2}
+                        p={2}
+                        sx={{ maxWidth: 400 }}
+                    >
+                        <input
+                            style={{ backgroundColor: "white", borderRadius: "20px" }}
+                            fullWidth
+                            variant="outlined"
+                            placeholder="Search..."
+                            size="small"
+                            className='form-control'
+                        />
+                        <button 
+                            className='btn btn-success d-flex' 
+                            style={{
+                                borderRadius: "20px",
+                            }}
+                        ><FaSearch /></button>
+                    </Box>
+                </NavItem>
+
+                <Nav.Link
+                    style={{
+                        fontSize:"22px"
+                    }}
+                    className="position-relative d-inline-flex align-items-center mx-2"
+                    href="/addtocart">
+                    <div className="position-relative">
+                        {cartItemCount > 0 && (
+                            <span
+                                className="position-absolute bg-danger text-white rounded-circle d-flex justify-content-center align-items-center"
                                 style={{
-                                    fontSize: "17px"
-                                }} href="/">Home</Nav.Link>
-
-                            <Nav.Link
-                                style={{
-                                    fontSize: "17px"
-                                }}
-
-                                onMouseEnter={() => setNavdrop(true)}
-                                onMouseLeave={() => setNavdrop(false)}
-
-                                href="/products">Products  </Nav.Link>
-                            {/* {navdrop && (
-                            <div
-                                style={{
-                                    position: "absolute",
-                                    top: "100%",
-                                    width: "100%",
-                                    left: "0",
-                                    background: "rgba(255, 255, 255, 0.2)",
-                                    backdropFilter: "blur(5px)",
-                                    padding: "10px",
-                                    borderRadius: "5px",
-                                    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)"
+                                    fontSize: '0.7rem',
+                                    width: '20px',
+                                    height: '20px',
+                                    top: '-10px',
+                                    right: '-7px',
+                                    fontWeight: 'bold'
                                 }}
                             >
-                                hiii
+                                {cartItemCount}
+                            </span>
+                        )}
+                        <FaCartShopping />
+                    </div>
+                </Nav.Link>
+                
+                {/* <Nav.Link href="/addtocart"><FaHeart /></Nav.Link> */}
+                
+                <div>
+                    <Button
+                        id="basic-button"
+                        aria-controls={open ? 'basic-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? 'true' : undefined}
+                        onClick={handleClick}
+                    >
+                        <div className='d-flex flex-column justify-content-center align-items-center'>
+                            <div style={{
+                                fontSize: "10px",
+                                color: "black"
+                            }}>
+                                {dataUser["custom:FirstName"]}
                             </div>
-                        )} */}
-
-
-                            {(role === "Admin" || role === "Seller") && (
-                                <Nav.Link style={{
-                                    fontSize: "17px"
-                                }} href="/addproducts">Add Products</Nav.Link>
-                            )}
-
-                            {(role === "Admin") && (
-                                <Nav.Link style={{
-                                    fontSize: "17px"
-                                }} href="/management">Management</Nav.Link>
-                            )
-
-                            }
-                            {(role === "Admin" || role === "Seller") && (
-                                <Nav.Link style={{
-                                    fontSize: "17px", textAlign: "center"
-                                }} href="/recievedorders">Orders <br />
-                                </Nav.Link>
-                            )}
-
-
-
-
-
-                            <Nav.Link ></Nav.Link>
-                            <NavItem>
-                                <Box
-                                    display="flex"
-                                    alignItems="center"
-                                    gap={2}
-                                    p={2}
-                                    sx={{ maxWidth: 400 }}
-                                >
-                                    <input
-
-                                        style={{ backgroundColor: "white", borderRadius: "20px" }}
-                                        fullWidth
-                                        variant="outlined"
-                                        placeholder="Search..."
-                                        size="small"
-                                        className='form-control'
-                                    />
-                                    {/* <Button 
-                                      
-                                        size="small"
-                                        sx={{
-                                            
-                                           
-                                            right: 10,
-                                            transform: 'translateY(-50%)',
-                                            borderRadius: '20px',
-                                            textTransform: 'none',
-                                            padding: '4px 12px',
-                                        }}
-                                    >
-                                        Search
-                                    </Button> */}
-                                    <button className='btn btn-success d-flex ' style={{
-                                        borderRadius: "20px",
-
-                                    }}> <FaSearch /></button>
-                                </Box>
-                            </NavItem>
-
-                            <Nav.Link
-                                className="position-relative d-inline-flex align-items-center"
-                                href="/addtocart">
-
-                                <div className="position-relative">
-                                    {/* Badge for cart items count */}
-                                    {cartItemCount > 0 && (
-                                        <span
-                                            className="position-absolute bg-danger text-white rounded-circle d-flex justify-content-center align-items-center"
-                                            style={{
-                                                fontSize: '0.7rem',
-                                                width: '20px',
-                                                height: '20px',
-                                                top: '-10px',
-                                                right: '-7px',
-                                                fontWeight: 'bold'
-                                            }}
-                                        >
-                                            {cartItemCount}
-                                        </span>
-                                    )}
-                                    <FaCartShopping />
-                                </div></Nav.Link>
-                            <Nav.Link href="/addtocart"><FaHeart /></Nav.Link>
-                            <div>
-                                <Button
-                                    id="basic-button"
-                                    aria-controls={open ? 'basic-menu' : undefined}
-                                    aria-haspopup="true"
-                                    aria-expanded={open ? 'true' : undefined}
-                                    onClick={handleClick}
-                                ><div className='d-flex flex-column justify-content-center align-items-center'>
-                                        <div style={{
-                                            fontSize: "10px",
-                                            color: "black"
-                                        }}>
-                                            {dataUser["custom:FirstName"]}
-                                        </div>
-                                        <span style={{
-                                            color: "black",
-                                            fontSize: "30px",
-                                            padding: "0px"
-                                        }} className="material-symbols-outlined">
-                                            account_circle
-                                        </span>
-                                    </div>
-                                </Button>
-                                <Menu
-
-                                    style={{
-                                        color: "AppWorkspace"
-                                    }}
-                                    className='m-0'
-
-                                    id="basic-menu"
-                                    anchorEl={anchorEl}
-                                    open={open}
-                                    onClose={handleClose}
-                                    MenuListProps={{
-                                        'aria-labelledby': 'basic-button',
-                                    }}
-                                >
-                                    {!usercheck && (
-                                        <MenuItem style={{
-                                            margin: "0px"
-                                            // backgroundColor:"#60B340"
-                                        }} onClick={handleLogin}>Log in</MenuItem>
-                                    )
-
-                                    }
-                                    {!usercheck && (<MenuItem style={{
-                                        width: "100px", padding: "auto"
-                                    }} onClick={handleSignup}>Sign up</MenuItem>)
-
-                                    }
-                                    <MenuItem onClick={handleLogout}>Log out</MenuItem>
-                                    <MenuItem onClick={handleOrders}>Orders</MenuItem>
-                                </Menu>
-                            </div>
-
-
-
-                        </Nav>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
+                            <span style={{
+                                color: "black",
+                                fontSize: "30px",
+                                padding: "0px"
+                            }} className="material-symbols-outlined">
+                                account_circle
+                            </span>
+                        </div>
+                    </Button>
+                    <Menu
+                        style={{
+                            color: "AppWorkspace"
+                        }}
+                        className='m-0'
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                        MenuListProps={{
+                            'aria-labelledby': 'basic-button',
+                        }}
+                    >
+                        {!usercheck && (
+                            <MenuItem 
+                                style={{
+                                    margin: "0px"
+                                }} 
+                                onClick={handleLogin}>Log in</MenuItem>
+                        )}
+                        {!usercheck && (
+                            <MenuItem 
+                                style={{
+                                    width: "100px", 
+                                    padding: "auto"
+                                }} 
+                                onClick={handleSignup}>Sign up</MenuItem>
+                        )}
+                        <MenuItem onClick={handleLogout}>Log out</MenuItem>
+                        <MenuItem onClick={handleOrders}>Orders</MenuItem>
+                    </Menu>
+                </div>
+            </div>
+        </Navbar.Collapse>
+    </Container>
+</Navbar>
         </div>
 
                         
