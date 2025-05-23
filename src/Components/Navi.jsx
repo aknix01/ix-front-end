@@ -22,6 +22,7 @@ function Navi() {
     const [showDropdown, setShowDropdown] = useState(false);
     const [navdrop, setNavdrop] = useState(false)
     const navigate = useNavigate()
+     const [search,setSearch]=useState("")
     const [cartItemCount, setCartItemcount] = useState(0)
     const storedCount = Number(sessionStorage.getItem("cartItemCount")) || 0;
     const [anchorEl, setAnchorEl] = React.useState(null);

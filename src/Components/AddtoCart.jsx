@@ -273,16 +273,16 @@ function AddtoCart() {
 
 
 
-                    <div className="col-lg-4 mx-5 col-sm-12 mt-5 mb-5 "
+                    <div className="col-lg-4 mx-lg-5 col-sm-12 mt-5 mb-5 "
                         style={{
                             backgroundColor: "#E4F5EC"
                         }}>
                         <div
-                            className='card d-flex justiy-content-center'
+                            className='card pb-3 d-flex justiy-content-center'
                             style={{
                                 alignSelf: "center",
-                                width: "400px",
-                                height: "400px",
+                                maxwidth: "400px",
+                                maxheight: "400px",
                                 backgroundColor: "#E4F5EC",
                                 border: "1px solid rgb(135, 206, 168)",
                                 boxShadow: " 6px 6px 4px rgba(13, 107, 60, 0.1)",
