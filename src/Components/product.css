@@ -28,6 +28,6 @@
   
   .mt-2 > div {
     height: auto !important;
-    min-height: 200px;
+    min-height: 00px;
   }
 }

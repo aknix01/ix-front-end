@@ -122,8 +122,8 @@ function Viewproduct() {
         });
     }
 
-    const details = async(item)=>{
-        navigate("/details",{state:{item}})
+    const details = async (item) => {
+        navigate("/details", { state: { item } })
     }
     const navcart = async (e) => {
 
@@ -165,11 +165,11 @@ function Viewproduct() {
 
             <div key={index} className='col mt-2 my-3 my-lg-5 mx-4 col-lg-2'>
                 <Card sx={{ maxWidth: 345 }} style={{
-                    cursor:"pointer"
-                }}  onClick={() => details(item)} >
+                    cursor: "pointer"
+                }} onClick={() => details(item)} >
                     <CardMedia
-                        component="img" 
-                        alt="product image"  
+                        component="img"
+                        alt="product image"
                         height="140px"
                         image={`https://d3cceuazvytzw7.cloudfront.net/uploads/${imageName}`}
                         style={{ objectFit: "cover" }}
@@ -187,17 +187,19 @@ function Viewproduct() {
                         <Typography variant="body2" style={{
                             alignSelf: "center"
                         }} sx={{ color: 'text.secondary' }}>
-                            <TruncatedDescription description={item.description} maxLength={15} />
+                            <TruncatedDescription style={{
+                                alignSelf: "center"
+                            }} description={item.description} maxLength={15} />
 
                         </Typography>
 
-                        <Typography variant="body2" 
-                        className='mt-2' style={{
-                            fontWeight: "bold",
+                        <Typography variant="body2"
+                            className='mt-2' style={{
+                                fontWeight: "bold",
 
-                            color: "green",
-                            alignSelf: "center"
-                        }} sx={{ color: 'text.secondary' }}>
+                                color: "green",
+                                alignSelf: "center"
+                            }} sx={{ color: 'text.secondary' }}>
                             ₹{item.price}
                         </Typography>
                     </CardContent>
@@ -213,9 +215,9 @@ function Viewproduct() {
                             }}
                             className="add-to-cart-btn  "><TbShoppingCartPlus />
 
-                           
-                           </button>
-                           
+
+                        </button>
+
                         {/* <button
                         
                              onClick={(e) => e.stopPropagation()}
@@ -317,21 +319,21 @@ function Viewproduct() {
                     <div className="row">
                         {/* Left Sidebar Filter Column */}
                         <div style={{
-                            height: "70vh",
+                            height: "60vh",
                             backgroundColor: "#E4F5EC",
-                            placeContent:"center",
-                            justifyContent:"center"
+                            display: "flex",
+                            justifyContent: "center",
+                            
+                           
                         }}
-                            className="col-md-3 col-lg-2 mt-5 mb-4 position-fixd">
+                            className="col-md-3 col-lg-2 mb-5">
                             <div style={{
-                                
-
                                 backgroundColor: "#E4F5EC",
-                                maxWidth:"200px"
-                            }} className="card ms-3 shadow-sm">
-                                <div className="card-header ">
+                                width: "200px"
+                            }} className="card  shadow-sm mt-5">
+                                <div className="card-header">
                                     <h5 className="mb-0"
-                                        style={{ fontFamily: 'PT Sans Narrow', textAlign: "center" }}>Filter </h5>
+                                        style={{ fontFamily: 'PT Sans Narrow', textAlign: "center" }}>Filter</h5>
                                 </div>
                                 <div className="card-body">
                                     <div className="d-flex flex-column">
@@ -360,7 +362,7 @@ function Viewproduct() {
                                             Fruits
                                         </button>
                                         <button
-                                            onClick={() => setSelectedCategory("five")}
+                                            onClick={() => setSelectedCategory("Spice")}
                                             className={`btn mb-2 text-start ${selectedCategory === "five" ? "btn-dark" : "btn-outline-dark"}`}
                                             style={{ borderRadius: "20px", fontSize: "14px" }}>
                                             Spices
@@ -373,34 +375,7 @@ function Viewproduct() {
                                         </button>
                                     </div>
                                 </div>
-                                {/* <h6 className="fw-bold text-center" style={{ fontFamily: 'PT Sans Narrow' }}>Price Range</h6>
-                                <div className="d-flex justify-content-between mx-1">
-                                    <span>{priceRange[0]}</span>
-                                    <span>{priceRange[1]}</span>
-                                </div>
-                                <input
-                                    style={
-                                        {
-                                            backgroundColor: "green",
-                                            maxWidth: "170px"
-
-                                        }                                                                       
-                                    }
-                                    type="range"
-                                    className="form-range mx-2"
-                                    min="0"
-                                    max="500"
-                                    value={priceRange[1]}
-                                    onChange={handlePriceChange}
-                                />
-                                <div className="text-center my-2">
-                                    <span className="badge bg-success">
-                                        Selected: ${priceRange[0]} - ${priceRange[1]}
-                                    </span>
-                                </div> */}
                             </div>
-
-
                         </div>
 
                         {/* Main Content Area */}

@@ -246,7 +246,7 @@ function Addproduct() {
                 paddingTop: "80px",
                 backgroundColor: "#E4F5EC"
             }} className='d-flex justify-content-center'>
-                <div style={{ width: "75vw" }}>
+                <div style={{ maxWidth: "75vw" ,margin:"auto"}}>
                     <h2
                         className='mt-3 mb-3 text-success'
                         style={{
@@ -519,7 +519,10 @@ function Addproduct() {
                             >
                                 QUANTITY <span style={{ color: "red" }}> *</span>
                             </FormLabel>
-                            <div className="d-flex">
+                            <div className="d-flex mt-1 "
+                            style={{
+                                height:"auto"
+                            }}>
                                 <input
                                     required
                                     value={product.quantity}
@@ -578,7 +581,7 @@ function Addproduct() {
                                     color: "red"
                                 }}> *</span>
                             </FormLabel>
-                            <br />
+                           
                            
                             <div className="d-flex flex-column">
                                 <input
@@ -594,7 +597,7 @@ function Addproduct() {
                                         border: "2px solid"
                                     }}
                                 />
-                                <div className="mt-2">
+                                <div className="mt-2 d-flex ">
                                     <div className="form-check form-check-inline">
                                         <input
                                             className="form-check-input"
@@ -632,20 +635,16 @@ function Addproduct() {
                             }
                            
 
-                            
-
-
-
-
 
                         </div>
-                        <div className='d-flex justify-content-center '>
+                        <div className='d-flex justify-content-center my-3 '>
                                 <button
                                     // onClick={(e) => { addproduct(e) }}
                                     type='submit'
-                                    className='btn btn-success my-5 mx-3'
+                                    className='btn btn-success my-lg-5 p-lg-3 mx-3'
                                     style={{
-                                        width: "20%",
+                                        width: "30%",
+                                        alignSelf:"center",
                                         
                                         color: "white",
                             
@@ -667,9 +666,11 @@ function Addproduct() {
                                 <button
                                     onClick={handlereset}
                                     type='reset'
-                                    className='btn  btn-success mx-3 my-5'
+                                    className='btn  btn-success mx-3 my-lg-5 p-lg-3 my-2'
                                     style={{
-                                        width: "20%",
+                                        width: "30%",
+                                         alignSelf:"center",
+                                        
                                         
                                         color: "white",
                             
