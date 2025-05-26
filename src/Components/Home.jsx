@@ -198,13 +198,7 @@ function Home() {
                         }} component="div">
                           {item.name}
                         </Typography>
-                        <Typography variant="body2" style={{
-
-                          alignSelf: "center"
-                        }} sx={{ color: 'text.secondary' }}>
-                          {item.description}
-
-                        </Typography>
+                       
                         <Typography variant="body2" style={{
                           fontWeight: "bold",
                           color: "green",
