@@ -5,3 +5,4 @@ export const orderUrl="https://ol4fa59ayf.execute-api.ap-south-1.amazonaws.com/r
 export const getOrderUrl="https://ol4fa59ayf.execute-api.ap-south-1.amazonaws.com/re2/get_orders"
 export const getSellerOrder="https://ol4fa59ayf.execute-api.ap-south-1.amazonaws.com/re2/fetch_orders_for_seller"
 export const updateOrder="https://ol4fa59ayf.execute-api.ap-south-1.amazonaws.com/re2/Update_order"
+export const deleteOrder="https://ol4fa59ayf.execute-api.ap-south-1.amazonaws.com/re2/Delete_order"

@@ -250,7 +250,8 @@ function Navi() {
                         <div className='d-flex flex-column justify-content-center align-items-center'>
                             <div style={{
                                 fontSize: "10px",
-                                color: "black"
+                                color: "black",
+                                textTransform:"uppercase"
                             }}>
                                 {dataUser["custom:FirstName"]}
                             </div>

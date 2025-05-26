@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import userPool from '../services/cognito/Userpool'
-import { fetchOrders } from '../services/apicalls'
+import { delOrders, fetchOrders } from '../services/apicalls'
 import Navi from './Navi'
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
@@ -34,6 +34,18 @@ function OrderHistory() {
     console.log(user.username)
 
 
+  }
+
+  const deleteorder=async(id)=>{
+    // const result=
+    const Header = {
+      "Authorization": idtoken
+    }
+    const result=await delOrders(id,Header)
+    if(result.success){
+      fetch()
+    }
+    
   }
 
   const extractName = (url) => {
@@ -150,7 +162,7 @@ function OrderHistory() {
                       <button className="track-button">
                         <i className="track-icon">📦</i> TRACK ORDER
                       </button>
-                      <button className="cancel-button">
+                      <button  onClick={()=>{deleteorder(item.orderId)}} className="cancel-button">
                         <i className="cancel-icon">✕</i> CANCEL ORDER
                       </button>
 
@@ -191,6 +203,7 @@ function OrderHistory() {
           {
             orders?.map((item) => (
               <div
+             
                 key={item.orderId}
                 style={{
                   
@@ -310,6 +323,7 @@ function OrderHistory() {
                       borderRadius: '4px',
                       cursor: 'pointer'
                     }}
+                    onClick={()=>{deleteorder(item.orderId)}}
                   >
                     ✕ CANCEL ORDER
                   </button>
@@ -329,7 +343,7 @@ function OrderHistory() {
 
       </div >
 
-      <Footer />
+      <Footer className="mt-5"/>
 
 
     </>
