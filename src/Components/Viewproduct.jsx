@@ -338,25 +338,25 @@ function Viewproduct() {
                                 <div className="card-body">
                                     <div className="d-flex flex-column">
                                         <button
-                                            onClick={() => setSelectedCategory("one")}
+                                            onClick={() => setSelectedCategory("Vegetable")}
                                             className={`btn mb-2 text-start ${selectedCategory === "one" ? "btn-dark" : "btn-outline-dark"}`}
                                             style={{ borderRadius: "20px", fontSize: "14px" }}>
                                             Vegetables
                                         </button>
                                         <button
-                                            onClick={() => setSelectedCategory("two")}
+                                            onClick={() => setSelectedCategory("Grain")}
                                             className={`btn mb-2 text-start ${selectedCategory === "two" ? "btn-dark" : "btn-outline-dark"}`}
                                             style={{ borderRadius: "20px", fontSize: "14px" }}>
                                             Grains
                                         </button>
                                         <button
-                                            onClick={() => setSelectedCategory("three")}
+                                            onClick={() => setSelectedCategory("Oil")}
                                             className={`btn mb-2 text-start ${selectedCategory === "three" ? "btn-dark" : "btn-outline-dark"}`}
                                             style={{ borderRadius: "20px", fontSize: "14px" }}>
                                             Oil
                                         </button>
                                         <button
-                                            onClick={() => setSelectedCategory("four")}
+                                            onClick={() => setSelectedCategory("Fruit")}
                                             className={`btn mb-2 text-start ${selectedCategory === "four" ? "btn-dark" : "btn-outline-dark"}`}
                                             style={{ borderRadius: "20px", fontSize: "14px" }}>
                                             Fruits

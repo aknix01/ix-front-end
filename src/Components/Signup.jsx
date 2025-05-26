@@ -658,11 +658,11 @@ function Signup() {
                                         <button
 
                                             type='submit'
-                                            className='btn mt-3'
+                                            className='btn mt-3 btn-success'
                                             style={{
                                                 width: "50%",
 
-                                                color: "black",
+                                                color: "white",
 
                                                 fontFamily: "Roboto"
                                             }}
@@ -672,10 +672,10 @@ function Signup() {
                                                 e.target.style.transform = "scale(1.05)";
                                             }}
                                             onMouseLeave={(e) => {
-                                                e.target.style.backgroundColor = "#CFEED1"; // Reset to default
-                                                e.target.style.color = "black";
+                                                e.target.style.backgroundColor = "#198754"; // Reset to default
+                                                e.target.style.color = "white";
                                                 e.target.style.transform = "scale(1)";
-                                            }}
+                                             }}
                                         >
                                             Sign Up!
                                         </button>
