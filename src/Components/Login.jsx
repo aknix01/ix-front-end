@@ -59,26 +59,26 @@ style={{
 }}>
             
             <div 
-            className='m'
+            className=''
             style={{
                 border:"",
                 marginTop:"90px",
                 padding:"20px",
                 borderRadius:"20px",
                 width:"400px",
-                backgroundColor:"#E2DBDD"
+                backgroundColor:"#c7ebcf"
                
 
             }}>
                 <h1 className='my-3'
                 style={{
                     fontSize: "40px",
-                    fontFamily:  "Lilita One",
+                    fontFamily:  "Archivo",
                     margin:"",textAlign:"center"
                 }}>Login</h1>
                 <h6 style={{
                     textAlign:"center",
-                    fontFamily:"monospace"
+                    fontFamily:"Archivo"
                 }} >Hey, Enter Your details to get sign in to your account</h6>
             <form className='d-flex flex-column justify-content-center  m-4 ' action="" onSubmit={handleLogin}>
                 {/* <label style={{
@@ -96,18 +96,20 @@ style={{
                 <a style={{
                     textDecoration:"none",
                     color:"",
-                    fontSize:"10px"
+                    fontSize:"10px",
+                    fontFamily:"Archivo"
                 }} className='my-3 mx-3' href="/forgotpassword">Forgot Password ?</a>
                 <button  style={{
                     width:"240px",
                     margin:"auto",
-                    backgroundColor:"#E154AF",
+                    
                     fontFamily:"sans-serif",
                     fontWeight:"bold"
-                }} className='btn mt-3 ' type='submit' >Login</button>
+                }} className='btn btn-success mt-3 ' type='submit' >Login</button>
                 <a style={{
                     textDecoration:"none",
-                    color:"black"
+                    color:"black",
+                    fontFamily:"Archivo"
                 }} className='my-3' href="/signup">Don't have an account ? <strong>Register Now</strong></a>
 
                

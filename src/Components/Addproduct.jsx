@@ -251,12 +251,13 @@ function Addproduct() {
                         className='mt-3 mb-3 text-success'
                         style={{
                             textAlign: "center",
-                            fontFamily: "Impact, fantasy"
+                            fontFamily: "Archivo",
+                            fontWeight:"1"
                         }}>ADD NEW PRODUCTS</h2>
                     <div
                         className='bg-success'
                         style={{
-                            height: "5px",
+                            height: "1px",
                             backgroundColor: "black",
                             width: "100%",
                         }}
@@ -266,15 +267,15 @@ function Addproduct() {
                             <FormLabel
                                 className=''
                                 style={{
-                                    fontWeight: "bold",
+                                    fontWeight: "500",
                                     fontSize: "15px",
-                                    fontFamily: "PT Sans Narrow",
+                                    fontFamily: "Archivo",
 
 
 
                                 }}
                             >
-                                PRODUCT IMAGE<span style={{
+                                Product Image<span style={{
                                     color: "red"
                                 }}> *</span>
                                 <input
@@ -285,7 +286,7 @@ function Addproduct() {
                                         border: "2px solid black"
 
                                     }}
-                                    className='form-control mt-3'
+                                    className='form-control mt-3 mb-4'
                                     type='file'
                                     name='cover'
                                     id='cover'
@@ -295,7 +296,7 @@ function Addproduct() {
                                     className='img-fluid mt-2'
                                     src={preview ? preview : upload}
                                     style={{
-                                        width: "400px",
+                                        width: "500px",
                                         height: "300px"
                                     }}
                                 /> */}
@@ -308,25 +309,26 @@ function Addproduct() {
                             } */}
                             <FormLabel
                                 style={{
-                                    fontWeight: "bold",
+                                    fontWeight: "500",
                                     fontSize: "15px",
-                                    fontFamily: "PT Sans Narrow",
+                                    fontFamily: "Archivo",
                                     display: "block"
 
                                 }}
                             >
-                                PRODUCT DESCRIPTION<span style={{
+                                Product Description<span style={{
                                     color: "red"
                                 }}> *</span>
                             </FormLabel>
-                            <br />
+                           
                             <textarea
                                 required
                                 placeholder='About the Product!!'
-                                className='form-control mb-2'
+                                className='form-control mb-5'
                                 style={{
                                     height: "100px",
-                                    border: "2px solid "
+                                    border: "2px solid ",
+                                    fontFamily:"Archivo"
                                 }}
                                 onChange={(e) => { add(e) }}
 
@@ -343,13 +345,13 @@ function Addproduct() {
                             <FormLabel
                                 className='mt-1'
                                 style={{
-                                    fontWeight: "bold",
+                                    fontWeight: "500",
                                     fontSize: "15px",
-                                    fontFamily: "PT Sans Narrow"
+                                    fontFamily: "Archivo"
 
                                 }}
                             >
-                                PRODUCT EXPIRY DATE <span style={{
+                                Product Expiry Date<span style={{
                                     color: "red"
                                 }}> *</span>
                             </FormLabel>
@@ -364,7 +366,8 @@ function Addproduct() {
                                 className='form-control mt-1'
                                 style={{
                                     height: "50px",
-                                    border: "2px solid "
+                                    border: "2px solid ",
+                                    fontFamily:"Archivo"
 
                                 }}
 
@@ -387,27 +390,29 @@ function Addproduct() {
                             <FormLabel
                                 className='mt-1'
                                 style={{
-                                    fontWeight: "bold",
+                                    fontWeight: "500",
                                     fontSize: "15px",
-                                    fontFamily: "PT Sans Narrow"
+                                    fontFamily: "Archivo"
 
                                 }}
                             >
-                                PRODUCT TITLE  <span style={{
+                                Product Title  <span style={{
                                     color: "red"
                                 }}> *</span>
                             </FormLabel>
                             <br />
                             <input
+                            
                                 required
                                 placeholder='Enter Product Name!!'
                                 onChange={(e) => { add(e) }}
                                 name='title'
                                 id='title'
-                                className='form-control mt-1'
+                                className='form-control mt-2 mb-3'
                                 style={{
                                     height: "50px",
-                                    border: "2px solid "
+                                    border: "2px solid ",
+                                    fontFamily:"Archivo"
                                 }}
 
                             />
@@ -419,14 +424,15 @@ function Addproduct() {
                             } */}
                             <FormLabel
                                 style={{
-                                    fontWeight: "bold",
+                                    fontWeight: "500",
                                     fontSize: "15px",
-                                    fontFamily: "PT Sans Narrow"
+                                    fontFamily: "Archivo",
+
 
                                 }}
-                                className='mt-2'
+                                className=''
                             >
-                                PRODUCT CATEGORY   <span style={{
+                                Product Category   <span style={{
                                     color: "red"
                                 }}> *</span>
                             </FormLabel>
@@ -437,9 +443,10 @@ function Addproduct() {
                                 value={product.category}
                                 style={{
                                     height: "50px",
-                                    border: "2px solid "
+                                    border: "2px solid ",
+                                    fontFamily:"Archivo"
                                 }}
-                                className='form-control mt-1'
+                                className='form-control mt-1 mb-2'
                                 name="category"
                                 id="category"
                                 defaultValue="select category"
@@ -512,14 +519,14 @@ function Addproduct() {
                             <FormLabel
                                 className='mt-2'
                                 style={{
-                                    fontWeight: "bold",
+                                    fontWeight: "500",
                                     fontSize: "15px",
-                                    fontFamily: "PT Sans Narrow"
+                                    fontFamily: "Archivo"
                                 }}
                             >
-                                QUANTITY <span style={{ color: "red" }}> *</span>
+                                Quantity <span style={{ color: "red" }}> *</span>
                             </FormLabel>
-                            <div className="d-flex mt-1 "
+                            <div className="d-flex mt-1 mb-4"
                             style={{
                                 height:"auto"
                             }}>
@@ -535,7 +542,8 @@ function Addproduct() {
                                     style={{
                                         height: "50px",
                                         border: "2px solid",
-                                        borderRadius: "5px 0 0 5px"
+                                        borderRadius: "5px 0 0 5px",
+                                        fontFamily:"Archivo"
                                     }}
                                 />
                                 <select
@@ -550,7 +558,7 @@ function Addproduct() {
                                         height: "50px",
                                         border: "2px solid",
                                         borderRadius: "0 5px 5px 0",
-                                        width: "auto"
+                                        width: "auto",fontFamily:"Archivo"
                                     }}
                                 > <option disabled value="unit">Unit</option>
                                     <option value="piece">Piece</option>
@@ -569,16 +577,17 @@ function Addproduct() {
                                 </div>
                             } */}
                             <FormLabel
-                                className='mt-2'
+                                className='mt-'
                                 style={{
-                                    fontWeight: "bold",
+                                    fontWeight: "500",
                                     fontSize: "15px",
-                                    fontFamily: "PT Sans Narrow"
+                                    fontFamily: "Archivo"
 
                                 }}
                             >
-                                PRICE <span style={{
-                                    color: "red"
+                                Price <span style={{
+                                    color: "red",
+                                    fontFamily:"Archivo"
                                 }}> *</span>
                             </FormLabel>
                            
@@ -594,7 +603,8 @@ function Addproduct() {
                                     className='form-control mt-1'
                                     style={{
                                         height: "50px",
-                                        border: "2px solid"
+                                        border: "2px solid",
+                                    fontFamily:"Archivo"
                                     }}
                                 />
                                 <div className="mt-2 d-flex ">
@@ -607,7 +617,10 @@ function Addproduct() {
                                             value="included"
                                             onChange={(e) => { add(e) }}
                                         />
-                                        <label className="form-check-label" htmlFor="taxIncluded">
+                                        <label style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }}  className="form-check-label" htmlFor="taxIncluded">
                                             Tax Included
                                         </label>
                                     </div>
@@ -621,7 +634,10 @@ function Addproduct() {
                                             value="excluded"
                                             onChange={(e) => { add(e) }}
                                         />
-                                        <label className="form-check-label" htmlFor="taxExcluded">
+                                        <label style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }} className="form-check-label" htmlFor="taxExcluded">
                                             Tax Excluded
                                         </label>
                                     </div>
@@ -643,12 +659,12 @@ function Addproduct() {
                                     type='submit'
                                     className='btn btn-success my-lg-5 p-lg-3 mx-3'
                                     style={{
-                                        width: "30%",
+                                        width: "20%",
                                         alignSelf:"center",
                                         
                                         color: "white",
                             
-                                        fontFamily: "PT Sans Narrow"
+                                        fontFamily: "Archivo"
                                     }}
                                     onMouseEnter={(e) => {
                                         e.target.style.backgroundColor = "#28a745"; // Darker green
@@ -661,20 +677,20 @@ function Addproduct() {
                                         e.target.style.transform = "scale(1)";
                                       }}
                                 >
-                                    ADD!
+                                    Add!
                                 </button>
                                 <button
                                     onClick={handlereset}
                                     type='reset'
                                     className='btn  btn-success mx-3 my-lg-5 p-lg-3 my-2'
                                     style={{
-                                        width: "30%",
+                                        width: "20%",
                                          alignSelf:"center",
                                         
                                         
                                         color: "white",
                             
-                                        fontFamily: "PT Sans Narrow"
+                                        fontFamily: "Archivo"
                                     }}
                                     onMouseEnter={(e) => {
                                         e.target.style.backgroundColor = "#28a745"; // Darker green

@@ -100,10 +100,13 @@ function ProductDetails() {
   {/* Product Info (Left Side) */}
   <div className="product-info">
     <h1 className='text-success' style={{
-      fontFamily: "PT Sans Narrow",
+      fontFamily: "Archivo",
       fontWeight: 700
     }}>{item.name}</h1>
-    <span>
+    <span style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }}>
       Seller's Name
     </span>
     <div className='my-3'>
@@ -111,14 +114,16 @@ function ProductDetails() {
       style={{
         fontSize: "20px",
         // textDecoration:"line-through",
-        color: "grey"
+        color: "grey",
+        fontFamily:"Archivo"
       }}>MRP-
 
       </span>
       <span className='me-3' style={{
         fontSize: "20px",
         // textDecoration:"line-through",
-        color: "grey"
+        color: "grey",
+        fontFamily:"Archivo"
       }}>
         <FaIndianRupeeSign />{discount}
       </span> 
@@ -129,7 +134,7 @@ function ProductDetails() {
           textAlign: "center",
          color: "#D35400",
 fontWeight: 700,
-         fontFamily: "PT Sans Narrow"
+         fontFamily: "Archivo"
         }}
         className='mt-2'
       > Offer Price -
@@ -185,7 +190,8 @@ fontWeight: 700,
               <span style={{
                 fontSize: "18px",
                 color: "#333333",
-lineHeight: "1.6"
+lineHeight: "1.6",
+fontFamily:"Archivo"
               }}>{item.description}</span>
               
             </div>

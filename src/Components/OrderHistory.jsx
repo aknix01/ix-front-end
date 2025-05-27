@@ -36,16 +36,20 @@ function OrderHistory() {
 
   }
 
-  const deleteorder=async(id)=>{
+  const deleteorder = async (orderId,userId) => {
     // const result=
+    const id = orderId
+    
+    const user = userId
+    console.log(id,user)
     const Header = {
       "Authorization": idtoken
     }
-    const result=await delOrders(id,Header)
-    if(result.success){
+    const result = await delOrders(id, user, Header)
+    if (result.success) {
       fetch()
     }
-    
+
   }
 
   const extractName = (url) => {
@@ -65,6 +69,7 @@ function OrderHistory() {
     });
   }
   console.log(idtoken)
+
 
   useEffect(() => {
     fetch()
@@ -94,6 +99,7 @@ function OrderHistory() {
       <Navi />
       <div style={{
         paddingTop: "80px",
+        paddingBottom: "80px",
         backgroundColor: "#E4F5EC",
         height: "auto",
         display: window.innerWidth >= 992 ? 'block' : 'none'
@@ -103,10 +109,14 @@ function OrderHistory() {
         <div className='d-flex justify-content-center align-items-center flex-column mt-5'>
           <div className="header">
             <div>
-              <h1 className='text-success text-align-' >My Orders</h1>
+              <h1 style={{
+                fontFamily: "Archivo",
+                fontWeight: "500"
+              }} className='text-success ' >My Orders</h1>
             </div>
           </div>
-          {
+
+          {orders?.length > 0 ?
             orders?.map((item) => (
               <div className="containerdiv my-2 ">
 
@@ -162,7 +172,7 @@ function OrderHistory() {
                       <button className="track-button">
                         <i className="track-icon">📦</i> TRACK ORDER
                       </button>
-                      <button  onClick={()=>{deleteorder(item.orderId)}} className="cancel-button">
+                      <button onClick={() => { deleteorder(item.orderId) }} className="cancel-button">
                         <i className="cancel-icon">✕</i> CANCEL ORDER
                       </button>
 
@@ -175,7 +185,21 @@ function OrderHistory() {
                 </div>
               </div>
             ))
-          }
+            :
+            <div className='text-success' style={{
+              paddingTop: "80px",
+              paddingBottom: "80px",
+              backgroundColor: "#E4F5EC",
+              height: "90vh",
+              fontSize: "50px",
+
+              fontFamily: "Archivo",
+              display: window.innerWidth >= 992 ? 'block' : 'none'
+            }} >No orders !! ,
+           <a style={{
+            textDecoration:"none",
+            fontSize:"40px"
+           }} href="/products"> click here to  View Products</a> </div>}
 
         </div>
 
@@ -190,7 +214,7 @@ function OrderHistory() {
           backgroundColor: "#E4F5EC",
           height: "auto",
           display:
-           window.innerWidth < 992 ? 'block' : 'none'
+            window.innerWidth < 992 ? 'block' : 'none'
 
         }}>
 
@@ -200,13 +224,13 @@ function OrderHistory() {
               <h1 className='text-success text-align' >My Orders</h1>
             </div>
           </div>
-          {
+          {orders?.length > 0 ?
             orders?.map((item) => (
               <div
-             
+
                 key={item.orderId}
                 style={{
-                  
+
                   border: '1px solid #ccc',
                   borderRadius: '8px',
                   margin: '10px 0',
@@ -214,17 +238,20 @@ function OrderHistory() {
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '10px',
-                  width: '100%',
-                  boxSizing: 'border-box'
+                  width: '90%',
+                  boxSizing: 'border-box',
+                  backgroundColor: "white"
                 }}
               >
-                <div style={{ fontWeight: 'bold',
-                  color:'#178125',
-                  fontFamily:"PT Sans Narrow",
-                 }}>Order Id: {item.orderId}</div>
                 <div style={{
-                  color:'#178125',
-                  fontFamily:"PT Sans Narrow",
+                  fontWeight: '',
+                  color: '#178125',
+                  fontFamily: "Archivo",
+                }}>Order Id: {item.orderId}</div>
+                <div style={{
+                  color: '#178125',
+                  fontFamily: "Archivo",
+                  fontWeight: ''
                 }}>Order Placed: {new Date(item.placed_at).toLocaleDateString()}</div>
 
                 {item.items?.map((product, index) => {
@@ -257,30 +284,52 @@ function OrderHistory() {
 
                       {/* Product Details */}
                       <div style={{ flex: 1 }}>
-                        <div style={{ fontWeight: 'bold' }}>{product.name}</div>
-                        <div>Category: {product.category}</div>
-                        <div>Qty: {product.quantity}</div>
-                        <div>Rs. {product.price}</div>
+                        <div style={{
+                          fontWeight: 'bold',
+                          fontSize: "30px",
+                          fontFamily: "Archivo"
+                        }}>{product.name}</div>
+                        <div style={{
+                          fontSize: "15px",
+                          fontFamily: "Archivo"
+                        }}>Category: {product.category}</div>
+                        <div style={{
+                          fontSize: "15px",
+                          fontFamily: "Archivo"
+                        }}>Qty: {product.quantity}</div>
+                        <div style={{
+                          fontSize: "15px",
+                          fontFamily: "Archivo"
+                        }}>Rs. {product.price}</div>
                       </div>
 
                       {/* Order Status */}
                       <div style={{ flex: 1 }}>
-                        <div style={{ fontWeight: 'bold' }}>Status</div>
                         <div style={{
-                          color:'#178125',
-                  fontFamily:"PT Sans Narrow",
-                  fontWeight:"600",
-                  fontSize:"25px"
+                          fontWeight: 'bold',
+                          fontFamily: "Archivo", textAlign: "center"
+                        }}>Status</div>
+                        <div style={{
+                          color: '#178125',
+                          fontFamily: "Archivo",
+                          fontWeight: "500",
+                          fontSize: "25px"
                         }}>{item.order_status}</div>
                       </div>
 
                       {/* Delivery Info */}
                       <div style={{ flex: 1 }}>
-                        <div style={{ fontWeight: 'bold' }}>Delivery Expected by</div>
-                        <div>
+                        <div className='' style={{
+                          fontWeight: 'bold',
+                          fontFamily: "Archivo"
+                        }}>Delivery Expected by</div>
+                        <div style={{
+                          fontWeight: '',
+                          fontFamily: "Archivo", textAlign: "center"
+                        }}>
                           {item.estimatedDelivery
                             ? item.estimatedDelivery
-                            : 'delivery date will be updated'}
+                            : ' date will be updated'}
                         </div>
                       </div>
                     </div>
@@ -298,7 +347,10 @@ function OrderHistory() {
                     marginTop: '10px'
                   }}
                 >
-                  <div style={{ fontWeight: 'bold' }}>
+                  <div style={{
+                    fontWeight: '',
+                    fontFamily: "Archivo"
+                  }}>
                     Paid using credit card ending with 7345
                   </div>
                   <div style={{ fontWeight: 'bold' }}>Rs. {item.totalAmount}</div>
@@ -308,8 +360,10 @@ function OrderHistory() {
                       backgroundColor: '#4CAF50',
                       color: '#fff',
                       border: 'none',
-                      borderRadius: '4px',
-                      cursor: 'pointer'
+                      borderRadius: '20px',
+                      cursor: 'pointer',
+                      fontFamily: "Archivo",
+                      fontSize: "12px"
                     }}
                   >
                     📦 TRACK ORDER
@@ -320,17 +374,32 @@ function OrderHistory() {
                       backgroundColor: '#f44336',
                       color: '#fff',
                       border: 'none',
-                      borderRadius: '4px',
-                      cursor: 'pointer'
+                      borderRadius: '20px',
+                      cursor: 'pointer',
+                      fontFamily: "Archivo",
+                      fontSize: "12px"
                     }}
-                    onClick={()=>{deleteorder(item.orderId)}}
+                    onClick={() => { deleteorder(item.orderId,item.userId) }}
                   >
                     ✕ CANCEL ORDER
                   </button>
                 </div>
               </div>
             ))
-          }
+          :<div className='text-success' style={{
+              paddingTop: "80px",
+              paddingBottom: "80px",
+              backgroundColor: "#E4F5EC",
+              height: "70vh",
+              fontSize: "20px",
+
+              fontFamily: "Archivo",
+              display: window.innerWidth < 992 ? 'block' : 'none'
+            }} >No orders !! ,
+           <a style={{
+            textDecoration:"none",
+            fontSize:"20px"
+           }} href="/products"> click here to  View Products</a> </div>}
 
 
 
@@ -343,7 +412,7 @@ function OrderHistory() {
 
       </div >
 
-      <Footer className="mt-5"/>
+      <Footer className="mt-5" />
 
 
     </>

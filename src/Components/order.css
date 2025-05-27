@@ -46,7 +46,7 @@
     .order-number {
       font-size: 15px;
       color:#178125;
-      font-family: "PT Sans Narrow";
+      font-family: "Archivo";
     }
     
     .order-number span {
@@ -57,7 +57,7 @@
     .order-date {
       font-size: 15px;
       color: #178125;
-      font-family: "PT Sans Narrow"
+      font-family: "Archivo"
     }
     
     .track-button {
@@ -122,7 +122,7 @@
     }
     
     .product-size, .product-qty {
-      font-size: 15px;
+      font-size: 12px;
       color: #140f0f;
       margin-right: 15px;
       
@@ -133,7 +133,7 @@
       font-weight: 500;
       color: #0d110f;
       text-align: center;
-      font-family: "PT Sans Narrow"
+      font-family: "Archivo"
       
     }
     
@@ -146,14 +146,14 @@
       font-size: 15px;
       color: #0c0b0b;
       margin-bottom: 5px;
-      font-family: "PT Sans Narrow";
+      font-family: "Archivo";
       margin-bottom: 23px;
     }
     
     .status {
       font-size: 15px;
       font-weight: 500;
-      font-family: "PT Sans Narrow";
+      font-family: "Archivo";
      
     }
     
@@ -174,14 +174,14 @@
       font-size: 15px;
       color: #131212;
       margin-bottom: 28px;
-      font-family: "PT Sans Narrow"
+      font-family: "Archivo"
     }
     
     .delivery-date {
-      font-size: 15px;
+      font-size: 12px;
       font-weight: 500;
       color: #333;
-      font-family: "PT Sans Narrow"
+      font-family: "Archivo"
     }
     
     .order-footer {

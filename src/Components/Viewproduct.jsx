@@ -170,16 +170,17 @@ function Viewproduct() {
                     <CardMedia
                         component="img"
                         alt="product image"
-                        height="140px"
+                       height="130px"
                         image={`https://d3cceuazvytzw7.cloudfront.net/uploads/${imageName}`}
-                        style={{ objectFit: "cover" }}
+                         style={{ objectFit: "cover" }}
                     />
-                    <CardContent className='d-flex justify-content-center flex-column'>
-                        <Typography gutterBottom variant="h5" style={{
-                            fontFamily: "PT Sans Narrow",
-                            fontWeight: "bold",
+                    <div className='d-flex justify-content-center flex-column'>
+                        <Typography  variant="h6" style={{
+                            fontFamily: "Archivo",
+                            fontWeight: "400",
                             alignSelf: "center"
-                        }} component="div">
+                        }} component="div"
+                        className='mt-1'>
                             {item.name}
                         </Typography>
 
@@ -194,38 +195,34 @@ function Viewproduct() {
                         </Typography>
 
                         <Typography variant="body2"
-                            className='mt-2' style={{
+                            className='m-0' style={{
                                 fontWeight: "bold",
-
+                               
                                 color: "green",
                                 alignSelf: "center"
                             }} sx={{ color: 'text.secondary' }}>
                             ₹{item.price}
                         </Typography>
-                    </CardContent>
-                    <CardActions className='d-flex justify-content-center ' >
-                        {/* <Button size="small">Share</Button> */}
                         <button
                             onClick={(e) => {
                                 e.stopPropagation();
                                 navcart(item);
                             }}
                             style={{
-                                fontSize: "20px"
+                                fontSize: "20px",alignSelf:"center"
                             }}
-                            className="add-to-cart-btn  "><TbShoppingCartPlus />
+                            className="add-to-cart-btn  my-1 "><TbShoppingCartPlus />
 
 
                         </button>
-
-                        {/* <button
+                    </div>
+                    {/* <CardActions style={{
+                        marginTop:"0px"
+                    }} className='d-flex justify-content-center ' >
                         
-                             onClick={(e) => e.stopPropagation()}
-                            style={{
-                                fontSize: "20px"
-                            }}
-                            className="add-to-cart-btn  "><TbHeartPlus /></button> */}
-                    </CardActions>
+                        
+
+                    </CardActions> */}
                 </Card>
             </div>
 
@@ -333,7 +330,7 @@ function Viewproduct() {
                             }} className="card  shadow-sm mt-5">
                                 <div className="card-header">
                                     <h5 className="mb-0"
-                                        style={{ fontFamily: 'PT Sans Narrow', textAlign: "center" }}>Filter</h5>
+                                        style={{ fontFamily: 'Archivo', textAlign: "center" }}>Filter</h5>
                                 </div>
                                 <div className="card-body">
                                     <div className="d-flex flex-column">
