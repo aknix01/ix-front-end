@@ -138,11 +138,17 @@ function ReceivedOrders() {
                                         <span className={`badge bg-${getStatusBadgeColor(order.order_status)} me-2`}>
                                             {order.order_status.toUpperCase()}
                                         </span>
-                                        <small className="text-muted">Order ID: {order.orderId}</small>
+                                        <small style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }} className="text-success">Order ID: {order.orderId}</small>
                                     </div>
                                     <div className="text-end">
                                         <h5 className="mb-0">{formatCurrency(order.totalAmount)}</h5>
-                                        <small className="text-muted">
+                                        <small style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }} className="">
                                             {order.placed_at ? formatDate(order.placed_at) : 'Date not available'}
                                         </small>
                                     </div>
@@ -150,11 +156,20 @@ function ReceivedOrders() {
                                 <div className="card-body">
                                     <div className="row">
                                         <div className="col-md-6 mb-3">
-                                            <h6 className="text-success">Customer Details</h6>
+                                            <h6 style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }} className="text-success">Customer Details</h6>
                                             <div className="card bg-light">
                                                 <div className="card-body py-2">
-                                                    <p className="mb-1"><strong>User ID:</strong> {order.userId?.substring(0, 8)}...</p>
-                                                    <p className="mb-0"><strong>Address:</strong> {order.Address}</p>
+                                                    <p style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }} className="mb-1"><strong>User ID:</strong> {order.userId?.substring(0, 8)}...</p>
+                                                    <p style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }} className="mb-0"><strong>Address:</strong> {order.Address}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -162,15 +177,27 @@ function ReceivedOrders() {
                                             <h6 className="text-success">Payment & Delivery</h6>
                                             <div className="card bg-light">
                                                 <div className="card-body py-2">
-                                                    <p className="mb-1"><strong>Payment Method:</strong> {order.paymentMethod || 'Not specified'}</p>
-                                                    <p className="mb-0"><strong>Estimated Delivery:</strong> {order.estimatedDelivery ? formatDate(order.estimatedDelivery) : 'Not available'}</p>
+                                                    <p style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }} className="mb-1"><strong>Payment Method:</strong> {order.paymentMethod || 'Not specified'}</p>
+                                                    <p style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }} className="mb-0"><strong>Estimated Delivery:</strong> {order.estimatedDelivery ? formatDate(order.estimatedDelivery) : 'Not available'}</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <h6 className="text-success mt-2">Order Items</h6>
+                                    <h6 style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }} className="text-success mt-2">Order Items</h6>
                                     <div className="table-responsive">
-                                        <table className="table table-hover">
+                                        <table style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }} className="table table-hover">
                                             <thead className="table-light">
                                                 <tr>
                                                     <th style={{ width: "60px" }}></th>
@@ -212,10 +239,16 @@ function ReceivedOrders() {
                                 </div>
                                 <div className="card-footer bg-white">
                                     <div className="d-flex justify-content-end gap-2">
-                                        <button onClick={() => handleOnclick(order)} className="btn btn-outline-success btn-sm">
+                                        <button style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }} onClick={() => handleOnclick(order)} className="btn btn-outline-success btn-sm">
                                             Update Status
                                         </button>
-                                        <button className="btn btn-success btn-sm">
+                                        <button style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }} className="btn btn-success btn-sm">
                                             Contact Customer
                                         </button>
                                     </div>
@@ -232,13 +265,23 @@ function ReceivedOrders() {
                     <div className="modal-dialog modal-lg">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title">Update Order Status</h5>
+                                <h5 style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }} className="modal-title text-success">Update Order Status</h5>
                                 <button type="button" className="btn-close" onClick={() => setShowStatusModal(false)}></button>
                             </div>
                             <div className="modal-body">
                                 <div className="mb-3">
-                                    <label className="form-label">Select Status</label>
+                                    <label style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }} className="form-label">Select Status</label>
                                     <select
+                                    style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }}
                                         className="form-select"
                                         value={modalStatus}
                                         onChange={(e) => setModalStatus(e.target.value)}
@@ -250,8 +293,15 @@ function ReceivedOrders() {
                                     </select>
                                 </div>
                                 <div className="mb-3">
-                                    <label className="form-label">Expected Delivery Date</label>
+                                    <label style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }} className="form-label">Expected Delivery Date</label>
                                     <input
+                                    style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }}
                                         type="date"
                                         className="form-control"
                                         value={modalDeliveryDate}
@@ -260,10 +310,17 @@ function ReceivedOrders() {
                                 </div>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" onClick={() => setShowStatusModal(false)}>Close</button>
+                                <button style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }} type="button" className="btn btn-secondary" onClick={() => setShowStatusModal(false)}>Close</button>
                                 <button
+                                style={{
+                                            fontFamily:"Archivo",
+                                            fontWeight:"500"
+                                        }}
                                     type="button"
-                                    className="btn btn-primary"
+                                    className="btn btn-success"
                                     onClick={handleUpdateStatus}
                                 >
                                     Update

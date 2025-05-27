@@ -261,9 +261,9 @@ function Signup() {
                                 <form action="" className='d-flex flex-column form-control justify-content-center align-items-center' onSubmit={confirmmsg}>
                                     <FormLabel
                                         style={{
-                                            fontWeight: "bold",
+                                            fontWeight: "500",
                                             fontSize: "15px",
-                                            fontFamily: "monospace"
+                                            fontFamily: "Archivo"
 
                                         }}
                                         className='mt-5'
@@ -297,17 +297,18 @@ function Signup() {
                         (<div style={{ paddingTop: "80px" }} className=' d-flex justify-content-center '>
                             <div className=' d-flex flex-column justify-content-center align-items-center ' style={{ width: "100vw" }}>
                                 <h2
-                                    className='mt-3 mb-3'
+                                    className='mt-3 mb-3 text-success'
                                     style={{
                                         textAlign: "center",
-                                        fontFamily: "Impact, fantasy"
+                                        fontFamily: "Archivo"
                                     }}>Let's get Started ....
                                 </h2>
                                 {/* <h5>Enter your details</h5> */}
-                                <div
+                                <div className='success'
                                     style={{
-                                        height: "5px",
-                                        backgroundColor: "black",
+                                        height: "2px",
+                                        backgroundColor:"#198754",
+                                        
                                         width: "50%",
                                     }}
                                 ></div>
@@ -321,13 +322,13 @@ function Signup() {
                                                 className='col-lg-4 col-sm-12 my-1'>
                                                 <FormLabel
                                                     style={{
-                                                        fontWeight: "bold",
+                                                        fontWeight: "500",
                                                         fontSize: "15px",
-                                                        fontFamily: "monospace"
+                                                        fontFamily: "Archivo"
 
                                                     }}
                                                 >
-                                                    FIRST NAME   <span style={{
+                                                    First Name   <span style={{
                                                         color: "red"
                                                     }}> *</span>
                                                 </FormLabel>
@@ -342,7 +343,8 @@ function Signup() {
                                                     className='form-control'
                                                     style={{
                                                         height: "50px",
-                                                        border: "2px solid "
+                                                        border: "2px solid ",
+                                    fontFamily:"Archivo"
 
                                                     }}
 
@@ -358,13 +360,13 @@ function Signup() {
                                             <div className='col-lg-4 col-sm-12 my-1'>
                                                 <FormLabel
                                                     style={{
-                                                        fontWeight: "bold",
+                                                        fontWeight: "500",
                                                         fontSize: "15px",
-                                                        fontFamily: "monospace"
+                                                        fontFamily: "Archivo"
 
                                                     }}
                                                 >
-                                                    LAST NAME
+                                                    Last Name
                                                     {/* <span style={{
                                    color: "red"
                                }}> *</span> */}
@@ -378,7 +380,8 @@ function Signup() {
                                                     className='form-control'
                                                     style={{
                                                         height: "50px",
-                                                        border: "2px solid "
+                                                        border: "2px solid ",
+                                    fontFamily:"Archivo"
                                                     }}
                                                     placeholder='Last Name'
 
@@ -396,13 +399,13 @@ function Signup() {
                                             <div className='col-sm-12 col-lg-4 my-1'>
                                                 <FormLabel
                                                     style={{
-                                                        fontWeight: "bold",
+                                                        fontWeight: "500",
                                                         fontSize: "15px",
-                                                        fontFamily: "monospace"
+                                                        fontFamily: "Archivo"
 
                                                     }}
                                                 >
-                                                    EMAIL <span style={{
+                                                    Email <span style={{
                                                         color: "red"
                                                     }}> *</span>
                                                 </FormLabel>
@@ -416,7 +419,8 @@ function Signup() {
                                                     className='form-control'
                                                     style={{
                                                         height: "50px",
-                                                        border: "2px solid "
+                                                        border: "2px solid ",
+                                    fontFamily:"Archivo"
                                                     }}
 
                                                 />
@@ -432,13 +436,13 @@ function Signup() {
                                             <div className='col-lg-4 col-sm-12 my-1'>
                                                 <FormLabel
                                                     style={{
-                                                        fontWeight: "bold",
+                                                        fontWeight: "500",
                                                         fontSize: "15px",
-                                                        fontFamily: "monospace"
+                                                        fontFamily: "Archivo"
 
                                                     }}
                                                 >
-                                                    PHONE NO <span style={{
+                                                    Phone Number <span style={{
                                                         color: "red"
                                                     }}> *</span>
                                                 </FormLabel>
@@ -453,7 +457,8 @@ function Signup() {
                                                     className='form-control'
                                                     style={{
                                                         height: "50px",
-                                                        border: "2px solid "
+                                                        border: "2px solid ",
+                                    fontFamily:"Archivo"
                                                     }}
 
                                                 />
@@ -472,14 +477,14 @@ function Signup() {
 
                                                 <FormLabel
                                                     style={{
-                                                        fontWeight: "bold",
+                                                        fontWeight: "500",
                                                         fontSize: "15px",
-                                                        fontFamily: "monospace"
+                                                        fontFamily: "Archivo"
 
 
                                                     }}
                                                 >
-                                                    ADDRESS <span style={{
+                                                    Address <span style={{
                                                         color: "red"
                                                     }}> *</span>
                                                 </FormLabel>
@@ -489,7 +494,8 @@ function Signup() {
                                                     required className='form-control' style={{
                                                         border: "2px solid black",
                                                         borderRadius: "5px",
-                                                        padding: "10px"
+                                                        padding: "10px",
+                                    fontFamily:"Archivo"
 
 
 
@@ -507,13 +513,13 @@ function Signup() {
                                             <div className="col-lg-4 col-sm-12 my-1">
                                                 <FormLabel
                                                     style={{
-                                                        fontWeight: "bold",
+                                                        fontWeight: "500",
                                                         fontSize: "15px",
-                                                        fontFamily: "monospace"
+                                                        fontFamily: "Archivo"
 
                                                     }}
                                                 >
-                                                    COUNTRY <span style={{
+                                                    Country <span style={{
                                                         color: "red"
                                                     }}> *</span>
                                                 </FormLabel>
@@ -529,7 +535,8 @@ function Signup() {
                                                     className='form-control'
                                                     style={{
                                                         height: "50px",
-                                                        border: "2px solid "
+                                                        border: "2px solid ",
+                                    fontFamily:"Archivo"
                                                     }}
 
                                                 />
@@ -546,13 +553,13 @@ function Signup() {
 
                                                 <FormLabel
                                                     style={{
-                                                        fontWeight: "bold",
+                                                        fontWeight: "500",
                                                         fontSize: "15px",
-                                                        fontFamily: "monospace"
+                                                        fontFamily: "Archivo"
 
                                                     }}
                                                 >
-                                                    PINCODE<span style={{
+                                                    Pincode<span style={{
                                                         color: "red"
                                                     }}> *</span>
                                                 </FormLabel>
@@ -567,7 +574,8 @@ function Signup() {
                                                     className='form-control'
                                                     style={{
                                                         height: "50px",
-                                                        border: "2px solid "
+                                                        border: "2px solid ",
+                                    fontFamily:"Archivo"
                                                     }}
 
                                                 />
@@ -584,13 +592,13 @@ function Signup() {
                                             <div className="col-lg-4 col-sm-12 my-1">
                                                 <FormLabel
                                                     style={{
-                                                        fontWeight: "bold",
+                                                        fontWeight: "500",
                                                         fontSize: "15px",
-                                                        fontFamily: "monospace"
+                                                        fontFamily: "Archivo"
 
                                                     }}
                                                 >
-                                                    PASSWORD <span style={{
+                                                    Password <span style={{
                                                         color: "red"
                                                     }}> *</span>
                                                 </FormLabel>
@@ -620,13 +628,13 @@ function Signup() {
 
                                                 <FormLabel
                                                     style={{
-                                                        fontWeight: "bold",
+                                                        fontWeight: "500",
                                                         fontSize: "15px",
-                                                        fontFamily: "monospace"
+                                                        fontFamily: "Archivo"
 
                                                     }}
                                                 >
-                                                    CONFIRM PASSWORD <span style={{
+                                                    Confirm Password <span style={{
                                                         color: "red"
                                                     }}> *</span>
                                                 </FormLabel>
@@ -647,7 +655,7 @@ function Signup() {
                                                 {
                                                     !validatecpassword &&
                                                     <div style={{ color: "red" }}>
-                                                        Enter password, minimum of 5 characters!
+                                                        Enter password, minimum of 8 characters!
                                                     </div>
                                                 }
 
@@ -664,7 +672,7 @@ function Signup() {
 
                                                 color: "white",
 
-                                                fontFamily: "Roboto"
+                                                fontFamily: "Archivo"
                                             }}
                                             onMouseEnter={(e) => {
                                                 e.target.style.backgroundColor = "#28a745"; // Darker green
@@ -687,7 +695,8 @@ function Signup() {
                                     <a
                                         style={{
                                             textDecoration: "none",
-                                            color: "black"
+                                            color: "black",
+                                    fontFamily:"Archivo"
                                         }}
 
                                         className="custom-link mt-2 mb-5"

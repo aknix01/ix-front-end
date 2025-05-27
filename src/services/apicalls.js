@@ -57,8 +57,8 @@ export const updateOrders = async (body, header) => {
     return await commonRequest('PUT', updateOrder, body, header)
 }
 
-export const delOrders = async (id, header) => {
-    const urlWithParams = `${deleteOrder}?orderid=${id}`
+export const delOrders = async (id,user, header) => {
+    const urlWithParams = `${deleteOrder}?orderid=${id}&user=${user}`
     return await commonRequest("DELETE", urlWithParams, {}, header)
 
 }

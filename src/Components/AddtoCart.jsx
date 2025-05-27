@@ -439,7 +439,8 @@ function AddtoCart() {
 
                             fontFamily: "fantasy",
                             fontSize: "30px",
-                            textDecoration: "none"
+                            textDecoration: "none",
+                            color:"#19875"
 
                         }}
                         href="/products">View products</a>

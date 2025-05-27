@@ -89,9 +89,9 @@ function Home() {
                     borderRadius: "15px",
                     width: "100%", // Full width of container
                     height: "40vh", // Shorter height for mobile
-                    objectFit: "cover"
+                    objectFit: "fit"
                   }}
-                  src={slider1}
+                  src="https://d3cceuazvytzw7.cloudfront.net/carousel/slider1.png"
                   alt="Mobile carousel slide"
                 />
                 {/* <Carousel.Caption style={{
@@ -104,6 +104,32 @@ function Home() {
                   <h5>Mobile View Slide</h5>
                   <p className="small">Mobile-optimized caption text</p>
                 </Carousel.Caption> */}
+              </Carousel.Item>
+              <Carousel.Item className='d-flex justify-content-center'>
+                <img  style={{
+                    borderRadius: "15px",
+                    width: "100%", // Full width of container
+                    height: "40vh", // Shorter height for mobile
+                    objectFit: "fit"
+                  }} src="https://d3cceuazvytzw7.cloudfront.net/carousel/banner-home3-01-1.jpg" alt="" />
+                
+                
+              </Carousel.Item><Carousel.Item className='d-flex justify-content-center'>
+                <img style={{
+                    borderRadius: "15px",
+                    width: "100%", // Full width of container
+                    height: "40vh", // Shorter height for mobile
+                    objectFit: "fit"
+                  }} src="https://d3cceuazvytzw7.cloudfront.net/carousel/slider2.webp" alt="" />
+                
+              </Carousel.Item>    <Carousel.Item className='d-flex justify-content-center'>
+                <img  style={{
+                    borderRadius: "15px",
+                    width: "100%", // Full width of container
+                    height: "40vh", // Shorter height for mobile
+                    objectFit: "fit"
+                  }} src="https://d3cceuazvytzw7.cloudfront.net/carousel/slider3.jpg" alt="" />
+               
               </Carousel.Item>
 
               {/* Add more Carousel.Items for mobile as needed */}
@@ -119,7 +145,7 @@ function Home() {
                   borderRadius: "20px",
                   width: "50vw",
                   height: "30vh", alignSelf: "center"
-                }} src="s3://ix-inventory-01/carousel/slider1.png" alt="" />
+                }} src="https://d3cceuazvytzw7.cloudfront.net/carousel/slider1.png" alt="" />
                 <Carousel.Caption style={{
                   color: "black"
                 }}>
@@ -127,7 +153,31 @@ function Home() {
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> */}
                 </Carousel.Caption>
               </Carousel.Item>
-
+              <Carousel.Item className='d-flex justify-content-center'>
+                <img style={{
+                  borderRadius: "20px",
+                  width: "50vw",
+                  height: "30vh", alignSelf: "center"
+                }} src="https://d3cceuazvytzw7.cloudfront.net/carousel/banner-home3-01-1.jpg" alt="" />
+                
+                
+              </Carousel.Item>
+              <Carousel.Item className='d-flex justify-content-center'>
+                <img style={{
+                  borderRadius: "20px",
+                  width: "50vw",
+                  height: "30vh", alignSelf: "center"
+                }} src="https://d3cceuazvytzw7.cloudfront.net/carousel/slider2.webp" alt="" />
+                
+              </Carousel.Item>
+              <Carousel.Item className='d-flex justify-content-center'>
+                <img style={{
+                  borderRadius: "20px",
+                  width: "50vw",
+                  height: "30vh", alignSelf: "center"
+                }} src="https://d3cceuazvytzw7.cloudfront.net/carousel/slider3.jpg" alt="" />
+               
+              </Carousel.Item>
             </Carousel>
           </div>
           {/* {loader && <div className='d-flex justify-content-center my-5'>
@@ -143,16 +193,16 @@ function Home() {
 
             }}> </div><span className='mx-2 ' style={{
               alignSelf: "center",
-
-              fontWeight: "bold", fontFamily: 'PT Sans Narrow'
-            }}  >THIS MONTH</span></div>
+              fontSize:"19px",
+              fontWeight: "400", fontFamily: 'Archivo'
+            }}  >This  Month</span></div>
             <div className='d-flex justify-content-space-between mb-5 '>
               <h3 style={{
-                fontFamily: 'PT Sans Narrow',
-                fontWeight: "bold",
+                fontFamily: 'Archivo',
+                fontWeight: "400",
                 display: "inline",
                 textAlign: "center"
-              }}>BEST SELLING PRODUCTS </h3>
+              }}>Best  Selling  Products </h3>
               <div className='ms-5 ' style={{
                 display: "inline",
 
@@ -161,8 +211,8 @@ function Home() {
                   style={{
 
                     color: "",
-                    fontFamily: 'PT Sans Narrow',
-                    fontWeight: "bold"
+                    fontFamily: 'Archivo',
+                    fontWeight: ""
 
 
                   }} className='btn btn-success mx-5'>View all</button>
@@ -179,27 +229,27 @@ function Home() {
 
 
                       margin: "auto",
-                      maxWidth:"200px"
+                      maxWidth: "200px"
                     }} sx={{ maxWidth: 300 }}>
                       <CardMedia
-                      
+
                         component="img"
-                        alt="green iguana"
-                        height="140"
+                        alt={item.name}
+                        height="150"
                         image={`https://d3cceuazvytzw7.cloudfront.net/uploads/${imageName}`}
-                        style={{ objectFit: "cover"
-                          
-                         }}
+                        style={{
+                          objectFit: "fit"
+
+                        }}
                       />
                       <CardContent className='d-flex justify-content-center flex-column'>
-                        <Typography gutterBottom variant="h5" style={{
-                          fontWeight: "bold", fontFamily: "PT Sans Narrow",
+                        <Typography gutterBottom variant="h6" style={{
+                          fontWeight: "500", fontFamily: "Archivo",
                           alignSelf: "center"
                         }} component="div">
                           {item.name}
                         </Typography>
-                       
-                        <Typography variant="body2" style={{
+         <Typography variant="body2" style={{
                           fontWeight: "bold",
                           color: "green",
                           alignSelf: "center"
