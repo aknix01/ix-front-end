@@ -153,7 +153,9 @@ function Navi() {
                                 // onMouseEnter={() => setNavdrop(true)}
                                 // onMouseLeave={() => setNavdrop(false)}
                                 href="/products">Products</Nav.Link>
-                            <Nav.Link
+                           
+                                {
+                                    (!role || role==="User")&&( <Nav.Link
                                 className='mx-3 navlinkhover'
                                 id='navlinkhover'
                                 style={{
@@ -165,7 +167,8 @@ function Navi() {
                                     
                                 }}
                               
-                                href="/"> Join as a Merchant</Nav.Link>
+                                href="/seller"> Join as a Merchant</Nav.Link>)
+                                }
 
                             {(role === "Admin" || role === "Seller") && (
                                 <Nav.Link

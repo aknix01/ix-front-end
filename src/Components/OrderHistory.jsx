@@ -172,7 +172,7 @@ function OrderHistory() {
                       <button className="track-button">
                         <i className="track-icon">📦</i> TRACK ORDER
                       </button>
-                      <button onClick={() => { deleteorder(item.orderId) }} className="cancel-button">
+                      <button onClick={() => { deleteorder(item.orderId,item.userId) }} className="cancel-button">
                         <i className="cancel-icon">✕</i> CANCEL ORDER
                       </button>
 
