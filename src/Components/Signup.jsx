@@ -186,9 +186,13 @@ function Signup() {
                     Name: "custom:Pincode",
                     Value: user.pincode, // E.164 format like +919876543210
                 });
+                 const roleAttribute = new CognitoUserAttribute({
+                    Name: "custom:Role",
+                    Value: "User", // E.164 format like +919876543210
+                });
 
 
-                attributeList.push(fnameAttribute, lnameAttribute, addressAttribute, phoneNumberAttribute, pincodeAttribute, countryAttribute);
+                attributeList.push(fnameAttribute, lnameAttribute, addressAttribute, phoneNumberAttribute, pincodeAttribute, countryAttribute,roleAttribute);
 
                 userPool.signUp(user.email, user.password, attributeList, null, (err, data) => {
                     if (err) {
@@ -691,7 +695,7 @@ function Signup() {
                                 </form>
 
                                 <div
-                                    className='d-flex justify-content-center align-items-center mb-5'>
+                                    className='d-flex flex-column justify-content-center align-items-center mb-5'>
                                     <a
                                         style={{
                                             textDecoration: "none",
@@ -699,9 +703,19 @@ function Signup() {
                                     fontFamily:"Archivo"
                                         }}
 
-                                        className="custom-link mt-2 mb-5"
+                                        className="custom-link mt-2 "
                                         href="/login">Already an User? <strong>Login</strong>
                                     </a>
+                                    <a
+                    style={{
+                      textDecoration: "none",
+                      color: "black",
+                      fontFamily: "Archivo"
+                    }}
+
+                    className="custom-link mt-2 mb-5"
+                    href="/seller">Are you a Merchant? <strong>click here to signup</strong>
+                  </a>
 
                                 </div>
                             </div>

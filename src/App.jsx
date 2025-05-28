@@ -17,6 +17,7 @@ import OrderPlaced from './Components/OrderPlaced'
 import OrderHistory from './Components/OrderHistory'
 import RecievedOrders from './Components/RecievedOrders'
 import ProductDetails from './Components/ProductDetails'
+import Seller from './Components/Seller'
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
       <Route path="/orders" element={<OrderHistory/>}></Route>
       <Route path="/recievedorders" element={<RoleBasedRoutes allowedRoles={["Admin","Seller"]}><RecievedOrders/></RoleBasedRoutes> }></Route>
       <Route path="/details" element={<ProductDetails/>}></Route>
+      <Route path="/seller" element={<Seller/>}></Route>
 
     </Routes>
     </BrowserRouter>
